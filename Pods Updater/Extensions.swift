@@ -11,11 +11,11 @@ import Cocoa
 
 // MARK: - NSTableView
 extension NSTableView {
-    func registerCellNib<T: RawRepresentable>(_ cellClass: AnyClass,
-                                              forIdentifier identifier: T) where T.RawValue == String {
+    func registerCellNib(_ cellClass: AnyClass,
+                                              forIdentifier identifier: NSUserInterfaceItemIdentifier) {
         let nibName = String.className(cellClass)
         let nib = NSNib(nibNamed: NSNib.Name(rawValue: nibName), bundle: nil)
-        self.register(nib, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: identifier.rawValue))
+        self.register(nib, forIdentifier: identifier)
     }
 }
 
@@ -24,4 +24,3 @@ extension String {
         return NSStringFromClass(aClass).components(separatedBy: ".").last!
     }
 }
-
