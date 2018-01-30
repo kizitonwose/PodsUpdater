@@ -26,12 +26,16 @@ class MainPresenter: MainContract.Presenter {
         source.parsePodfile(at: path)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { [weak self] pods in
-                print("Finished with pods: \(pods)")
-                self?.view?.showPodsInformation(with: pods)
-            }) { error in
-                print("Finished with error: \(error)")
-            }.disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] progressResult in
+                //print("Finished with pods: \(pods)")
+                if progressResult.result == nil {
+                    self?.view?.showPodfileReadPercentage(progressResult.progress)
+                } else {
+                    self?.view?.showPodsInformation(with: progressResult.result!)
+                }
+                }, onError: { error in
+                    print("Finished with error: \(error)")
+            }).disposed(by: disposeBag)
     }
 
     func start() { }

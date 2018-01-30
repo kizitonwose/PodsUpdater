@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct ProgressResult<T> {
+    var progress: Double = 0
+    var result: T?
+}
+
 struct Pod {
     var name = ""
     var lineNumber = -1

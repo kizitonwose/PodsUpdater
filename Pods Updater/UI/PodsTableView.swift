@@ -61,7 +61,7 @@ extension PodsTableView: NSTableViewDelegate {
         
         if tableColumn == tableView.tableColumns[3] {
             let cell = tableView.makeView(withIdentifier: .useVersionCell, owner: nil)  as! PodUseVersionCellView
-            cell.useVersionButton.title = "Use version"
+            cell.useVersionButton.title = "Get"
             return cell
         }
         return nil

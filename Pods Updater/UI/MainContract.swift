@@ -15,6 +15,7 @@ struct MainContract {
 
 protocol _MainView: BaseContract.View {
     func showPodsInformation(with pods: [Pod])
+    func showPodfileReadPercentage(_ progress: Double)
 }
 
 protocol _MainPresenter: BaseContract.Presenter {
