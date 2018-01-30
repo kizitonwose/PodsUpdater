@@ -8,7 +8,7 @@
 
 import Cocoa
 
-// Fix for: Unknown Window class (null) in Interface Builder file, creating generic Window instead
+// Fix for error: Unknown Window class (null) in Interface Builder file, creating generic Window instead
 // https://stackoverflow.com/questions/47051682/unknown-window-class-null-in-interface-builder-file-creating-generic-window-i
 class MainWindow: NSWindow {
 

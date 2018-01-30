@@ -11,13 +11,40 @@ import Cocoa
 class MainViewController: NSViewController {
     
     @IBOutlet weak var tableView: PodsTableView!
+    private var presenter: MainContract.Presenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        presenter = MainPresenter(view: self, source: Repository.instance)
+        
         setup()
         tableView.reloadData()
     }
+    
+    override func viewDidAppear() {
+        super.viewDidDisappear()
+        
+        let openPanel = NSOpenPanel()
+        openPanel.title = "Select Podfile"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.canCreateDirectories = false
+        //        openPanel.allowedFileTypes = ["jpg","png","pdf","pct", "bmp", "tiff"]
+        
+        if (openPanel.runModal() == NSApplication.ModalResponse.OK) {
+            presenter.parsePodfile(at: openPanel.url!)
+        } else {
+            // User clicked on "Cancel"
+            print("User cancelled")
+            return
+        }
+        
+    }
+    
+}
+
+extension MainViewController: MainContract.View {
     
 }
 
