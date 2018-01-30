@@ -51,7 +51,7 @@ class Repository: DataSource {
                     pod.currentVersion = currentVersion
                     
                     // Search for the pod locally
-                    "search \(pod.name)".run() { result in
+                    "search \(pod.isSubSpec ? pod.specName : pod.name)".run() { result in
                         switch result {
                         case .success(let output):
                             // Find the line in search result with version information

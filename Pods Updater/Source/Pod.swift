@@ -18,6 +18,12 @@ struct Pod {
     var lineNumber = -1
     var currentVersion = ""
     var availableVersions = [String]()
+    var specName: String {
+        return isSubSpec ? name.components(separatedBy: "/").first! : name
+    }
+    var isSubSpec: Bool {
+        return name.contains("/")
+    }
     
     init(name: String, lineNumber: Int, currentVersion: String) {
         self.name = name
