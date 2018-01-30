@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class MainViewController: NSViewController {
-    
-    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var selectPodfileButton: NSButton!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: PodsTableView!
     private var presenter: MainContract.Presenter!
     let disposeBag = DisposeBag()
@@ -60,7 +60,8 @@ extension MainViewController {
         selectPodfileButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
                 if (self.openPanel.runModal() == .OK) {
-                    self.presenter.parsePodfile(at: self.openPanel.url!)
+                    self.presenter.parsePodfile(at: self.openPanel.url!,
+                                                onlyNewVersions: self.filterButton.state == .on)
                 } else {
                     // User clicked on "Cancel"
                     print("User cancelled")

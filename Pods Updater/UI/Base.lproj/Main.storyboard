@@ -844,20 +844,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bC0-IP-sB3">
+                                <rect key="frame" x="276" y="332" width="179" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show only newer versions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DX3-o7-pDD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rbj-wh-aOh" secondAttribute="trailing" id="4Bm-Gl-MWe"/>
                             <constraint firstItem="Rbj-wh-aOh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="P4G-BV-la5"/>
                             <constraint firstAttribute="trailing" secondItem="Xov-au-FOQ" secondAttribute="trailing" constant="15" id="Zfc-X0-nQ0"/>
                             <constraint firstAttribute="trailing" secondItem="CEO-7p-rrG" secondAttribute="trailing" constant="-2" id="dDB-DX-Cuy"/>
+                            <constraint firstItem="Xov-au-FOQ" firstAttribute="leading" secondItem="bC0-IP-sB3" secondAttribute="trailing" constant="15" id="fsU-aP-xa4"/>
                             <constraint firstItem="CEO-7p-rrG" firstAttribute="top" secondItem="Xov-au-FOQ" secondAttribute="bottom" constant="10" id="iiV-wt-5mJ"/>
                             <constraint firstItem="Xov-au-FOQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="mvA-tL-AvG"/>
                             <constraint firstItem="CEO-7p-rrG" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-2" id="sEg-Ph-oAE"/>
                             <constraint firstAttribute="bottom" secondItem="Rbj-wh-aOh" secondAttribute="bottom" id="vuY-CI-bar"/>
                             <constraint firstItem="Rbj-wh-aOh" firstAttribute="top" secondItem="CEO-7p-rrG" secondAttribute="bottom" constant="-7" id="xnn-uv-xsv"/>
+                            <constraint firstItem="bC0-IP-sB3" firstAttribute="centerY" secondItem="Xov-au-FOQ" secondAttribute="centerY" id="yAs-Zj-SAR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterButton" destination="bC0-IP-sB3" id="8pd-S5-8Sz"/>
                         <outlet property="progressIndicator" destination="CEO-7p-rrG" id="kFB-jo-E8a"/>
                         <outlet property="selectPodfileButton" destination="Xov-au-FOQ" id="3tN-1q-hME"/>
                         <outlet property="tableView" destination="nJx-YJ-bQx" id="WKv-Y9-CbM"/>

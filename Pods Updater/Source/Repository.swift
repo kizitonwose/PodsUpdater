@@ -15,7 +15,7 @@ class Repository: DataSource {
 
     private init() { }
     
-    func parsePodfile(at path: URL) -> Observable<ProgressResult<[Pod]>> {
+    func parsePodfile(at path: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
         var content = ""
         do {// Read the file to String
            content = try String(contentsOf: path, encoding: .utf8)
@@ -60,21 +60,27 @@ class Repository: DataSource {
                                 $0.trimmingWhiteSpaces().starts(with: "- Versions:")
                             }
                             
-                            var availableVersions = [String]()
                             if let versionsLine = versionsLine {
                                 // Remove uneccessary information from the version line and retrieve pod versions
-                                let versions = versionsLine
+                                var versions = versionsLine
                                     .replacingOccurrences(of: "- Versions:", with: "")
                                     .replacingOccurrences(of: "[master repo]", with: "")
                                     .splitByComma()
                                     .map { $0.trimmingWhiteSpaces() }
                                 // print(versions)
-                                availableVersions.append(contentsOf: versions)
+                                
+                                // If the user chose to see only newer versions of their pods than currently
+                                // installed, we remove all older versions from the array.
+                                if onlyNewVersions, let currentVersionIndex = versions.index(of: pod.currentVersion) {
+                                    versions = Array(versions.dropLast(versions.count-currentVersionIndex))
+                                }
+                                pod.availableVersions = versions
                             }
-                            pod.availableVersions = availableVersions
                         case .error: break
                         }
-                        pods.append(pod)
+                        if pod.availableVersions.isNotEmpty {
+                            pods.append(pod)
+                        }
                     }
                 }
                 

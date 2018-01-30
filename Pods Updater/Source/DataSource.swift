@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol DataSource {
-    func parsePodfile(at path: URL) -> Observable<ProgressResult<[Pod]>>
+    func parsePodfile(at path: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>>
 }

@@ -14,9 +14,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mon-US-HRS">
-                    <rect key="frame" x="58" y="-3" width="115" height="26"/>
+                    <rect key="frame" x="74" y="-3" width="85" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="110" id="EIg-hi-2bc"/>
+                        <constraint firstAttribute="width" constant="80" id="EIg-hi-2bc"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CwK-hT-lfb" id="eyr-KQ-3Cx">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>

@@ -19,5 +19,5 @@ protocol _MainView: BaseContract.View {
 }
 
 protocol _MainPresenter: BaseContract.Presenter {
-    func parsePodfile(at path: URL)
+    func parsePodfile(at path: URL, onlyNewVersions: Bool)
 }

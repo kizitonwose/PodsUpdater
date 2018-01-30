@@ -21,9 +21,9 @@ class MainPresenter: MainContract.Presenter {
         self.view = view
     }
     
-    func parsePodfile(at path: URL) {
+    func parsePodfile(at path: URL, onlyNewVersions: Bool) {
         currentPath = path
-        source.parsePodfile(at: path)
+        source.parsePodfile(at: path, onlyNewVersions: onlyNewVersions)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] progressResult in

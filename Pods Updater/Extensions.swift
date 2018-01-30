@@ -70,3 +70,8 @@ extension Array {
     }
 }
 
+extension Collection {
+    var isNotEmpty: Bool {
+        return count > 0
+    }
+}
