@@ -1,0 +1,4 @@
+Pods
+*.xcuserstate
+*.generated.swift
+*/xcuserdata
