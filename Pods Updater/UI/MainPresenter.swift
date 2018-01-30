@@ -22,6 +22,13 @@ class MainPresenter: MainContract.Presenter {
     
     func parsePodfile(at path: URL) {
         source.parsePodfile(at: path)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { pods in
+                print("Finished with pods: \(pods)")
+            }) { error in
+                print("Finished with error: \(error)")
+            }.disposed(by: disposeBag)
     }
 
     func start() { }

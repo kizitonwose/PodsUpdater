@@ -19,6 +19,7 @@ extension NSTableView {
     }
 }
 
+// MARK: String
 extension String {
     static func className(_ aClass: AnyClass) -> String {
         return NSStringFromClass(aClass).components(separatedBy: ".").last!
@@ -26,29 +27,46 @@ extension String {
 }
 
 extension String {
-    func run(completion: ((ProcessResult) -> Void)? = nil)  {
-        let pipe = Pipe()
-        let errorPipe = Pipe()
-        let process = Process()
-        process.launchPath = "/usr/local/bin/pod"
-        process.arguments = self.components(separatedBy: .whitespaces)
-        process.standardOutput = pipe
-        process.standardError = errorPipe
-        
-        let fileHandle = pipe.fileHandleForReading
-        let errorFileHandle = errorPipe.fileHandleForReading
-        process.terminationHandler = { process in
-            
-            if process.terminationStatus == 0 {
-                let output = String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
-                completion?(.success(output: output))
-            } else {
-                let output = String(data: errorFileHandle.readDataToEndOfFile(), encoding: .utf8)
-                completion?(.error(output: output))
-            }
-        }
-        
-        process.launch()
-        process.waitUntilExit()
+    func trimmingWhiteSpaces() -> String {
+        return trimmingCharacters(in: .whitespaces)
+    }
+    
+    func splitByNewLines() -> [String] {
+        return components(separatedBy: .newlines)
+    }
+    
+    func splitByComma() -> [String] {
+        return components(separatedBy: ",")
     }
 }
+
+extension String {
+    var isValidPodLine: Bool {
+        return self.starts(with: "pod")
+    }
+}
+
+// MARK:- Array
+extension Array {
+    var second: Element? {
+        if count > 1 {
+            return self[1]
+        }
+        return nil
+    }
+    
+    var third: Element? {
+        if count > 2 {
+            return self[2]
+        }
+        return nil
+    }
+    
+    var fourth: Element? {
+        if count > 3 {
+            return self[3]
+        }
+        return nil
+    }
+}
+
