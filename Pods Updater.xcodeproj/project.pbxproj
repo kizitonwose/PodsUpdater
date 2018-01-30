@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D0820206AED008C73B7 /* PodsTableView.swift */; };
+		50131D0D20206BFB008C73B7 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D0C20206BFB008C73B7 /* Pod.swift */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
 		50C06531201F7B4400D7B8D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* ViewController.swift */; };
 		50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C06532201F7B4400D7B8D3 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50131D0820206AED008C73B7 /* PodsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodsTableView.swift; sourceTree = "<group>"; };
+		50131D0C20206BFB008C73B7 /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50C06530201F7B4400D7B8D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
 				50C06537201F7B4400D7B8D3 /* Info.plist */,
 				50C06538201F7B4400D7B8D3 /* Pods_Updater.entitlements */,
+				50131D0820206AED008C73B7 /* PodsTableView.swift */,
+				50131D0C20206BFB008C73B7 /* Pod.swift */,
 			);
 			path = "Pods Updater";
 			sourceTree = "<group>";
@@ -96,6 +102,11 @@
 					50C0652A201F7B4400D7B8D3 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -134,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
 				50C06531201F7B4400D7B8D3 /* ViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,
+				50131D0D20206BFB008C73B7 /* Pod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +276,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pods Updater/Pods_Updater.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K3JWY7DT4K;
@@ -280,7 +292,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pods Updater/Pods_Updater.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K3JWY7DT4K;
