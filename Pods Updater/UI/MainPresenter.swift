@@ -14,6 +14,7 @@ class MainPresenter: MainContract.Presenter {
     private weak var view : MainContract.View?
     private var disposeBag = DisposeBag()
     private var source: DataSource!
+    var currentPath: URL? = nil
     
     init(view: MainContract.View, source: DataSource) {
         self.source = source
@@ -21,11 +22,13 @@ class MainPresenter: MainContract.Presenter {
     }
     
     func parsePodfile(at path: URL) {
+        currentPath = path
         source.parsePodfile(at: path)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { pods in
+            .subscribe(onSuccess: { [weak self] pods in
                 print("Finished with pods: \(pods)")
+                self?.view?.showPodsInformation(with: pods)
             }) { error in
                 print("Finished with error: \(error)")
             }.disposed(by: disposeBag)

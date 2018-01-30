@@ -13,7 +13,9 @@ struct MainContract {
     typealias Presenter = _MainPresenter
 }
 
-protocol _MainView: BaseContract.View { }
+protocol _MainView: BaseContract.View {
+    func showPodsInformation(with pods: [Pod])
+}
 
 protocol _MainPresenter: BaseContract.Presenter {
     func parsePodfile(at path: URL)

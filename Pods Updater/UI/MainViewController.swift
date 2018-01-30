@@ -45,7 +45,9 @@ class MainViewController: NSViewController {
 }
 
 extension MainViewController: MainContract.View {
-    
+    func showPodsInformation(with pods: [Pod]) {
+        tableView.pods = pods
+    }
 }
 
 extension MainViewController {

@@ -37,23 +37,25 @@ class PodsTableView: NSTableView {
 // MARK:- NSTableViewDelegate
 extension PodsTableView: NSTableViewDelegate {
     public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let pod = pods[row]
         if tableColumn == tableView.tableColumns[0] {
             let cell = tableView.makeView(withIdentifier: .podNameCell, owner: nil)  as! NSTableCellView
-            cell.textField?.stringValue = "Alamofire"
+            cell.textField?.stringValue = pod.name
             cell.textField?.alignment = .center
             return cell
         }
         
         if tableColumn == tableView.tableColumns[1]{
             let cell = tableView.makeView(withIdentifier: .currentVersionCell, owner: nil)  as! NSTableCellView
-            cell.textField?.stringValue = "Alamofire"
+            cell.textField?.stringValue = pod.currentVersion
             cell.textField?.alignment = .center
             return cell
         }
         
         if tableColumn == tableView.tableColumns[2] {
             let cell = tableView.makeView(withIdentifier: .newVersionsCell, owner: nil)  as! PodNewVersionsTableCellView
-            cell.versionsPopUp.addItems(withTitles: ["1.1.0", "1.1.1", "1.1.2", "1.1.3"])
+            cell.versionsPopUp.removeAllItems()
+            cell.versionsPopUp.addItems(withTitles: pod.availableVersions)
             return cell
         }
         
@@ -69,7 +71,7 @@ extension PodsTableView: NSTableViewDelegate {
 // MARK:- NSTableViewDataSource
 extension PodsTableView: NSTableViewDataSource {
     public func numberOfRows(in tableView: NSTableView) -> Int {
-        return 6
+        return pods.count
     }
 }
 
