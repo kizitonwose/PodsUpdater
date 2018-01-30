@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 29/01/2018.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class MainViewController: NSViewController {
     
     @IBOutlet weak var tableView: PodsTableView!
     

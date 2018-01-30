@@ -30,6 +30,7 @@ class PodsTableView: NSTableView {
         dataSource = self
         delegate = self
         registerCellNib(PodNewVersionsTableCellView.self, forIdentifier: CellIdentifier.newVersionsCell)
+        registerCellNib(PodUseVersionCellView.self, forIdentifier: CellIdentifier.useVersionCell)
     }
 }
 
@@ -52,6 +53,12 @@ extension PodsTableView: NSTableViewDelegate {
             cell.versionsPopUp.addItems(withTitles: ["1.1.0", "1.1.1", "1.1.2", "1.1.3"])
             return cell
         }
+        
+        if tableColumn == tableView.tableColumns[3] {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(CellIdentifier.useVersionCell.rawValue), owner: nil)  as! PodUseVersionCellView
+            cell.useVersionButton.title = "Use version"
+            return cell
+        }
         return nil
     }
 }
@@ -67,7 +74,7 @@ extension PodsTableView {
         case podNameCell = "podNameCell"
         case currentVersionCell = "currentVersionCell"
         case newVersionsCell = "newVersionsCell"
-        case actionCell = "actionCell"
+        case useVersionCell = "useVersionCell"
     }
 }
 
@@ -75,5 +82,11 @@ extension PodsTableView {
 class PodNewVersionsTableCellView: NSTableCellView {
     
     @IBOutlet weak var versionsPopUp: NSPopUpButton!
+    
+}
+
+class PodUseVersionCellView: NSTableCellView {
+    
+    @IBOutlet weak var useVersionButton: NSButton!
     
 }

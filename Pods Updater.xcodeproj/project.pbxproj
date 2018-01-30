@@ -14,8 +14,9 @@
 		50131D1420206F8F008C73B7 /* PodNewVersionsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */; };
 		50131D16202070E8008C73B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D15202070E8008C73B7 /* Extensions.swift */; };
 		50131D1A20208349008C73B7 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1920208349008C73B7 /* MainWindow.swift */; };
+		50131D1D20208F32008C73B7 /* PodUseVersionCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
-		50C06531201F7B4400D7B8D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* ViewController.swift */; };
+		50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* MainViewController.swift */; };
 		50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C06532201F7B4400D7B8D3 /* Assets.xcassets */; };
 		50C06536201F7B4400D7B8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C06534201F7B4400D7B8D3 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -28,9 +29,10 @@
 		50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodNewVersionsTableCellView.xib; sourceTree = "<group>"; };
 		50131D15202070E8008C73B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		50131D1920208349008C73B7 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
+		50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodUseVersionCellView.xib; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50C06530201F7B4400D7B8D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		50C06530201F7B4400D7B8D3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		50C06532201F7B4400D7B8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50C06535201F7B4400D7B8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50C06537201F7B4400D7B8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +59,20 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		50131D1B20208EAB008C73B7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				50C06530201F7B4400D7B8D3 /* MainViewController.swift */,
+				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
+				50131D0820206AED008C73B7 /* PodsTableView.swift */,
+				50131D0C20206BFB008C73B7 /* Pod.swift */,
+				50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */,
+				50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */,
+				50131D1920208349008C73B7 /* MainWindow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		50C06522201F7B4400D7B8D3 = {
 			isa = PBXGroup;
 			children = (
@@ -76,18 +92,13 @@
 		50C0652D201F7B4400D7B8D3 /* Pods Updater */ = {
 			isa = PBXGroup;
 			children = (
+				50131D1B20208EAB008C73B7 /* UI */,
 				50131D0E20206DCA008C73B7 /* Source */,
 				50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */,
-				50C06530201F7B4400D7B8D3 /* ViewController.swift */,
 				50C06532201F7B4400D7B8D3 /* Assets.xcassets */,
-				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
 				50C06537201F7B4400D7B8D3 /* Info.plist */,
 				50C06538201F7B4400D7B8D3 /* Pods_Updater.entitlements */,
-				50131D0820206AED008C73B7 /* PodsTableView.swift */,
-				50131D0C20206BFB008C73B7 /* Pod.swift */,
-				50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */,
 				50131D15202070E8008C73B7 /* Extensions.swift */,
-				50131D1920208349008C73B7 /* MainWindow.swift */,
 			);
 			path = "Pods Updater";
 			sourceTree = "<group>";
@@ -159,6 +170,7 @@
 				50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */,
 				50131D1420206F8F008C73B7 /* PodNewVersionsTableCellView.xib in Resources */,
 				50C06536201F7B4400D7B8D3 /* Main.storyboard in Resources */,
+				50131D1D20208F32008C73B7 /* PodUseVersionCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +183,7 @@
 			files = (
 				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
 				50131D1A20208349008C73B7 /* MainWindow.swift in Sources */,
-				50C06531201F7B4400D7B8D3 /* ViewController.swift in Sources */,
+				50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
 				50131D0D20206BFB008C73B7 /* Pod.swift in Sources */,

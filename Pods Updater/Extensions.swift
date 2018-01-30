@@ -24,3 +24,4 @@ extension String {
         return NSStringFromClass(aClass).components(separatedBy: ".").last!
     }
 }
+

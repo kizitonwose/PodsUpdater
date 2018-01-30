@@ -14,7 +14,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mon-US-HRS">
-                    <rect key="frame" x="-2" y="-3" width="235" height="26"/>
+                    <rect key="frame" x="78" y="-3" width="76" height="26"/>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="CwK-hT-lfb" id="eyr-KQ-3Cx">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -29,10 +29,8 @@
                 </popUpButton>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Mon-US-HRS" secondAttribute="trailing" id="NkK-Pc-OQM"/>
-                <constraint firstItem="Mon-US-HRS" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Ohr-Sl-LMs"/>
-                <constraint firstItem="Mon-US-HRS" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="tQk-Zy-zab"/>
-                <constraint firstAttribute="bottom" secondItem="Mon-US-HRS" secondAttribute="bottom" id="whv-Hk-SMe"/>
+                <constraint firstItem="Mon-US-HRS" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="2xb-9i-ddI"/>
+                <constraint firstItem="Mon-US-HRS" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="fcY-Qj-sv4"/>
             </constraints>
             <connections>
                 <outlet property="versionsPopUp" destination="Mon-US-HRS" id="1nZ-B7-7pk"/>
