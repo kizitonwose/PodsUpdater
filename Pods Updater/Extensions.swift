@@ -70,8 +70,17 @@ extension Array {
     }
 }
 
+// MARK:- Collection
 extension Collection {
     var isNotEmpty: Bool {
         return count > 0
+    }
+}
+
+
+// MARK:- Bool
+extension Bool {
+    func not() -> Bool {
+        return !self
     }
 }

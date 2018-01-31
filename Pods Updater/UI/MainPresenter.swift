@@ -23,11 +23,17 @@ class MainPresenter: MainContract.Presenter {
     
     func parsePodfile(at url: URL, onlyNewVersions: Bool) {
         currentUrl = url
+        view?.setProgress(enabled: true)
         let projectName = source.getProjectNameForPodfile(at: url)
         view?.showProjectName(projectName)
+        view?.showPodsInformation(with: [])
+        
         source.parsePodfile(at: url, onlyNewVersions: onlyNewVersions)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
+            .do(onCompleted: { [weak self] in
+                self?.view?.setProgress(enabled: false)
+            })
             .subscribe(onNext: { [weak self] progressResult in
                 //print("Finished with pods: \(pods)")
                 if progressResult.result == nil {

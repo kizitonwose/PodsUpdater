@@ -51,6 +51,12 @@ extension MainViewController: MainContract.View {
     func showProjectName(_ name: String) {
         projectNameTextField.stringValue = name
     }
+    
+    func setProgress(enabled: Bool) {
+        filterButton.isEnabled = !enabled
+        selectPodfileButton.isEnabled = !enabled
+        tableView.isEnabled = !enabled
+    }
 }
 
 // MARK:- Setup

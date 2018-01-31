@@ -80,7 +80,11 @@ class Repository: DataSource {
                         case .error: break
                         }
                         if pod.availableVersions.isNotEmpty {
-                            pods.append(pod)
+                            if pods.contains(pod) {
+                                pods[pods.index(of: pod)!].otherLineNumbers.append(index)
+                            } else {
+                                pods.append(pod)
+                            }
                         }
                     }
                 }
@@ -88,7 +92,7 @@ class Repository: DataSource {
             }
         }
         
-        if !disposable.isDisposed {
+        if disposable.isDisposed.not() {
             observer.onNext(ProgressResult(progress: 100, result: pods))
             observer.onCompleted()
         }
