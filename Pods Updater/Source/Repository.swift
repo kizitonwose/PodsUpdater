@@ -10,49 +10,47 @@ import Foundation
 import RxSwift
 
 class Repository: DataSource {
-
+    
     public static let instance = Repository()
-
+    
     private init() { }
     
     func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
         var content = ""
         do {// Read the file to String
-           content = try String(contentsOf: url, encoding: .utf8)
+            content = try String(contentsOf: url, encoding: .utf8)
         } catch {
             return Observable.error(error)
         }
-
-       return Observable.create { observer -> Disposable in
-        let disposable = BooleanDisposable()
         
-        let lines = content.splitByNewLines()
-        
-        var pods = [Pod]()
-        
-        for (index, line) in lines.enumerated() {
-            if disposable.isDisposed {
-                break
-            }
-           
-            let progress = Double(index)/(Double(lines.count - 1)) * 100.0
-            observer.onNext(ProgressResult(progress: progress, result: nil))
+        return Observable.create { observer -> Disposable in
+            let disposable = BooleanDisposable()
             
+            let lines = content.splitByNewLines()
             
-            let line = line.trimmingWhiteSpaces()
-            if line.isValidPodLine {
-        
-                print(line)
-                 // Parse every line in the Podfile
-                let components = line.components(separatedBy: "'")
-                if let name = components.second, let currentVersion = components.fourth {
-                    var pod = Pod()
-                    pod.lineIndex = index
-                    pod.name = name
-                    pod.currentVersion = currentVersion
-                    
-                    // Search for the pod locally
-                    "search \(pod.isSubSpec ? pod.specName : pod.name)".run() { result in
+            var pods = [Pod]()
+            
+            for (index, line) in lines.enumerated() {
+                if disposable.isDisposed {
+                    break
+                }
+                
+                let progress = Double(index)/(Double(lines.count - 1)) * 100.0
+                observer.onNext(ProgressResult(progress: progress, result: nil))
+                
+                let line = line.trimmingWhiteSpaces()
+                if line.isValidPodLine {
+                    print(line)
+                    // Parse every line in the Podfile
+                    let components = line.components(separatedBy: "'")
+                    if let name = components.second, let currentVersion = components.fourth {
+                        var pod = Pod()
+                        pod.lineIndex = index
+                        pod.name = name
+                        pod.currentVersion = currentVersion
+                        
+                        // Search for the pod locally
+                        let result = "search \(pod.isSubSpec ? pod.specName : pod.name)".run()
                         switch result {
                         case .success(let output):
                             // Find the line in search result with version information
@@ -87,16 +85,15 @@ class Repository: DataSource {
                             }
                         }
                     }
+                    
                 }
-                
             }
-        }
-        
-        if disposable.isDisposed.not() {
-            observer.onNext(ProgressResult(progress: 100, result: pods))
-            observer.onCompleted()
-        }
-        return disposable
+            
+            if disposable.isDisposed.not() {
+                observer.onNext(ProgressResult(progress: 100, result: pods))
+                observer.onCompleted()
+            }
+            return disposable
         }
         
     }
@@ -119,7 +116,7 @@ class Repository: DataSource {
         }
         return url.path
     }
-
+    
     func setVersion(_ version: String, forPod pod: Pod, inPodfile url: URL)  {
         guard let content = try? String(contentsOf: url, encoding: .utf8) else { return }
         

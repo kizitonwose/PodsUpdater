@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    func run(completion: ((ProcessResult) -> Void)? = nil)  {
+    func run() -> ProcessResult {
         let pipe = Pipe()
         let errorPipe = Pipe()
         let process = Process()
@@ -20,19 +20,17 @@ extension String {
         
         let fileHandle = pipe.fileHandleForReading
         let errorFileHandle = errorPipe.fileHandleForReading
-        process.terminationHandler = { process in
-            
-            if process.terminationStatus == 0 {
-                let output = String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
-                completion?(.success(output: output))
-            } else {
-                let output = String(data: errorFileHandle.readDataToEndOfFile(), encoding: .utf8)
-                completion?(.error(output: output))
-            }
-        }
         
         process.launch()
         process.waitUntilExit()
+        
+        if process.terminationStatus == 0 {
+            let output = String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
+            return .success(output: output)
+        } else {
+            let output = String(data: errorFileHandle.readDataToEndOfFile(), encoding: .utf8)
+            return.error(output: output)
+        }
     }
 }
 
