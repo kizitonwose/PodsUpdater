@@ -13,8 +13,8 @@ import RxCocoa
 class MainViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
+    @IBOutlet weak var selectPodfileButton: NSPopUpButton!
     @IBOutlet weak var filterButton: NSButton!
-    @IBOutlet weak var selectPodfileButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: PodsTableView!
     private var presenter: MainContract.Presenter!
@@ -34,7 +34,7 @@ class MainViewController: NSViewController {
         alert.informativeText = "This app searches your local pod spec repository to get pod versions. For best results, it's important that this repo is up to date. This can be achieved by running the \"pod repo update\" command."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "Close")
-        alert.addButton(withTitle: "Rum update command now")
+        alert.addButton(withTitle: "Run update command now")
         return alert
     }()
     
@@ -45,6 +45,7 @@ class MainViewController: NSViewController {
         setupViews()
         tableView.reloadData()
     }
+
 }
 
 // MARK:- MainContract.View
