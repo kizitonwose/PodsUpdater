@@ -66,10 +66,14 @@ extension PodsTableView: NSTableViewDelegate {
             cell.useVersionButton.title = "Get"
             cell.buttonClickHandler = { [unowned self] in
                 let row = self.row(for: cell)
+
                 print("Selected row: \(row)")
                 if let newVersionView = self.view(atColumn: 2, row: row, makeIfNecessary: true)
                     as? PodNewVersionsTableCellView, let newVersion = newVersionView.versionsPopUp.selectedItem?.title {
+                   
                     self.buttonClickHandler?(self.pods[row], newVersion)
+                    self.removeRows(at: IndexSet(integer: row), withAnimation: [.effectFade, .slideRight])
+                    self.pods.remove(at: row)
                 }
             }
             return cell
