@@ -10,6 +10,8 @@ import Cocoa
 
 class PodsTableView: NSTableView {
     
+    var buttonClickHandler: ((Pod, _ newVersion: String) -> ())?
+    
     var pods = [Pod]() {
         didSet {
             reloadData()
@@ -38,30 +40,38 @@ class PodsTableView: NSTableView {
 extension PodsTableView: NSTableViewDelegate {
     public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let pod = pods[row]
-        if tableColumn == tableView.tableColumns[0] {
+        if tableColumn == tableView.tableColumns.first {
             let cell = tableView.makeView(withIdentifier: .podNameCell, owner: nil)  as! NSTableCellView
             cell.textField?.stringValue = pod.name
             cell.textField?.alignment = .center
             return cell
         }
         
-        if tableColumn == tableView.tableColumns[1]{
+        if tableColumn == tableView.tableColumns.second {
             let cell = tableView.makeView(withIdentifier: .currentVersionCell, owner: nil)  as! NSTableCellView
             cell.textField?.stringValue = pod.currentVersion
             cell.textField?.alignment = .center
             return cell
         }
         
-        if tableColumn == tableView.tableColumns[2] {
+        if tableColumn == tableView.tableColumns.third {
             let cell = tableView.makeView(withIdentifier: .newVersionsCell, owner: nil)  as! PodNewVersionsTableCellView
             cell.versionsPopUp.removeAllItems()
             cell.versionsPopUp.addItems(withTitles: pod.availableVersions)
             return cell
         }
         
-        if tableColumn == tableView.tableColumns[3] {
+        if tableColumn == tableView.tableColumns.fourth {
             let cell = tableView.makeView(withIdentifier: .useVersionCell, owner: nil)  as! PodUseVersionCellView
             cell.useVersionButton.title = "Get"
+            cell.buttonClickHandler = { [unowned self] in
+                let row = self.row(for: cell)
+                print("Selected row: \(row)")
+                if let newVersionView = self.view(atColumn: 2, row: row, makeIfNecessary: true)
+                    as? PodNewVersionsTableCellView, let newVersion = newVersionView.versionsPopUp.selectedItem?.title {
+                    self.buttonClickHandler?(self.pods[row], newVersion)
+                }
+            }
             return cell
         }
         return nil
@@ -94,5 +104,9 @@ class PodNewVersionsTableCellView: NSTableCellView {
 class PodUseVersionCellView: NSTableCellView {
     
     @IBOutlet weak var useVersionButton: NSButton!
+    var buttonClickHandler: (() -> ())?
     
+    @IBAction func buttonClicked(_ sender: Any) {
+        buttonClickHandler?()
+    }
 }

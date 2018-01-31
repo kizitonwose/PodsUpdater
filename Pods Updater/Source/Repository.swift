@@ -16,7 +16,6 @@ class Repository: DataSource {
     private init() { }
     
     func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
-        print(getProjectNameForPodfile(at: url))
         var content = ""
         do {// Read the file to String
            content = try String(contentsOf: url, encoding: .utf8)
@@ -44,10 +43,11 @@ class Repository: DataSource {
             if line.isValidPodLine {
         
                 print(line)
-                let components = line.components(separatedBy: "'") // Parse every line in the Podfile
+                 // Parse every line in the Podfile
+                let components = line.components(separatedBy: "'")
                 if let name = components.second, let currentVersion = components.fourth {
                     var pod = Pod()
-                    pod.lineNumber = index
+                    pod.lineIndex = index
                     pod.name = name
                     pod.currentVersion = currentVersion
                     
@@ -81,7 +81,7 @@ class Repository: DataSource {
                         }
                         if pod.availableVersions.isNotEmpty {
                             if pods.contains(pod) {
-                                pods[pods.index(of: pod)!].otherLineNumbers.append(index)
+                                pods[pods.index(of: pod)!].otherLineIndices.append(index)
                             } else {
                                 pods.append(pod)
                             }
@@ -120,5 +120,27 @@ class Repository: DataSource {
         return url.path
     }
 
+    func setVersion(_ version: String, forPod pod: Pod, inPodfile url: URL)  {
+        guard let content = try? String(contentsOf: url, encoding: .utf8) else { return }
+        
+        var lines = content.splitByNewLines()
+        
+        // If we have the index for this Pod
+        if lines.indices.contains(pod.lineIndex) {
+            // Replace version in Podfile with new version
+            lines[pod.lineIndex] = lines[pod.lineIndex].replacingFirstOccurrence(of: pod.currentVersion,
+                                                                                 with: version)
+            pod.otherLineIndices.forEach { index in
+                // If this Pod exists in another line in this Podfile(maybe a diferrent target), update version as well
+                if lines.indices.contains(index) {
+                    lines[index] = lines[index].replacingFirstOccurrence(of: pod.currentVersion, with: version)
+                }
+            }
+            
+            // Write the new Podfile to disk
+            let newString = lines.joinByNewLines()
+            try? newString.write(to: url, atomically: true, encoding: .utf8)
+        }
+    }
 }
 

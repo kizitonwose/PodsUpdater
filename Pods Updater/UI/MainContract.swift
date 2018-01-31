@@ -22,4 +22,5 @@ protocol _MainView: BaseContract.View {
 
 protocol _MainPresenter: BaseContract.Presenter {
     func parsePodfile(at url: URL, onlyNewVersions: Bool)
+    func setVersion(_ version: String, forPod pod: Pod)
 }

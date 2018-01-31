@@ -88,6 +88,10 @@ extension MainViewController {
             default: preconditionFailure("Unknows column index")
             }
         }
+        
+        tableView.buttonClickHandler = { [unowned self] pod, newVersion in
+            self.presenter.setVersion(newVersion, forPod: pod)
+        }
     }
 }
 

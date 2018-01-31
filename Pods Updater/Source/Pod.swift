@@ -17,9 +17,9 @@ public struct Pod: Equatable {
     // Name of this Pod
     var name = ""
     // The line where this pod is declared
-    var lineNumber = -1
+    var lineIndex = -1
     // Holds the line numbers for other declarations of this same pod on the Podfile
-    var otherLineNumbers = [Int]()
+    var otherLineIndices = [Int]()
     // Current version of this pod
     var currentVersion = ""
     // Available versions of this pod to choose from
@@ -35,7 +35,7 @@ public struct Pod: Equatable {
 
     init(name: String, lineNumber: Int, currentVersion: String) {
         self.name = name
-        self.lineNumber = lineNumber
+        self.lineIndex = lineNumber
         self.currentVersion = currentVersion
     }
     

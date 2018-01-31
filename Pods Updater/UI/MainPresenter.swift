@@ -45,6 +45,13 @@ class MainPresenter: MainContract.Presenter {
                     print("Finished with error: \(error)")
             }).disposed(by: disposeBag)
     }
+    
+    func setVersion(_ version: String, forPod pod: Pod) {
+        if let currentUrl = currentUrl {
+            source.setVersion(version, forPod: pod, inPodfile: currentUrl)
+        }
+    }
+    
 
     func start() { }
     

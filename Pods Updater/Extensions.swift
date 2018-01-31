@@ -46,6 +46,15 @@ extension String {
     }
 }
 
+extension String {
+    func replacingFirstOccurrence(of string: String, with replacement: String) -> String {
+        if let range = range(of: string) {
+            return replacingCharacters(in: range, with: replacement)
+        }
+        return String(self)
+    }
+}
+
 // MARK:- Array
 extension Array {
     var second: Element? {
@@ -70,10 +79,21 @@ extension Array {
     }
 }
 
+extension Array where Element == String {
+    func joinByNewLines() -> String {
+        return self.joined(separator: "\n")
+    }
+}
+
 // MARK:- Collection
 extension Collection {
     var isNotEmpty: Bool {
         return count > 0
+    }
+    
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }
 

@@ -12,4 +12,5 @@ import RxSwift
 protocol DataSource {
     func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>>
     func getProjectNameForPodfile(at url: URL) -> String
+    func setVersion(_ version: String, forPod pod: Pod, inPodfile url: URL) 
 }
