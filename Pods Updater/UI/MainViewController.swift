@@ -45,7 +45,7 @@ class MainViewController: NSViewController {
         setupViews()
         tableView.reloadData()
     }
-
+    
 }
 
 // MARK:- MainContract.View
@@ -74,7 +74,6 @@ extension MainViewController: MainContract.View {
             print(response)
         }
     }
-
 }
 
 // MARK:- Setup
@@ -86,11 +85,19 @@ extension MainViewController {
     }
     
     fileprivate func setupButton() {
+        selectPodfileButton.removeAllItems()
+        selectPodfileButton.addItems(withTitles: ["Select Podfile", "Analyze Podfile", "Sanitize Podfile"])
         selectPodfileButton.rx.tap.asDriver()
-            .drive(onNext: { [unowned self] _ in
+            .drive(onNext: { [unowned self] button in
                 if (self.openPanel.runModal() == .OK) {
-                    self.presenter.parsePodfile(at: self.openPanel.url!,
-                                                onlyNewVersions: self.filterButton.state == .on)
+                    switch self.selectPodfileButton.indexOfSelectedItem {
+                    case 1: // Analyze Podfile
+                        self.presenter.parsePodfile(at: self.openPanel.url!,
+                                                    onlyNewVersions: self.filterButton.state == .on)
+                    case 2: // Sanitize Podfile
+                        print("CASE 2")
+                    default: break
+                    }
                 }
             }).disposed(by: disposeBag)
     }

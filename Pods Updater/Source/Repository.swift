@@ -44,6 +44,9 @@ class Repository: DataSource {
                     // Parse every line in the Podfile
                     let components = line.components(separatedBy: "'")
                     if let name = components.second, let currentVersion = components.fourth {
+                        
+                        if currentVersion.first!.isDigit.not() { continue } // If this is not a valid version number
+                        
                         var pod = Pod()
                         pod.lineIndex = index
                         pod.name = name
@@ -75,7 +78,7 @@ class Repository: DataSource {
                                 }
                                 pod.availableVersions = versions
                             }
-                        case .error: break
+                        case .error: continue
                         }
                         if pod.availableVersions.isNotEmpty {
                             if pods.contains(pod) {

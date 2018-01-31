@@ -97,10 +97,21 @@ extension Collection {
     }
 }
 
-
 // MARK:- Bool
 extension Bool {
     func not() -> Bool {
         return !self
     }
 }
+
+// MARK:- Character
+extension Character {
+    var isDigit: Bool {
+        if let scalar = unicodeScalars.first {
+            return CharacterSet.decimalDigits.contains(scalar)
+        }
+        return false
+    }
+}
+
+
