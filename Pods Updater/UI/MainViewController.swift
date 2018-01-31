@@ -11,14 +11,14 @@ import RxSwift
 import RxCocoa
 
 class MainViewController: NSViewController {
+    @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var selectPodfileButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: PodsTableView!
     private var presenter: MainContract.Presenter!
-    let disposeBag = DisposeBag()
-    
-    let openPanel: NSOpenPanel = {
+    private let disposeBag = DisposeBag()
+    private let openPanel: NSOpenPanel = {
         let openPanel = NSOpenPanel()
         openPanel.title = "Select Podfile"
         openPanel.allowsMultipleSelection = false
@@ -37,6 +37,7 @@ class MainViewController: NSViewController {
     }
 }
 
+// MARK:- MainContract.View
 extension MainViewController: MainContract.View {
     
     func showPodfileReadPercentage(_ progress: Double) {
@@ -47,8 +48,12 @@ extension MainViewController: MainContract.View {
         tableView.pods = pods
     }
     
+    func showProjectName(_ name: String) {
+        projectNameTextField.stringValue = name
+    }
 }
 
+// MARK:- Setup
 extension MainViewController {
     
     fileprivate func setupViews() {
@@ -62,10 +67,6 @@ extension MainViewController {
                 if (self.openPanel.runModal() == .OK) {
                     self.presenter.parsePodfile(at: self.openPanel.url!,
                                                 onlyNewVersions: self.filterButton.state == .on)
-                } else {
-                    // User clicked on "Cancel"
-                    print("User cancelled")
-                    return
                 }
             }).disposed(by: disposeBag)
     }

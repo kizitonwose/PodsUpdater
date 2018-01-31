@@ -14,16 +14,18 @@ class MainPresenter: MainContract.Presenter {
     private weak var view : MainContract.View?
     private var disposeBag = DisposeBag()
     private var source: DataSource!
-    var currentPath: URL? = nil
+    var currentUrl: URL? = nil
     
     init(view: MainContract.View, source: DataSource) {
         self.source = source
         self.view = view
     }
     
-    func parsePodfile(at path: URL, onlyNewVersions: Bool) {
-        currentPath = path
-        source.parsePodfile(at: path, onlyNewVersions: onlyNewVersions)
+    func parsePodfile(at url: URL, onlyNewVersions: Bool) {
+        currentUrl = url
+        let projectName = source.getProjectNameForPodfile(at: url)
+        view?.showProjectName(projectName)
+        source.parsePodfile(at: url, onlyNewVersions: onlyNewVersions)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] progressResult in

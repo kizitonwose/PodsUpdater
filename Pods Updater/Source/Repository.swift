@@ -15,10 +15,11 @@ class Repository: DataSource {
 
     private init() { }
     
-    func parsePodfile(at path: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
+    func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
+        print(getProjectNameForPodfile(at: url))
         var content = ""
         do {// Read the file to String
-           content = try String(contentsOf: path, encoding: .utf8)
+           content = try String(contentsOf: url, encoding: .utf8)
         } catch {
             return Observable.error(error)
         }
@@ -94,6 +95,25 @@ class Repository: DataSource {
         return disposable
         }
         
+    }
+    
+    func getProjectNameForPodfile(at url: URL) -> String {
+        let fileManager = FileManager.default
+        let filesInFolder = try? fileManager.contentsOfDirectory(atPath: url.deletingLastPathComponent().path)
+        
+        if let filesInFolder = filesInFolder, filesInFolder.isNotEmpty {
+            // Get the xcworkspace/xcodeproj directories
+            let projectDirectory = filesInFolder.first{ $0.hasSuffix(".xcworkspace") } ?? filesInFolder.first{ $0.hasSuffix(".xcodeproj") }
+            
+            if let projectDirectory = projectDirectory {
+                // Remove xcworkspace/xcodeproj suffix
+                return projectDirectory
+                    .components(separatedBy: ".")
+                    .dropLast()
+                    .joined(separator: ".")
+            }
+        }
+        return url.path
     }
 
 }
