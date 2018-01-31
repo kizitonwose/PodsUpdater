@@ -40,6 +40,7 @@ class MainPresenter: MainContract.Presenter {
                     self?.view?.showPodfileReadPercentage(progressResult.progress)
                 } else {
                     self?.view?.showPodsInformation(with: progressResult.result!)
+                    self?.view?.showLocalPodsUpdateInformation()
                 }
                 }, onError: { error in
                     print("Finished with error: \(error)")

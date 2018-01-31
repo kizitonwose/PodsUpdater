@@ -18,6 +18,7 @@ protocol _MainView: BaseContract.View {
     func showPodfileReadPercentage(_ progress: Double)
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
+    func showLocalPodsUpdateInformation()
 }
 
 protocol _MainPresenter: BaseContract.Presenter {

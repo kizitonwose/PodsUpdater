@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 class MainViewController: NSViewController {
+    
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var selectPodfileButton: NSButton!
@@ -26,6 +27,15 @@ class MainViewController: NSViewController {
         openPanel.canChooseFiles = true
         openPanel.canCreateDirectories = false
         return openPanel
+    }()
+    private let infoAlert: NSAlert = {
+        let alert = NSAlert()
+        alert.messageText = "Important"
+        alert.informativeText = "This app searches your local pod spec repository to get pod versions. For best results, it's important that this repo is up to date. This can be achieved by running the \"pod repo update\" command."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Close")
+        alert.addButton(withTitle: "Rum update command now")
+        return alert
     }()
     
     override func viewDidLoad() {
@@ -57,6 +67,13 @@ extension MainViewController: MainContract.View {
         selectPodfileButton.isEnabled = !enabled
         tableView.isEnabled = !enabled
     }
+    
+    func showLocalPodsUpdateInformation() {
+        infoAlert.beginSheetModal(for: view.window!) { response in
+            print(response)
+        }
+    }
+
 }
 
 // MARK:- Setup
