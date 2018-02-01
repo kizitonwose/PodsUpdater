@@ -37,10 +37,12 @@ class PodfileViewController: NSViewController {
         if hasSetup.not() {
             setupViews()
             presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
+            
+            view.window?.titleVisibility = .hidden
+            view.window?.titlebarAppearsTransparent = true
+            view.window?.styleMask.insert(.fullSizeContentView)
+            view.window?.zoom(self)
             hasSetup = true
-
-            // view.window?.zoom(self)
-            view.window?.toggleFullScreen(self)
         }
     }
     

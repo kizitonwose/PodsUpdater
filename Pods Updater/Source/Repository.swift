@@ -185,15 +185,23 @@ class Repository: DataSource {
                 if trimmedLine.isValidPodLine {
                     let components = trimmedLine.components(separatedBy: "'")
                     
+                    // 1. If we have a Pod name,
+                    // 2. If we can find a line matching same name in Podfile.lock
+                    // 3. If we can find the version info in parentheses from the line in 2 above,
+                    //    grab the pod version from within the parentheses, by dropping the parentheses symbols `()`
                     if let name = components.second,
                         let installedVersionInfo = installedPodsFromLock.first(where: { $0.contains(name) }),
                         let installedVersion = installedVersionInfo
                             .findMatches(forRegex: "\\((.*?)\\)")
                             .first?.dropFirst().dropLast() {
                         
+                        // If this Pod is declared with a version. e.g - pod 'RxSwift', '~> 4.1.1',
+                        // replace the verion info with a format supported by this app.
                         if let versionInfo = components.fourth,  versionInfo.isValidPodVersionInfo {
                             lines[index] = lines[index].replacingFirstOccurrence(of: versionInfo, with: String(installedVersion))
                             
+                            // Else if this pod has no version information. e.g - pod 'RxSwift'
+                            // just insert the version information.
                         } else if components.count < 4 {
                             
                             lines[index].insert(contentsOf: Array(", '\(installedVersion)'"),

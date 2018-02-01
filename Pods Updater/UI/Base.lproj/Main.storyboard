@@ -704,38 +704,16 @@
             </objects>
             <point key="canvasLocation" x="134" y="293"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="NZ7-09-vf9">
-            <objects>
-                <windowController storyboardIdentifier="PodfileWindowController" id="Iap-oT-fAp" sceneMemberID="viewController">
-                    <window key="window" title="Save Podfile" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="nFk-iS-2ek" customClass="PodfileWindow" customModule="Pods_Updater" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="125" width="580" height="400"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-                        <value key="minSize" type="size" width="580" height="400"/>
-                        <connections>
-                            <outlet property="delegate" destination="Iap-oT-fAp" id="2N6-02-VxI"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="EeV-ae-hGI" kind="relationship" relationship="window.shadowedContentViewController" id="Tah-70-jmM"/>
-                    </connections>
-                </windowController>
-                <customObject id="UNX-vR-k70" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="792" y="293"/>
-        </scene>
         <!--Podfile View Controller-->
         <scene sceneID="mYX-zY-0cZ">
             <objects>
-                <viewController storyboardIdentifier="PodfileViewController" id="EeV-ae-hGI" customClass="PodfileViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController identifier="PodfileViewController" storyboardIdentifier="PodfileViewController" id="EeV-ae-hGI" customClass="PodfileViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vFU-gr-lJx">
-                        <rect key="frame" x="0.0" y="0.0" width="528" height="371"/>
+                        <rect key="frame" x="0.0" y="0.0" width="528" height="424"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKL-Ea-CNW">
-                                <rect key="frame" x="15" y="338" width="498" height="33"/>
+                                <rect key="frame" x="15" y="391" width="498" height="33"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aoc-Nc-evC">
                                         <rect key="frame" x="-2" y="5" width="249" height="23"/>
@@ -782,19 +760,19 @@ Gw
                                 </buttonCell>
                             </button>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Es1-nI-xSo">
-                                <rect key="frame" x="15" y="41" width="498" height="297"/>
+                                <rect key="frame" x="15" y="41" width="498" height="350"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-m0-iP1" customClass="SynchronizedScrollView" customModule="Pods_Updater" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="242" height="297"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="242" height="350"/>
                                         <clipView key="contentView" id="yeq-kb-cdp">
-                                            <rect key="frame" x="1" y="1" width="240" height="295"/>
+                                            <rect key="frame" x="1" y="1" width="240" height="348"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="SLS-ro-blx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="295"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="348"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="240" height="295"/>
+                                                    <size key="minSize" width="240" height="348"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </textView>
@@ -806,21 +784,21 @@ Gw
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NOy-L4-OLV">
-                                            <rect key="frame" x="225" y="1" width="16" height="295"/>
+                                            <rect key="frame" x="225" y="1" width="16" height="348"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zf-Ld-TO1" customClass="SynchronizedScrollView" customModule="Pods_Updater" customModuleProvider="target">
-                                        <rect key="frame" x="257" y="0.0" width="241" height="297"/>
+                                        <rect key="frame" x="257" y="0.0" width="241" height="350"/>
                                         <clipView key="contentView" id="WFU-Fy-HIY">
-                                            <rect key="frame" x="1" y="1" width="239" height="295"/>
+                                            <rect key="frame" x="1" y="1" width="239" height="348"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="epw-cP-X4L">
-                                                    <rect key="frame" x="0.0" y="0.0" width="239" height="295"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="239" height="348"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="239" height="295"/>
+                                                    <size key="minSize" width="239" height="348"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
                                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </textView>
@@ -832,13 +810,14 @@ Gw
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gjr-O9-5Tu">
-                                            <rect key="frame" x="224" y="1" width="16" height="295"/>
+                                            <rect key="frame" x="224" y="1" width="16" height="348"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="VhQ-m0-iP1" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="2Ki-Mh-KpE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="350" id="Sp0-VT-XOs"/>
                                     <constraint firstAttribute="bottom" secondItem="VhQ-m0-iP1" secondAttribute="bottom" id="T4F-rT-tD9"/>
                                     <constraint firstItem="7zf-Ld-TO1" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="YeW-da-ySs"/>
                                     <constraint firstAttribute="bottom" secondItem="7zf-Ld-TO1" secondAttribute="bottom" id="nhc-IJ-y3F"/>
@@ -874,7 +853,7 @@ Gw
                             <constraint firstItem="xdt-zU-Oav" firstAttribute="centerY" secondItem="fEW-VI-vO3" secondAttribute="centerY" id="Em5-L7-dB9"/>
                             <constraint firstItem="TKL-Ea-CNW" firstAttribute="top" secondItem="vFU-gr-lJx" secondAttribute="top" id="HJj-d6-tVn"/>
                             <constraint firstAttribute="trailing" secondItem="fEW-VI-vO3" secondAttribute="trailing" constant="15" id="J7b-wx-vLg"/>
-                            <constraint firstItem="xdt-zU-Oav" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jKd-bn-Lli" secondAttribute="trailing" constant="15" id="N7Q-cB-JCK"/>
+                            <constraint firstItem="xdt-zU-Oav" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jKd-bn-Lli" secondAttribute="trailing" constant="60" id="N7Q-cB-JCK"/>
                             <constraint firstItem="jKd-bn-Lli" firstAttribute="centerY" secondItem="xdt-zU-Oav" secondAttribute="centerY" id="RlY-uN-uaq"/>
                             <constraint firstItem="fEW-VI-vO3" firstAttribute="leading" secondItem="xdt-zU-Oav" secondAttribute="trailing" constant="15" id="aZf-BB-MXl"/>
                             <constraint firstItem="fEW-VI-vO3" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="bottom" constant="10" id="ejg-EW-vk1"/>
@@ -894,27 +873,27 @@ Gw
                 </viewController>
                 <customObject id="W50-4D-acw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="817"/>
+            <point key="canvasLocation" x="763" y="827"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="586" height="371"/>
+                        <rect key="frame" x="0.0" y="0.0" width="586" height="408"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="CEO-7p-rrG">
-                                <rect key="frame" x="-2" y="298" width="590" height="20"/>
+                                <rect key="frame" x="-2" y="335" width="590" height="20"/>
                             </progressIndicator>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbj-wh-aOh">
-                                <rect key="frame" x="0.0" y="43" width="586" height="263"/>
+                                <rect key="frame" x="0.0" y="43" width="586" height="300"/>
                                 <clipView key="contentView" id="0OE-ai-HMi">
-                                    <rect key="frame" x="1" y="0.0" width="584" height="262"/>
+                                    <rect key="frame" x="1" y="0.0" width="584" height="299"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="j0Y-eR-pw9" viewBased="YES" id="nJx-YJ-bQx" customClass="PodsTableView" customModule="Pods_Updater" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="584" height="239"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="276"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1038,7 +1017,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="B14-dW-I5K">
-                                <rect key="frame" x="13" y="324" width="432" height="31"/>
+                                <rect key="frame" x="13" y="361" width="432" height="31"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="CD5-KC-Dkh">
                                     <font key="font" size="26" name="HelveticaNeue-UltraLight"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1053,7 +1032,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <popUpButton horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7lQ-Zx-i13">
-                                <rect key="frame" x="456" y="324" width="117" height="29"/>
+                                <rect key="frame" x="456" y="361" width="117" height="29"/>
                                 <popUpButtonCell key="cell" type="bevel" title="Select Podfile" bezelStyle="regularSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="t9v-Ki-V54" id="x3x-4a-wrG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -1097,7 +1076,7 @@ Gw
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127" y="816.5"/>
+            <point key="canvasLocation" x="127" y="835"/>
         </scene>
     </scenes>
 </document>
