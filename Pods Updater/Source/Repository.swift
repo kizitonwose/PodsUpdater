@@ -195,7 +195,9 @@ class Repository: DataSource {
                     }
                 }
             }
-            print("All Lines: \(lines.joinByNewLines())")
+            //print(lines.joinByNewLines())
+            try? lines.joinByNewLines().write(to: url.appendingPathExtension("sanitized"),
+                                              atomically: true, encoding: .utf8)
             return disposable
         }
     }
