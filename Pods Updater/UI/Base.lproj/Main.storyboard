@@ -708,11 +708,12 @@
         <scene sceneID="NZ7-09-vf9">
             <objects>
                 <windowController storyboardIdentifier="PodfileWindowController" id="Iap-oT-fAp" sceneMemberID="viewController">
-                    <window key="window" title="Save Podfile" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="nFk-iS-2ek" customClass="PodfileWindow" customModule="Pods_Updater" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="Save Podfile" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="nFk-iS-2ek" customClass="PodfileWindow" customModule="Pods_Updater" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="125" width="480" height="357"/>
+                        <rect key="contentRect" x="196" y="125" width="580" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <value key="minSize" type="size" width="580" height="400"/>
                         <connections>
                             <outlet property="delegate" destination="Iap-oT-fAp" id="2N6-02-VxI"/>
                         </connections>
@@ -723,7 +724,7 @@
                 </windowController>
                 <customObject id="UNX-vR-k70" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="294"/>
+            <point key="canvasLocation" x="792" y="293"/>
         </scene>
         <!--Podfile View Controller-->
         <scene sceneID="mYX-zY-0cZ">
@@ -851,6 +852,20 @@ Gw
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-bn-Lli">
+                                <rect key="frame" x="13" y="7" width="76" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Bfw-9j-Roz" id="Bpu-wX-gIa">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="w8k-eh-dc9">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="Bfw-9j-Roz"/>
+                                            <menuItem title="Item 2" id="Dj9-Zp-WOT"/>
+                                            <menuItem title="Item 3" id="R5i-oi-6h0"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="TKL-Ea-CNW" firstAttribute="trailing" secondItem="Es1-nI-xSo" secondAttribute="trailing" id="0qa-Ty-OXO"/>
@@ -859,8 +874,11 @@ Gw
                             <constraint firstItem="xdt-zU-Oav" firstAttribute="centerY" secondItem="fEW-VI-vO3" secondAttribute="centerY" id="Em5-L7-dB9"/>
                             <constraint firstItem="TKL-Ea-CNW" firstAttribute="top" secondItem="vFU-gr-lJx" secondAttribute="top" id="HJj-d6-tVn"/>
                             <constraint firstAttribute="trailing" secondItem="fEW-VI-vO3" secondAttribute="trailing" constant="15" id="J7b-wx-vLg"/>
+                            <constraint firstItem="xdt-zU-Oav" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jKd-bn-Lli" secondAttribute="trailing" constant="15" id="N7Q-cB-JCK"/>
+                            <constraint firstItem="jKd-bn-Lli" firstAttribute="centerY" secondItem="xdt-zU-Oav" secondAttribute="centerY" id="RlY-uN-uaq"/>
                             <constraint firstItem="fEW-VI-vO3" firstAttribute="leading" secondItem="xdt-zU-Oav" secondAttribute="trailing" constant="15" id="aZf-BB-MXl"/>
                             <constraint firstItem="fEW-VI-vO3" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="bottom" constant="10" id="ejg-EW-vk1"/>
+                            <constraint firstItem="jKd-bn-Lli" firstAttribute="leading" secondItem="vFU-gr-lJx" secondAttribute="leading" constant="15" id="jOy-gD-vYX"/>
                             <constraint firstAttribute="bottom" secondItem="fEW-VI-vO3" secondAttribute="bottom" constant="10" id="tdF-Nh-lzy"/>
                             <constraint firstAttribute="trailing" secondItem="Es1-nI-xSo" secondAttribute="trailing" constant="15" id="udH-Kd-diw"/>
                             <constraint firstItem="Es1-nI-xSo" firstAttribute="leading" secondItem="vFU-gr-lJx" secondAttribute="leading" constant="15" id="vsy-3f-MxW"/>
@@ -871,6 +889,7 @@ Gw
                         <outlet property="newPodfileTextView" destination="epw-cP-X4L" id="FG4-Wv-inH"/>
                         <outlet property="oldPodfileTextView" destination="SLS-ro-blx" id="heo-j3-vPr"/>
                         <outlet property="saveButton" destination="fEW-VI-vO3" id="KMI-9F-Rod"/>
+                        <outlet property="themeChoiceButton" destination="jKd-bn-Lli" id="YMS-XY-qZz"/>
                     </connections>
                 </viewController>
                 <customObject id="W50-4D-acw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1054,6 +1073,7 @@ Gw
                             <constraint firstAttribute="trailing" secondItem="7lQ-Zx-i13" secondAttribute="trailing" constant="15" id="ITF-Xd-PFi"/>
                             <constraint firstAttribute="trailing" secondItem="bC0-IP-sB3" secondAttribute="trailing" constant="15" id="KFs-qR-46s"/>
                             <constraint firstItem="CEO-7p-rrG" firstAttribute="top" secondItem="7lQ-Zx-i13" secondAttribute="bottom" constant="10" id="KUc-6S-E5G"/>
+                            <constraint firstItem="bC0-IP-sB3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7R-Rp-11j" secondAttribute="trailing" constant="15" id="Lqc-9y-1IT"/>
                             <constraint firstItem="Rbj-wh-aOh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="P4G-BV-la5"/>
                             <constraint firstItem="B14-dW-I5K" firstAttribute="centerY" secondItem="7lQ-Zx-i13" secondAttribute="centerY" id="U3R-yn-XLx"/>
                             <constraint firstAttribute="trailing" secondItem="CEO-7p-rrG" secondAttribute="trailing" constant="-2" id="dDB-DX-Cuy"/>

@@ -55,14 +55,13 @@ class MainPresenter: MainContract.Presenter {
     
     func cleanUpPodfile(at url: URL) {
         source.cleanUpPodfile(at: url)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] result in
                 self?.view?.showPodCleanUpResult(result)
             }, onError: { error in
                 
-            })
+            }).disposed(by: disposeBag)
     }
 
-    func start() { }
-    
-    func stop() {  }
 }

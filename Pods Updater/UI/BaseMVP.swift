@@ -18,5 +18,13 @@ protocol _BaseView : class {
 }
 
 protocol _BasePresenter : class {
-   
+    func start()
+    
+    func stop()
+}
+
+extension _BasePresenter {    
+    func start() { }
+    
+    func stop() {  }
 }

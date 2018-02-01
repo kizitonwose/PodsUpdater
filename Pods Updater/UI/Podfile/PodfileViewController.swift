@@ -8,56 +8,74 @@
 
 import Cocoa
 import Highlightr
+import RxSwift
+import RxCocoa
 
 class PodfileViewController: NSViewController {
 
+    var result: PodFileCleanResult?
+    @IBOutlet weak var themeChoiceButton: NSPopUpButton!
     @IBOutlet weak var oldPodfileTextView: NSTextView!
     @IBOutlet weak var newPodfileTextView: NSTextView!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
-    var result: PodFileCleanResult?
-    var presenter: PodfileContract.Presenter!
-    var hasSetup = false
-    
-    lazy var highlighter: Highlightr? = {
-        let highlightr = Highlightr()
-        highlightr?.setTheme(to: "paraiso-dark")
-        return highlightr
+    fileprivate var presenter: PodfileContract.Presenter!
+    fileprivate let disposeBag = DisposeBag()
+    private var hasSetup = false
+    fileprivate let highlighter = Highlightr()
+    private let writeErrorAert: NSAlert = {
+        let alert = NSAlert()
+        alert.messageText = "Error"
+        alert.informativeText = "Counld not write to Podfile"
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "OK")
+        return alert
     }()
     
     override func viewWillAppear() {
         super.viewWillAppear()
         if hasSetup.not() {
-            setupView()
+            setupViews()
             presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
             hasSetup = true
+
+            // view.window?.zoom(self)
+            view.window?.toggleFullScreen(self)
         }
     }
     
 }
 
+// MARK:- PodfileContract.View
 extension PodfileViewController: PodfileContract.View {
+    func showPodfileSaveSuccess() {
+        view.window?.close()
+    }
     
+    func showPodfileSaveError() {
+        writeErrorAert.runModal()
+    }
 }
 
 //MARK: Setup
 extension PodfileViewController {
     
-    func setupView() {
+    func setupViews() {
+        setupTextViews()
+        setupButtons()
+        
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
+    }
+    
+    private func setupTextViews() {
         [oldPodfileTextView, newPodfileTextView].forEach {
-            if let highlighter = highlighter {
-                $0?.backgroundColor = highlighter.theme.themeBackgroundColor
-                $0?.font = highlighter.theme.codeFont
-            }
             // Setting these values via Storyboard does not work due to a bug in NSTextView
             // https://stackoverflow.com/questions/19801601/nstextview-with-smart-quotes-disabled-still-replaces-quotes
             $0?.isAutomaticQuoteSubstitutionEnabled = false
             $0?.isAutomaticDashSubstitutionEnabled = false
             $0?.isAutomaticTextReplacementEnabled = false
         }
-        
-        view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
         
         // Setup synchronized scrolling between the two TextViews.
         (oldPodfileTextView.enclosingScrollView as! SynchronizedScrollView).synchronizedScrollView
@@ -68,6 +86,35 @@ extension PodfileViewController {
         let emptyString = NSAttributedString()
         oldPodfileTextView.textStorage?.append(highlighter?.highlight(result!.oldContent, as: "ruby") ?? emptyString)
         newPodfileTextView.textStorage?.append(highlighter?.highlight(result!.newContent, as: "ruby") ?? emptyString)
+        updateColors()
+    }
+    
+    private func setupButtons() {
+        saveButton.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.presenter.updatePodFileWitNewData()
+        }).disposed(by: disposeBag)
+        
+        cancelButton.rx.tap.asDriver().drive(onNext: { [unowned self] in
+            self.view.window?.close()
+            }).disposed(by: disposeBag)
+        
+        if let highlighter = highlighter {
+            themeChoiceButton.removeAllItems()
+            themeChoiceButton.addItems(withTitles: highlighter.availableThemes().sorted())
+            themeChoiceButton.rx.tap.asDriver().drive(onNext: {  [unowned self] in
+                self.highlighter?.setTheme(to: self.themeChoiceButton.selectedItem?.title ?? "")
+                self.updateColors()
+            }).disposed(by: disposeBag)
+        } else {
+            themeChoiceButton.isHidden = true
+        }
+    }
+    
+    private func updateColors()  {
+        if let color = highlighter?.theme.themeBackgroundColor {
+            oldPodfileTextView.backgroundColor = color
+            newPodfileTextView.backgroundColor = color
+        }
     }
 }
 

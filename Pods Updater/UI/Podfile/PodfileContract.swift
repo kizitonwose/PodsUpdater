@@ -14,9 +14,10 @@ struct PodfileContract {
 }
 
 protocol _PodfileView: BaseContract.View {
-
+    func showPodfileSaveSuccess()
+    func showPodfileSaveError()
 }
 
 protocol _PodfilePresenter: BaseContract.Presenter {
-    
+    func updatePodFileWitNewData()
 }

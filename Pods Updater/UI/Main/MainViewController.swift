@@ -95,7 +95,7 @@ extension MainViewController {
         selectPodfileButton.removeAllItems()
         selectPodfileButton.addItems(withTitles: ["Select Podfile", "Analyze Podfile", "Sanitize Podfile"])
         selectPodfileButton.rx.tap.asDriver()
-            .drive(onNext: { [unowned self] button in
+            .drive(onNext: { [unowned self] _ in
                 if (self.openPanel.runModal() == .OK) {
                     switch self.selectPodfileButton.indexOfSelectedItem {
                     case 1: // Analyze Podfile

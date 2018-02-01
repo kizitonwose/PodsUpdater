@@ -15,7 +15,7 @@ class PodfilePresenter: PodfileContract.Presenter {
     private var disposeBag = DisposeBag()
     private var source: DataSource
     var result: PodFileCleanResult
-
+    
     init(view: PodfileContract.View, source: DataSource, result: PodFileCleanResult) {
         self.source = source
         self.view = view
@@ -23,11 +23,14 @@ class PodfilePresenter: PodfileContract.Presenter {
     }
     
     func updatePodFileWitNewData() {
-  
+        source.writePodfileData(result.newContent, toPodfile: result.url)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onCompleted: { [weak self] in
+                self?.view?.showPodfileSaveSuccess()
+                }, onError: { [weak self] _ in
+                    self?.view?.showPodfileSaveError()
+            }).disposed(by: disposeBag)
     }
     
-    
-    func start() { }
-    
-    func stop() {  }
 }

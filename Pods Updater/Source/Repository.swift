@@ -211,5 +211,18 @@ class Repository: DataSource {
             return disposable
         }
     }
+    
+    func writePodfileData(_ data: String, toPodfile url: URL) -> Completable {
+        return Completable.create { subscriber -> Disposable in
+            do {
+                try data.write(to: url, atomically: true, encoding: .utf8)
+                subscriber(.completed)
+            } catch {
+                subscriber(.error(error))
+            }
+            
+            return Disposables.create {  }
+        }
+    }
 }
 
