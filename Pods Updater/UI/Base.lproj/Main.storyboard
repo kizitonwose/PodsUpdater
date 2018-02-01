@@ -730,14 +730,14 @@
             <objects>
                 <viewController storyboardIdentifier="PodfileViewController" id="EeV-ae-hGI" customClass="PodfileViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vFU-gr-lJx">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="371"/>
+                        <rect key="frame" x="0.0" y="0.0" width="528" height="371"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKL-Ea-CNW">
-                                <rect key="frame" x="15" y="338" width="450" height="33"/>
+                                <rect key="frame" x="15" y="338" width="498" height="33"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aoc-Nc-evC">
-                                        <rect key="frame" x="-2" y="5" width="225" height="23"/>
+                                        <rect key="frame" x="-2" y="5" width="249" height="23"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Old Podfile" id="yK1-hU-g0X">
                                             <font key="font" size="16" name="HelveticaNeue-Light"/>
                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -745,7 +745,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4fR-wv-SMz">
-                                        <rect key="frame" x="227" y="5" width="225" height="23"/>
+                                        <rect key="frame" x="251" y="5" width="249" height="23"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="New Podfile" id="vlI-8r-Dqd">
                                             <font key="font" size="16" name="HelveticaNeue-Light"/>
                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -764,14 +764,14 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fEW-VI-vO3">
-                                <rect key="frame" x="325" y="3" width="146" height="32"/>
+                                <rect key="frame" x="373" y="3" width="146" height="32"/>
                                 <buttonCell key="cell" type="push" title="Save New Podfile" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yW9-3j-jpV">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xdt-zU-Oav">
-                                <rect key="frame" x="240" y="3" width="82" height="32"/>
+                                <rect key="frame" x="288" y="3" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2hi-nd-aho">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -781,30 +781,66 @@ Gw
                                 </buttonCell>
                             </button>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Es1-nI-xSo">
-                                <rect key="frame" x="15" y="41" width="450" height="297"/>
+                                <rect key="frame" x="15" y="41" width="498" height="297"/>
                                 <subviews>
-                                    <textField horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uka-uX-ccx">
-                                        <rect key="frame" x="0.0" y="0.0" width="218" height="297"/>
-                                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" drawsBackground="YES" id="xqd-sE-9Wx">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zSB-Xg-dGz">
-                                        <rect key="frame" x="233" y="0.0" width="217" height="297"/>
-                                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" drawsBackground="YES" id="9xE-JX-JCA">
-                                            <font key="font" metaFont="miniSystem"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-m0-iP1">
+                                        <rect key="frame" x="0.0" y="0.0" width="242" height="297"/>
+                                        <clipView key="contentView" id="yeq-kb-cdp">
+                                            <rect key="frame" x="1" y="1" width="240" height="295"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="SLS-ro-blx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="295"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="240" height="295"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="fkv-g0-vCK">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NOy-L4-OLV">
+                                            <rect key="frame" x="225" y="1" width="16" height="295"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zf-Ld-TO1">
+                                        <rect key="frame" x="257" y="0.0" width="241" height="297"/>
+                                        <clipView key="contentView" id="WFU-Fy-HIY">
+                                            <rect key="frame" x="1" y="1" width="239" height="295"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="epw-cP-X4L">
+                                                    <rect key="frame" x="0.0" y="0.0" width="239" height="295"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="239" height="295"/>
+                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="dXu-J6-Jc6">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gjr-O9-5Tu">
+                                            <rect key="frame" x="224" y="1" width="16" height="295"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="uka-uX-ccx" secondAttribute="bottom" id="OAF-V4-2c0"/>
-                                    <constraint firstItem="uka-uX-ccx" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="XqN-JE-0du"/>
-                                    <constraint firstAttribute="bottom" secondItem="zSB-Xg-dGz" secondAttribute="bottom" id="Ycw-Kd-rFU"/>
-                                    <constraint firstItem="zSB-Xg-dGz" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="z4q-16-WkM"/>
+                                    <constraint firstItem="VhQ-m0-iP1" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="2Ki-Mh-KpE"/>
+                                    <constraint firstAttribute="bottom" secondItem="VhQ-m0-iP1" secondAttribute="bottom" id="T4F-rT-tD9"/>
+                                    <constraint firstItem="7zf-Ld-TO1" firstAttribute="top" secondItem="Es1-nI-xSo" secondAttribute="top" id="YeW-da-ySs"/>
+                                    <constraint firstAttribute="bottom" secondItem="7zf-Ld-TO1" secondAttribute="bottom" id="nhc-IJ-y3F"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -832,14 +868,14 @@ Gw
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="xdt-zU-Oav" id="rQN-nN-a1I"/>
-                        <outlet property="newPodfileLabel" destination="zSB-Xg-dGz" id="J0J-f8-jvK"/>
-                        <outlet property="oldPodfileLabel" destination="uka-uX-ccx" id="XuE-FE-gs2"/>
+                        <outlet property="newPodfileTextView" destination="epw-cP-X4L" id="FG4-Wv-inH"/>
+                        <outlet property="oldPodfileTextView" destination="SLS-ro-blx" id="heo-j3-vPr"/>
                         <outlet property="saveButton" destination="fEW-VI-vO3" id="KMI-9F-Rod"/>
                     </connections>
                 </viewController>
                 <customObject id="W50-4D-acw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="816.5"/>
+            <point key="canvasLocation" x="763" y="817"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">

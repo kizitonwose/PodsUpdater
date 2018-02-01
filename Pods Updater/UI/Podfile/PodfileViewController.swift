@@ -11,8 +11,8 @@ import Highlightr
 
 class PodfileViewController: NSViewController {
 
-    @IBOutlet weak var oldPodfileLabel: NSTextField!
-    @IBOutlet weak var newPodfileLabel: NSTextField!
+    @IBOutlet weak var oldPodfileTextView: NSTextView!
+    @IBOutlet weak var newPodfileTextView: NSTextView!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
     var result: PodFileCleanResult?
@@ -44,17 +44,25 @@ extension PodfileViewController: PodfileContract.View {
 extension PodfileViewController {
     
     func setupView() {
-        if let highlighter = highlighter {
-            [oldPodfileLabel, newPodfileLabel].forEach {
+        [oldPodfileTextView, newPodfileTextView].forEach {
+            if let highlighter = highlighter {
                 $0?.backgroundColor = highlighter.theme.themeBackgroundColor
                 $0?.font = highlighter.theme.codeFont
             }
+            // Setting these values via Storyboard does not work due to a bug in NSTextView
+            // https://stackoverflow.com/questions/19801601/nstextview-with-smart-quotes-disabled-still-replaces-quotes
+            $0?.isAutomaticQuoteSubstitutionEnabled = false
+            $0?.isAutomaticDashSubstitutionEnabled = false
+            $0?.isAutomaticTextReplacementEnabled = false
         }
+        
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
         
-        oldPodfileLabel.attributedStringValue = highlighter?.highlight(result!.oldContent, as: "ruby") ?? NSAttributedString()
-        newPodfileLabel.attributedStringValue = highlighter?.highlight(result!.newContent, as: "ruby") ?? NSAttributedString()
+        oldPodfileTextView.isEditable = false
+        let emptyString = NSAttributedString()
+        oldPodfileTextView.textStorage?.append(highlighter?.highlight(result!.oldContent, as: "ruby") ?? emptyString)
+        newPodfileTextView.textStorage?.append(highlighter?.highlight(result!.newContent, as: "ruby") ?? emptyString)
     }
 }
 
