@@ -59,6 +59,9 @@ extension PodfileViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
         
+        (oldPodfileTextView.enclosingScrollView as! SynchronizedScrollView).setSynchronizedScrollView(newPodfileTextView.enclosingScrollView!)
+        (newPodfileTextView.enclosingScrollView as! SynchronizedScrollView).setSynchronizedScrollView(oldPodfileTextView.enclosingScrollView!)
+        
         oldPodfileTextView.isEditable = false
         let emptyString = NSAttributedString()
         oldPodfileTextView.textStorage?.append(highlighter?.highlight(result!.oldContent, as: "ruby") ?? emptyString)

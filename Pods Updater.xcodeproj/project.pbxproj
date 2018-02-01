@@ -19,6 +19,7 @@
 		50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2020209F86008C73B7 /* MainPresenter.swift */; };
 		50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2220209FEE008C73B7 /* BaseMVP.swift */; };
 		50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommanLineUtils.swift */; };
+		50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE620236A430016860D /* SynchronizedScrollView.swift */; };
 		5043610F20233D8900BC852E /* PodfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043610E20233D8900BC852E /* PodfileContract.swift */; };
 		5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043611020233D9400BC852E /* PodfilePresenter.swift */; };
 		504361142023565000BC852E /* SceneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* SceneIdentifiers.swift */; };
@@ -46,6 +47,7 @@
 		50131D2020209F86008C73B7 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		50131D2220209FEE008C73B7 /* BaseMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMVP.swift; sourceTree = "<group>"; };
 		50131D242020CCA3008C73B7 /* CommanLineUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanLineUtils.swift; sourceTree = "<group>"; };
+		50197FE620236A430016860D /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		5043610E20233D8900BC852E /* PodfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileContract.swift; sourceTree = "<group>"; };
 		5043611020233D9400BC852E /* PodfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfilePresenter.swift; sourceTree = "<group>"; };
 		504361132023565000BC852E /* SceneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifiers.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		50131D1B20208EAB008C73B7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				50197FE520236A120016860D /* Custom */,
 				5043611220233DA300BC852E /* Main */,
 				5079FA872023235500E752A1 /* Podfile */,
 				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
@@ -95,6 +98,14 @@
 				504361132023565000BC852E /* SceneIdentifiers.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		50197FE520236A120016860D /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				50197FE620236A430016860D /* SynchronizedScrollView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		5043611220233DA300BC852E /* Main */ = {
@@ -314,6 +325,7 @@
 				50131D1F20209F79008C73B7 /* MainContract.swift in Sources */,
 				50131D1A20208349008C73B7 /* Windows.swift in Sources */,
 				5079FA862022710500E752A1 /* Error.swift in Sources */,
+				50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */,
 				50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */,
 				504361142023565000BC852E /* SceneIdentifiers.swift in Sources */,
 				50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */,
