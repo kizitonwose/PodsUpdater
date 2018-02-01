@@ -44,6 +44,14 @@ extension String {
     var isValidPodLine: Bool {
         return self.starts(with: "pod")
     }
+    
+    var isValidPodVersionInfo: Bool {
+        let trimmed = self.trimmingWhiteSpaces()
+        if let firstCharecter = trimmed.first {
+            return ["~","=",">","<"].contains(firstCharecter)
+        }
+        return false
+    }
 }
 
 extension String {
@@ -53,7 +61,48 @@ extension String {
         }
         return String(self)
     }
+    
+    func findMatches(forRegex regex: String) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: self, range: NSRange(self.startIndex..., in: self))
+            return results.map {
+                String(self[Range($0.range, in: self)!])
+            }
+        } catch {
+            print("Regex error: \(error)")
+            return []
+        }
+    }
 }
+
+extension String {
+    func startIndex(of string: String, options: CompareOptions = .literal) -> Index? {
+        return range(of: string, options: options)?.lowerBound
+    }
+    func endIndex(of string: String, options: CompareOptions = .literal) -> Index? {
+        return range(of: string, options: options)?.upperBound
+    }
+    func indexes(of string: String, options: CompareOptions = .literal) -> [Index] {
+        var result: [Index] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(range.lowerBound)
+            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+    func ranges(of string: String, options: CompareOptions = .literal) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(range)
+            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+}
+
 
 // MARK:- Array
 extension Array {

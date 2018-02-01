@@ -19,6 +19,7 @@
 		50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2020209F86008C73B7 /* MainPresenter.swift */; };
 		50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2220209FEE008C73B7 /* BaseMVP.swift */; };
 		50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommanLineUtils.swift */; };
+		5079FA862022710500E752A1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA852022710500E752A1 /* Error.swift */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
 		50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* MainViewController.swift */; };
 		50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C06532201F7B4400D7B8D3 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		50131D2020209F86008C73B7 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		50131D2220209FEE008C73B7 /* BaseMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMVP.swift; sourceTree = "<group>"; };
 		50131D242020CCA3008C73B7 /* CommanLineUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanLineUtils.swift; sourceTree = "<group>"; };
+		5079FA852022710500E752A1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50C06530201F7B4400D7B8D3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				50131D0C20206BFB008C73B7 /* Pod.swift */,
 				50131D0F20206DFA008C73B7 /* DataSource.swift */,
 				50131D1120206E05008C73B7 /* Repository.swift */,
+				5079FA852022710500E752A1 /* Error.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
 				50131D1F20209F79008C73B7 /* MainContract.swift in Sources */,
 				50131D1A20208349008C73B7 /* MainWindow.swift in Sources */,
+				5079FA862022710500E752A1 /* Error.swift in Sources */,
 				50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */,
 				50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,

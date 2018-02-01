@@ -142,5 +142,62 @@ class Repository: DataSource {
             try? newString.write(to: url, atomically: true, encoding: .utf8)
         }
     }
+    
+    
+    func sanitizePodfile(at url: URL) -> Completable {        
+        guard let podfileContent = try? String(contentsOf: url, encoding: .utf8) else {
+            return Completable.error(RxError.unknown)
+        }
+        print(url.appendingPathExtension("lock"))
+        guard let podfileLockContent = try? String(contentsOf: url.appendingPathExtension("lock"),
+                                                   encoding: .utf8) else {
+            return Completable.error(AppError.noPodfileLock)
+        }
+        
+        return Completable.create { observer -> Disposable in
+            let disposable = BooleanDisposable()
+
+            let podsFromLock = podfileLockContent.splitByNewLines()
+                .prefix(while: { $0.trimmingWhiteSpaces() != "DEPENDENCIES:" })
+                .sorted { lhs, rhs -> Bool in
+                    lhs.prefix(while: { $0 == " " }).count < rhs.prefix(while: { $0 == " " }).count
+            }
+            print(podsFromLock)
+            
+            var lines = podfileContent.splitByNewLines()
+            
+            for (index, line) in lines.enumerated() {
+                if disposable.isDisposed {
+                    break
+                }
+                
+                let line = line.trimmingWhiteSpaces()
+                if line.isValidPodLine {
+                    let components = line.components(separatedBy: "'")
+                    
+                    if let name = components.second,
+                        let versionInfo = components.fourth,
+                        versionInfo.isValidPodVersionInfo,
+                        let installedVersionInfo = podsFromLock.first(where: { $0.contains(name) }),
+                        let installedVersion = installedVersionInfo.findMatches(forRegex: "\\((.*?)\\)")
+                            .first?.dropFirst().dropLast() {
+                        
+                        print(lines[index])
+                        lines[index] = lines[index].replacingFirstOccurrence(of: versionInfo, with: String(installedVersion))
+                        
+                    } else if let name = components.second, components.count < 4,
+                    let installedVersionInfo = podsFromLock.first(where: { $0.contains(name) }),
+                    let installedVersion = installedVersionInfo.findMatches(forRegex: "\\((.*?)\\)")
+                        .first?.dropFirst().dropLast()  {
+                        
+                        lines[index].insert(contentsOf: Array(", '\(installedVersion)'"),
+                                            at: lines[index].endIndex(of: "'\(name)'")!)
+                    }
+                }
+            }
+            print("All Lines: \(lines.joinByNewLines())")
+            return disposable
+        }
+    }
 }
 
