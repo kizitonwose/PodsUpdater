@@ -92,10 +92,13 @@ extension MainViewController {
                 if (self.openPanel.runModal() == .OK) {
                     switch self.selectPodfileButton.indexOfSelectedItem {
                     case 1: // Analyze Podfile
+                        print(1)
                         self.presenter.parsePodfile(at: self.openPanel.url!,
                                                     onlyNewVersions: self.filterButton.state == .on)
                     case 2: // Sanitize Podfile
-                        print("CASE 2")
+                        print(2)
+                        let podfileWindowController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PodfileWindowController")) as! NSWindowController
+                        podfileWindowController.showWindow(self)
                     default: break
                     }
                 }
