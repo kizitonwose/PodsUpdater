@@ -38,11 +38,11 @@ class Repository: DataSource {
                 let progress = Double(index)/(Double(lines.count - 1)) * 100.0
                 observer.onNext(ProgressResult(progress: progress, result: nil))
                 
-                let line = line.trimmingWhiteSpaces()
-                if line.isValidPodLine {
-                    print(line)
+                let trimmedLine = line.trimmingWhiteSpaces()
+                if trimmedLine.isValidPodLine {
+                    print(trimmedLine)
                     // Parse every line in the Podfile
-                    let components = line.components(separatedBy: "'")
+                    let components = trimmedLine.components(separatedBy: "'")
                     if let name = components.second, let currentVersion = components.fourth {
                         
                         if currentVersion.first!.isDigit.not() { continue } // If this is not a valid version number
@@ -144,25 +144,35 @@ class Repository: DataSource {
     }
     
     
-    func sanitizePodfile(at url: URL) -> Completable {        
+    func cleanUpPodfile(at url: URL) -> Single<PodFileCleanResult> {
+        
         guard let podfileContent = try? String(contentsOf: url, encoding: .utf8) else {
-            return Completable.error(RxError.unknown)
+            return Single.error(AppError("Could not parse selected file to string"))
         }
-        print(url.appendingPathExtension("lock"))
+
         guard let podfileLockContent = try? String(contentsOf: url.appendingPathExtension("lock"),
                                                    encoding: .utf8) else {
-            return Completable.error(AppError.noPodfileLock)
+            return Single.error(AppError("No Podfile.lock file found in directory"))
         }
         
-        return Completable.create { observer -> Disposable in
+        return Single.create { observer -> Disposable in
             let disposable = BooleanDisposable()
 
-            let podsFromLock = podfileLockContent.splitByNewLines()
+            // Get the installed versions from Podfile.lock
+            // 1. Parse Podfile.lock, and splt into array by lines
+            // 2. Take lines until the DEPENDENCIES: line is reached
+            // 3. Sort resulting lines by indentation so searching from zero index returns main Pod info first,
+            //    before any pod dependency that has same name as the Pod we're searching for.
+            // 3b. e.g  Podfile.lock:    - RxCocoa (4.1.1):
+            //                               - RxSwift (~> 4.0)
+            //                           - RxSwift (4.1.1)
+            // We want the lines array sorted like ["- RxCocoa (4.1.1):", "- RxSwift (4.1.1)", "- RxSwift (~> 4.0)"]
+            let installedPodsFromLock = podfileLockContent.splitByNewLines()
                 .prefix(while: { $0.trimmingWhiteSpaces() != "DEPENDENCIES:" })
                 .sorted { lhs, rhs -> Bool in
                     lhs.prefix(while: { $0 == " " }).count < rhs.prefix(while: { $0 == " " }).count
             }
-            print(podsFromLock)
+            
             
             var lines = podfileContent.splitByNewLines()
             
@@ -171,33 +181,33 @@ class Repository: DataSource {
                     break
                 }
                 
-                let line = line.trimmingWhiteSpaces()
-                if line.isValidPodLine {
-                    let components = line.components(separatedBy: "'")
+                let trimmedLine = line.trimmingWhiteSpaces()
+                if trimmedLine.isValidPodLine {
+                    let components = trimmedLine.components(separatedBy: "'")
                     
                     if let name = components.second,
-                        let versionInfo = components.fourth,
-                        versionInfo.isValidPodVersionInfo,
-                        let installedVersionInfo = podsFromLock.first(where: { $0.contains(name) }),
-                        let installedVersion = installedVersionInfo.findMatches(forRegex: "\\((.*?)\\)")
+                        let installedVersionInfo = installedPodsFromLock.first(where: { $0.contains(name) }),
+                        let installedVersion = installedVersionInfo
+                            .findMatches(forRegex: "\\((.*?)\\)")
                             .first?.dropFirst().dropLast() {
                         
-                        print(lines[index])
-                        lines[index] = lines[index].replacingFirstOccurrence(of: versionInfo, with: String(installedVersion))
+                        if let versionInfo = components.fourth,  versionInfo.isValidPodVersionInfo {
+                            lines[index] = lines[index].replacingFirstOccurrence(of: versionInfo, with: String(installedVersion))
+                            
+                        } else if components.count < 4 {
+                            
+                            lines[index].insert(contentsOf: Array(", '\(installedVersion)'"),
+                                                at: lines[index].endIndex(of: "'\(name)'")!)
+                        }
                         
-                    } else if let name = components.second, components.count < 4,
-                    let installedVersionInfo = podsFromLock.first(where: { $0.contains(name) }),
-                    let installedVersion = installedVersionInfo.findMatches(forRegex: "\\((.*?)\\)")
-                        .first?.dropFirst().dropLast()  {
-                        
-                        lines[index].insert(contentsOf: Array(", '\(installedVersion)'"),
-                                            at: lines[index].endIndex(of: "'\(name)'")!)
                     }
                 }
             }
-            //print(lines.joinByNewLines())
-            try? lines.joinByNewLines().write(to: url.appendingPathExtension("sanitized"),
-                                              atomically: true, encoding: .utf8)
+            if disposable.isDisposed.not() {
+                observer(.success(PodFileCleanResult(url: url,
+                                                     oldContent: podfileContent,
+                                                     newContent: lines.joinByNewLines())))
+            }
             return disposable
         }
     }

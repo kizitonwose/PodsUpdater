@@ -19,9 +19,11 @@ protocol _MainView: BaseContract.View {
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
     func showLocalPodsUpdateInformation()
+    func showPodCleanUpResult(_ result: PodFileCleanResult)
 }
 
 protocol _MainPresenter: BaseContract.Presenter {
     func parsePodfile(at url: URL, onlyNewVersions: Bool)
     func setVersion(_ version: String, forPod pod: Pod)
+    func cleanUpPodfile(at url: URL)
 }

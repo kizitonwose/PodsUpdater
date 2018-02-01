@@ -15,17 +15,28 @@ class PodfileViewController: NSViewController {
     @IBOutlet weak var newPodfileLabel: NSTextField!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
-
+    var result: PodFileCleanResult?
+    var presenter: PodfileContract.Presenter!
+    var hasSetup = false
+    
     lazy var highlighter: Highlightr? = {
         let highlightr = Highlightr()
         highlightr?.setTheme(to: "paraiso-dark")
         return highlightr
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        if hasSetup.not() {
+            setupView()
+            presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
+            hasSetup = true
+        }
     }
+    
+}
+
+extension PodfileViewController: PodfileContract.View {
     
 }
 
@@ -41,5 +52,9 @@ extension PodfileViewController {
         }
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
+        
+        oldPodfileLabel.attributedStringValue = highlighter?.highlight(result!.oldContent, as: "ruby") ?? NSAttributedString()
+        newPodfileLabel.attributedStringValue = highlighter?.highlight(result!.newContent, as: "ruby") ?? NSAttributedString()
     }
 }
+

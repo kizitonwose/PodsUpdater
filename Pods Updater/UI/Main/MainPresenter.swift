@@ -13,7 +13,7 @@ class MainPresenter: MainContract.Presenter {
     
     private weak var view : MainContract.View?
     private var disposeBag = DisposeBag()
-    private var source: DataSource!
+    private var source: DataSource
     var currentUrl: URL? = nil
     
     init(view: MainContract.View, source: DataSource) {
@@ -53,6 +53,14 @@ class MainPresenter: MainContract.Presenter {
         }
     }
     
+    func cleanUpPodfile(at url: URL) {
+        source.cleanUpPodfile(at: url)
+            .subscribe(onSuccess: { [weak self] result in
+                self?.view?.showPodCleanUpResult(result)
+            }, onError: { error in
+                
+            })
+    }
 
     func start() { }
     

@@ -13,15 +13,13 @@ class PodfilePresenter: PodfileContract.Presenter {
     
     private weak var view : PodfileContract.View?
     private var disposeBag = DisposeBag()
-    private var source: DataSource!
-    var podFileUrl: URL
-    var pendingReplacement: String
+    private var source: DataSource
+    var result: PodFileCleanResult
 
-    init(view: PodfileContract.View, source: DataSource, podFileUrl: URL, pendingReplacement: String) {
+    init(view: PodfileContract.View, source: DataSource, result: PodFileCleanResult) {
         self.source = source
         self.view = view
-        self.podFileUrl = podFileUrl
-        self.pendingReplacement = pendingReplacement
+        self.result = result
     }
     
     func updatePodFileWitNewData() {

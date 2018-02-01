@@ -74,6 +74,13 @@ extension MainViewController: MainContract.View {
             print(response)
         }
     }
+    
+    func showPodCleanUpResult(_ result: PodFileCleanResult) {
+        let podfileWC = self.storyboard!.instantiateController(withIdentifier: .podfileWindowController) as! NSWindowController
+        let podfileVC = podfileWC.contentViewController as! PodfileViewController
+        podfileVC.result = result
+        podfileWC.showWindow(self)
+    }
 }
 
 // MARK:- Setup
@@ -92,13 +99,10 @@ extension MainViewController {
                 if (self.openPanel.runModal() == .OK) {
                     switch self.selectPodfileButton.indexOfSelectedItem {
                     case 1: // Analyze Podfile
-                        print(1)
                         self.presenter.parsePodfile(at: self.openPanel.url!,
                                                     onlyNewVersions: self.filterButton.state == .on)
                     case 2: // Sanitize Podfile
-                        print(2)
-                        let podfileWindowController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PodfileWindowController")) as! NSWindowController
-                        podfileWindowController.showWindow(self)
+                        self.presenter.cleanUpPodfile(at: self.openPanel.url!)
                     default: break
                     }
                 }

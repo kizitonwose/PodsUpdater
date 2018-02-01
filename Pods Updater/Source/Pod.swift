@@ -45,3 +45,9 @@ public struct Pod: Equatable {
 public func ==(lhs: Pod, rhs: Pod) -> Bool {
     return lhs.name == rhs.name
 }
+
+struct PodFileCleanResult {
+    var url: URL
+    var oldContent: String
+    var newContent: String
+}

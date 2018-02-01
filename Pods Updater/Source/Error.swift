@@ -8,6 +8,9 @@
 
 import Foundation
 
-enum AppError: Error {
-    case noPodfileLock
+struct AppError: Error {
+    let reason: String
+    init(_ reason: String) {
+        self.reason = reason
+    }
 }
