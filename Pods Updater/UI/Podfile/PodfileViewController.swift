@@ -59,10 +59,12 @@ extension PodfileViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
         
-        (oldPodfileTextView.enclosingScrollView as! SynchronizedScrollView).setSynchronizedScrollView(newPodfileTextView.enclosingScrollView!)
-        (newPodfileTextView.enclosingScrollView as! SynchronizedScrollView).setSynchronizedScrollView(oldPodfileTextView.enclosingScrollView!)
+        // Setup synchronized scrolling between the two TextViews.
+        (oldPodfileTextView.enclosingScrollView as! SynchronizedScrollView).synchronizedScrollView
+            = newPodfileTextView.enclosingScrollView!
+        (newPodfileTextView.enclosingScrollView as! SynchronizedScrollView).synchronizedScrollView
+            = oldPodfileTextView.enclosingScrollView!
         
-        oldPodfileTextView.isEditable = false
         let emptyString = NSAttributedString()
         oldPodfileTextView.textStorage?.append(highlighter?.highlight(result!.oldContent, as: "ruby") ?? emptyString)
         newPodfileTextView.textStorage?.append(highlighter?.highlight(result!.newContent, as: "ruby") ?? emptyString)

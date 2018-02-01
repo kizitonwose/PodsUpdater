@@ -12,17 +12,23 @@ import Cocoa
 // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/NSScrollViewGuide/Articles/SynchroScroll.html
 class SynchronizedScrollView: NSScrollView {
     
-    weak var synchronizedScrollView: NSScrollView?
+    // don't retain the watched view, because we assume that it will
+    // be retained by the view hierarchy for as long as we're around.
+    public weak var synchronizedScrollView: NSScrollView? {
+        didSet {
+            if let oldValue = oldValue {
+                // stop an existing scroll view synchronizing
+                stopSynchronizing(with: oldValue)
+            }
+            if let newValue = synchronizedScrollView {
+                startSynchronizing(with: newValue)
+            }
+        }
+    }
     
-    func setSynchronizedScrollView(_ scrollview: NSScrollView) {
-        var synchronizedContentView: NSView
-        // stop an existing scroll view synchronizing
-        stopSynchronizing()
-        // don't retain the watched view, because we assume that it will
-        // be retained by the view hierarchy for as long as we're around.
-        synchronizedScrollView = scrollview
-        // get the content view of the
-        synchronizedContentView = synchronizedScrollView!.contentView
+   private func startSynchronizing(with scrollview: NSScrollView) {
+        // get the content view of the NSScrollView
+        let synchronizedContentView = scrollview.contentView
         // Make sure the watched view is sending bounds changed
         // notifications (which is probably does anyway, but calling
         // this again won't hurt).
@@ -57,14 +63,10 @@ class SynchronizedScrollView: NSScrollView {
         }
     }
     
-    private func stopSynchronizing() {
-        if let synchronizedScrollView = synchronizedScrollView {
-            let synchronizedContentView = synchronizedScrollView.contentView
-            // remove any existing notification registration
-            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification,
-                                                      object: synchronizedContentView)
-            // set synchronizedScrollView to nil
-            self.synchronizedScrollView = nil
-        }
+    private func stopSynchronizing(with scrollview: NSScrollView) {
+        let synchronizedContentView = scrollview.contentView
+        // remove any existing notification registration
+        NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification,
+                                                  object: synchronizedContentView)
     }
 }
