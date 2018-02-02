@@ -20,6 +20,7 @@ class CommandPresenter: CommandContract.Presenter {
         self.source = source
         self.view = view
         self.command = command
+        run(command: command)
     }
     
     func run(command: Command) {

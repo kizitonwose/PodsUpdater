@@ -21,7 +21,6 @@ class PodfileViewController: NSViewController {
     @IBOutlet weak var cancelButton: NSButton!
     fileprivate var presenter: PodfileContract.Presenter!
     fileprivate let disposeBag = DisposeBag()
-    private var hasSetup = false
     fileprivate let highlighter = Highlightr()
     private let writeErrorAert: NSAlert = {
         let alert = NSAlert()
@@ -32,20 +31,19 @@ class PodfileViewController: NSViewController {
         return alert
     }()
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        if hasSetup.not() {
-            setupViews()
-            presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
-            
-            view.window?.titleVisibility = .hidden
-            view.window?.titlebarAppearsTransparent = true
-            view.window?.styleMask.insert(.fullSizeContentView)
-            view.window?.zoom(self)
-            hasSetup = true
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.titleVisibility = .hidden
+        view.window?.titlebarAppearsTransparent = true
+        view.window?.styleMask.insert(.fullSizeContentView)
+        view.window?.zoom(self)
+    }
 }
 
 // MARK:- PodfileContract.View

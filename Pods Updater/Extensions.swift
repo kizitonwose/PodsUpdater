@@ -137,7 +137,7 @@ extension Array where Element == String {
 // MARK:- Collection
 extension Collection {
     var isNotEmpty: Bool {
-        return count > 0
+        return !isEmpty
     }
     
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.

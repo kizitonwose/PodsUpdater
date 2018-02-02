@@ -13,8 +13,6 @@ import RxCocoa
 class CommandViewController: NSViewController {
 
     @IBOutlet var textView: NSTextView!
-    @IBOutlet var closeButton: NSButton!
-    let disposeBag = DisposeBag()
     var command = Command.updateRepo
     fileprivate var presenter: CommandContract.Presenter!
     
@@ -22,7 +20,12 @@ class CommandViewController: NSViewController {
         super.viewDidLoad()
         setupViews()
         presenter = CommandPresenter(view: self, source: Repository.instance, command: command)
-        presenter.run(command: command)
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.title = "Command output"
+        view.window?.titlebarAppearsTransparent = true
     }
 }
 
@@ -36,20 +39,14 @@ extension CommandViewController: CommandContract.View {
 extension CommandViewController {
     func setupViews() {
         setupTextView()
-        setupButton()
     }
     
     func setupTextView() {
-        textView.backgroundColor = NSColor(hex: "#263238")
+        let color = NSColor(hex: "#263238")
+        view.wantsLayer = true
+        view.layer?.backgroundColor = color.cgColor
+        textView.backgroundColor = color
         textView.textColor = .white
         textView.font = NSFont.systemFont(ofSize: 14)
     }
-    
-    func setupButton() {
-        closeButton.title = "Close"
-        closeButton.rx.tap.asDriver()
-            .drive(onNext: { [unowned self] in
-                self.view.window?.close()
-            }).disposed(by: disposeBag)
-    }    
 }

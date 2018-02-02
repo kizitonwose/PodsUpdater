@@ -884,17 +884,17 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRq-ru-FaI">
-                                <rect key="frame" x="0.0" y="37" width="450" height="263"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" id="dWU-kM-G72">
-                                    <rect key="frame" x="1" y="1" width="448" height="261"/>
+                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="7iV-cV-nu3">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="261"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="448" height="261"/>
+                                            <size key="minSize" width="448" height="298"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </textView>
@@ -906,30 +906,19 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aZT-mV-pxB">
-                                    <rect key="frame" x="433" y="1" width="16" height="261"/>
+                                    <rect key="frame" x="433" y="1" width="16" height="298"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pne-da-TCe">
-                                <rect key="frame" x="355" y="1" width="81" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kmy-h3-AfW">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Pne-da-TCe" secondAttribute="bottom" constant="8" id="BvW-oR-M9D"/>
-                            <constraint firstItem="Pne-da-TCe" firstAttribute="top" secondItem="LRq-ru-FaI" secondAttribute="bottom" constant="8" id="DAN-SS-ASC"/>
                             <constraint firstAttribute="trailing" secondItem="LRq-ru-FaI" secondAttribute="trailing" id="Dcu-Ul-jxj"/>
                             <constraint firstItem="LRq-ru-FaI" firstAttribute="leading" secondItem="qXQ-El-ipP" secondAttribute="leading" id="SDu-0c-mZz"/>
-                            <constraint firstItem="Pne-da-TCe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qXQ-El-ipP" secondAttribute="leading" constant="30" id="pWU-5c-sPg"/>
+                            <constraint firstAttribute="bottom" secondItem="LRq-ru-FaI" secondAttribute="bottom" id="gJ9-tb-NbG"/>
                             <constraint firstItem="LRq-ru-FaI" firstAttribute="top" secondItem="qXQ-El-ipP" secondAttribute="top" id="yfX-0D-Uhp"/>
-                            <constraint firstAttribute="trailing" secondItem="Pne-da-TCe" secondAttribute="trailing" constant="20" id="zuc-WR-QeA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="Pne-da-TCe" id="paW-zI-bpW"/>
                         <outlet property="textView" destination="7iV-cV-nu3" id="thg-2g-E11"/>
                     </connections>
                 </viewController>

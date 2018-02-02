@@ -71,12 +71,11 @@ extension MainViewController: MainContract.View {
     
     func showLocalPodsUpdateInformation() {
         infoAlert.beginSheetModal(for: view.window!) { response in
-            print(NSApplication.ModalResponse.alertSecondButtonReturn)
             if response == .alertSecondButtonReturn {
                 let vc = self.storyboard?.instantiateController(withIdentifier: .commandViewController)
                     as! CommandViewController
                 vc.command = .updateRepo
-                self.presentViewControllerAsSheet(vc)
+                self.presentViewControllerAsModalWindow(vc)
             }
         }
     }

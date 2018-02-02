@@ -236,19 +236,18 @@ class Repository: DataSource {
     func runCommand(_ command: Command) -> Observable<String> {
         return Observable.create({ observer -> Disposable in
             let disposable = BooleanDisposable()
-
+            
             command.run { line in
                 observer.onNext(line)
-                print("Next: \(line)")
             }
+            observer.onNext("Done.")
             observer.onCompleted()
             
             return disposable
-        }).catchError({ error -> Observable<String> in
-            print(error)
-            // We don't want errors
-            return Observable.just("\(error.localizedDescription)")
-        })
+        }).catchError {
+            // Print errors to the command output
+           return Observable.just("\($0.localizedDescription)")
+        }
     }
 
 }
