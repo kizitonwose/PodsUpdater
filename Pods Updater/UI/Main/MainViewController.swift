@@ -14,6 +14,7 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var selectPodfileButton: NSPopUpButton!
+    @IBOutlet weak var installPodButton: NSButton!
     @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: PodsTableView!
@@ -57,7 +58,7 @@ extension MainViewController: MainContract.View {
         alert.alertStyle = .critical
         alert.addButton(withTitle: "Analize now")
         alert.addButton(withTitle: "Close")
-        alert.beginSheetModal(for: view.window!) { response in
+        alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertFirstButtonReturn {
                 self.presenter.cleanUpPodfileAtCurrentUrl()
             }
@@ -83,16 +84,14 @@ extension MainViewController: MainContract.View {
     func setProgress(enabled: Bool) {
         filterButton.isEnabled = !enabled
         selectPodfileButton.isEnabled = !enabled
+        installPodButton.isEnabled = !enabled
         tableView.isEnabled = !enabled
     }
     
     func showLocalPodsUpdateInformation() {
-        infoAlert.beginSheetModal(for: view.window!) { response in
+        infoAlert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
-                let vc = self.storyboard?.instantiateController(withIdentifier: .commandViewController)
-                    as! CommandViewController
-                vc.command = .updateRepo
-                self.presentViewControllerAsModalWindow(vc)
+                self.runComman(.updateRepo)
             }
         }
     }
@@ -114,6 +113,13 @@ extension MainViewController: MainContract.View {
         alert.alertStyle = .critical
         alert.addButton(withTitle: "Close")
         alert.beginSheetModal(for: view.window!)
+    }
+    
+    fileprivate func runComman(_ command: Command) {
+        let vc = self.storyboard?.instantiateController(withIdentifier: .commandViewController)
+            as! CommandViewController
+        vc.command = command
+        self.presentViewControllerAsModalWindow(vc)
     }
 }
 
@@ -140,6 +146,12 @@ extension MainViewController {
                     default: break
                     }
                 }
+            }).disposed(by: disposeBag)
+        
+        installPodButton.title = "Install Pod(s)"
+        installPodButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                self.runComman(.install(podFileUrl: self.openPanel.url!.deletingLastPathComponent()))
             }).disposed(by: disposeBag)
     }
     

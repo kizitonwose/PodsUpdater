@@ -11,11 +11,13 @@ import Foundation
 enum Command {
     case updateRepo
     case search(podName: String)
+    case install(podFileUrl: URL)
     
     var commandString : String {
         switch self {
         case .updateRepo: return "repo update"
         case let .search(podName): return "search \(podName)"
+        case let .install(podFileUrl): return "install --project-directory=\(podFileUrl.path)"
         }
     }
 }
