@@ -185,3 +185,11 @@ extension NSColor {
     }
 }
 
+
+// MARK:- NSRect
+extension NSRect {
+    var center: CGPoint {
+        return  CGPoint(x: NSMidX(self), y: NSMidY(self))
+    }
+}
+

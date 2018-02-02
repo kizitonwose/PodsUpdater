@@ -81,10 +81,9 @@ extension MainViewController: MainContract.View {
     }
     
     func showPodCleanUpResult(_ result: PodFileCleanResult) {
-        if let podfileVC = storyboard?.instantiateController(withIdentifier: .podfileViewController)  as? PodfileViewController {
-            podfileVC.result = result
-            presentViewControllerAsModalWindow(podfileVC)
-        }
+        let podfileVC = storyboard?.instantiateController(withIdentifier: .podfileViewController)  as! PodfileViewController
+        podfileVC.result = result
+        presentViewControllerAsModalWindow(podfileVC)
     }
 }
 
