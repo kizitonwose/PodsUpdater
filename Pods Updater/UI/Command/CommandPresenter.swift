@@ -28,8 +28,6 @@ class CommandPresenter: CommandContract.Presenter {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] line in
                 self?.view?.showOutput(line)
-            }, onCompleted: { [weak self] in
-                self?.view?.showCommandFinished()
             }).disposed(by: disposeBag)
     }
 }

@@ -40,7 +40,7 @@ class Repository: DataSource {
                 
                 let trimmedLine = line.trimmingWhiteSpaces()
                 if trimmedLine.isValidPodLine {
-                    print(trimmedLine)
+                   // print(trimmedLine)
                     // Parse every line in the Podfile
                     let components = trimmedLine.components(separatedBy: "'")
                     if let name = components.second, let currentVersion = components.fourth {
@@ -236,14 +236,19 @@ class Repository: DataSource {
     func runCommand(_ command: Command) -> Observable<String> {
         return Observable.create({ observer -> Disposable in
             let disposable = BooleanDisposable()
-            
+
             command.run { line in
                 observer.onNext(line)
+                print("Next: \(line)")
             }
             observer.onCompleted()
             
             return disposable
-        }).catchErrorJustReturn("") // We don't want errors
+        }).catchError({ error -> Observable<String> in
+            print(error)
+            // We don't want errors
+            return Observable.just("\(error.localizedDescription)")
+        })
     }
 
 }

@@ -15,7 +15,6 @@ struct CommandContract {
 
 protocol _CommandView: BaseContract.View {
     func showOutput(_ output: String)
-    func showCommandFinished()
 }
 
 protocol _CommandPresenter: BaseContract.Presenter {
