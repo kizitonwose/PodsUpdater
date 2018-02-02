@@ -875,6 +875,57 @@ Gw
             </objects>
             <point key="canvasLocation" x="763" y="827"/>
         </scene>
+        <!--Command View Controller-->
+        <scene sceneID="PdG-Vb-sbe">
+            <objects>
+                <viewController identifier="CommandViewController" storyboardIdentifier="CommandViewController" id="n8B-L9-5ZO" customClass="CommandViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="qXQ-El-ipP">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRq-ru-FaI">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <clipView key="contentView" id="dWU-kM-G72">
+                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="7iV-cV-nu3">
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="448" height="298"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="BzD-O8-B70">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aZT-mV-pxB">
+                                    <rect key="frame" x="433" y="1" width="16" height="298"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LRq-ru-FaI" secondAttribute="trailing" id="Dcu-Ul-jxj"/>
+                            <constraint firstItem="LRq-ru-FaI" firstAttribute="leading" secondItem="qXQ-El-ipP" secondAttribute="leading" id="SDu-0c-mZz"/>
+                            <constraint firstAttribute="bottom" secondItem="LRq-ru-FaI" secondAttribute="bottom" id="goY-7k-0dd"/>
+                            <constraint firstItem="LRq-ru-FaI" firstAttribute="top" secondItem="qXQ-El-ipP" secondAttribute="top" id="yfX-0D-Uhp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="7iV-cV-nu3" id="thg-2g-E11"/>
+                    </connections>
+                </viewController>
+                <customObject id="Phx-KC-m26" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="852"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>

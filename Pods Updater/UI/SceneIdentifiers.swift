@@ -11,4 +11,5 @@ import Cocoa
 
 extension NSStoryboard.SceneIdentifier {
     public static let podfileViewController = NSStoryboard.SceneIdentifier(rawValue: "PodfileViewController")
+    public static let commandViewController = NSStoryboard.SceneIdentifier(rawValue: "CommandViewController")
 }
