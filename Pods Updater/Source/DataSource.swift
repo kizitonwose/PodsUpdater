@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol DataSource {
-    func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>>
+    func findVersionsForPodfile(at url: URL, onlyNew: Bool) -> Observable<ProgressResult<PodfileVersionCheckResult>>
     func getProjectNameForPodfile(at url: URL) -> String
     func setVersion(_ version: String, forPod pod: Pod, inPodfile url: URL)
     func cleanUpPodfile(at url: URL) -> Single<PodFileCleanResult>

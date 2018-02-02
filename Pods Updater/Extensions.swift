@@ -45,7 +45,7 @@ extension String {
         return self.starts(with: "pod")
     }
     
-    var isValidPodVersionInfo: Bool {
+    var isUnsupportedPodVersionInfo: Bool {
         let trimmed = self.trimmingWhiteSpaces()
         if let firstCharecter = trimmed.first {
             return ["~","=",">","<"].contains(firstCharecter)

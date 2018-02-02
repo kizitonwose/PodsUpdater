@@ -21,14 +21,12 @@ class MainPresenter: MainContract.Presenter {
         self.view = view
     }
     
-    func parsePodfile(at url: URL, onlyNewVersions: Bool) {
+    func findVersionsForPodfile(at url: URL, onlyNew: Bool) {
         currentUrl = url
         view?.setProgress(enabled: true)
-        let projectName = source.getProjectNameForPodfile(at: url)
-        view?.showProjectName(projectName)
-        view?.showPodsInformation(with: [])
+        showPodfileMetaData(forPodfile: url)
         
-        source.parsePodfile(at: url, onlyNewVersions: onlyNewVersions)
+        source.findVersionsForPodfile(at: url, onlyNew: onlyNew)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .do(onCompleted: { [weak self] in
@@ -39,11 +37,16 @@ class MainPresenter: MainContract.Presenter {
                 if progressResult.result == nil {
                     self?.view?.showPodfileReadPercentage(progressResult.progress)
                 } else {
-                    self?.view?.showPodsInformation(with: progressResult.result!)
-                    self?.view?.showLocalPodsUpdateInformation()
+                    let result = progressResult.result!
+                    self?.view?.showPodsInformation(with: result.pods)
+                    if result.hasPodWithUnsupportedFormat {
+                        self?.view?.showPodWithInvalidFormatWarning()
+                    } else {
+                        self?.view?.showLocalPodsUpdateInformation()
+                    }
                 }
-                }, onError: { error in
-                    print("Finished with error: \(error)")
+                }, onError: { [weak self] error in
+                    self?.view?.showPodfileParseError()
             }).disposed(by: disposeBag)
     }
     
@@ -54,14 +57,27 @@ class MainPresenter: MainContract.Presenter {
     }
     
     func cleanUpPodfile(at url: URL) {
+        showPodfileMetaData(forPodfile: url)
         source.cleanUpPodfile(at: url)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] result in
                 self?.view?.showPodCleanUpResult(result)
-            }, onError: { error in
-                
+            }, onError: { [weak self] error in
+                self?.view?.showPodCleanUpError((error as? AppError)?.reason ?? nil)
             }).disposed(by: disposeBag)
+    }
+    
+    func cleanUpPodfileAtCurrentUrl() {
+        if let currentUrl = currentUrl {
+            cleanUpPodfile(at: currentUrl)
+        }
+    }
+    
+    private func showPodfileMetaData(forPodfile url: URL) {
+        let projectName = source.getProjectNameForPodfile(at: url)
+        view?.showProjectName(projectName)
+        view?.showPodsInformation(with: [])
     }
 
 }

@@ -15,7 +15,7 @@ class Repository: DataSource {
     
     private init() { }
     
-    func parsePodfile(at url: URL, onlyNewVersions: Bool) -> Observable<ProgressResult<[Pod]>> {
+    func findVersionsForPodfile(at url: URL, onlyNew: Bool) -> Observable<ProgressResult<PodfileVersionCheckResult>> {
         var content = ""
         do {// Read the file to String
             content = try String(contentsOf: url, encoding: .utf8)
@@ -29,7 +29,8 @@ class Repository: DataSource {
             let lines = content.splitByNewLines()
             
             var pods = [Pod]()
-            
+            var hasPodWithUnsupportedFormat = false
+
             for (index, line) in lines.enumerated() {
                 if disposable.isDisposed {
                     break
@@ -45,7 +46,12 @@ class Repository: DataSource {
                     let components = trimmedLine.components(separatedBy: "'")
                     if let name = components.second, let currentVersion = components.fourth {
                         
-                        if currentVersion.first!.isDigit.not() { continue } // If this is not a valid version number
+                        if currentVersion.first!.isDigit.not() {
+                            if currentVersion.isUnsupportedPodVersionInfo {
+                                hasPodWithUnsupportedFormat = true
+                            }
+                            continue
+                        } // If this is not a valid version number
                         
                         var pod = Pod()
                         pod.lineIndex = index
@@ -73,7 +79,7 @@ class Repository: DataSource {
                                 
                                 // If the user chose to see only newer versions of their pods than currently
                                 // installed, we remove all older versions from the array.
-                                if onlyNewVersions, let currentVersionIndex = versions.index(of: pod.currentVersion) {
+                                if onlyNew, let currentVersionIndex = versions.index(of: pod.currentVersion) {
                                     versions = Array(versions.dropLast(versions.count-currentVersionIndex))
                                 }
                                 pod.availableVersions = versions
@@ -93,7 +99,8 @@ class Repository: DataSource {
             }
             
             if disposable.isDisposed.not() {
-                observer.onNext(ProgressResult(progress: 100, result: pods))
+                observer.onNext(ProgressResult(progress: 100, result: PodfileVersionCheckResult(pods: pods,
+                                                                                                hasPodWithUnsupportedFormat: hasPodWithUnsupportedFormat)))
                 observer.onCompleted()
             }
             return disposable
@@ -197,7 +204,7 @@ class Repository: DataSource {
                         
                         // If this Pod is declared with a version. e.g - pod 'RxSwift', '~> 4.1.1',
                         // replace the verion info with a format supported by this app.
-                        if let versionInfo = components.fourth,  versionInfo.isValidPodVersionInfo {
+                        if let versionInfo = components.fourth,  versionInfo.isUnsupportedPodVersionInfo {
                             lines[index] = lines[index].replacingFirstOccurrence(of: versionInfo, with: String(installedVersion))
                             
                             // Else if this pod has no version information. e.g - pod 'RxSwift'

@@ -13,6 +13,17 @@ struct ProgressResult<T> {
     var result: T?
 }
 
+struct PodfileVersionCheckResult {
+    var pods: [Pod]
+    var hasPodWithUnsupportedFormat: Bool
+}
+
+struct PodFileCleanResult {
+    var url: URL
+    var oldContent: String
+    var newContent: String
+}
+
 public struct Pod: Equatable {
     // Name of this Pod
     var name = ""
@@ -44,10 +55,4 @@ public struct Pod: Equatable {
 
 public func ==(lhs: Pod, rhs: Pod) -> Bool {
     return lhs.name == rhs.name
-}
-
-struct PodFileCleanResult {
-    var url: URL
-    var oldContent: String
-    var newContent: String
 }

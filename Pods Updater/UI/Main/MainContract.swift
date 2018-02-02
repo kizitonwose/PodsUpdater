@@ -14,16 +14,20 @@ struct MainContract {
 }
 
 protocol _MainView: BaseContract.View {
+    func showPodfileParseError()
     func showPodsInformation(with pods: [Pod])
     func showPodfileReadPercentage(_ progress: Double)
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
+    func showPodWithInvalidFormatWarning()
     func showLocalPodsUpdateInformation()
     func showPodCleanUpResult(_ result: PodFileCleanResult)
+    func showPodCleanUpError(_ reason: String?)
 }
 
 protocol _MainPresenter: BaseContract.Presenter {
-    func parsePodfile(at url: URL, onlyNewVersions: Bool)
+    func findVersionsForPodfile(at url: URL, onlyNew: Bool)
     func setVersion(_ version: String, forPod pod: Pod)
     func cleanUpPodfile(at url: URL)
+    func cleanUpPodfileAtCurrentUrl()
 }

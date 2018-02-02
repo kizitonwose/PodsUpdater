@@ -50,6 +50,23 @@ class MainViewController: NSViewController {
 
 // MARK:- MainContract.View
 extension MainViewController: MainContract.View {
+    func showPodWithInvalidFormatWarning() {
+        let alert = NSAlert()
+        alert.messageText = "Important"
+        alert.informativeText = "One or more Pods in your Podfile is declared with a format that is not supported by this app. The app can analyze your Podfile and show which lines should be fixed."
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Analize now")
+        alert.addButton(withTitle: "Close")
+        alert.beginSheetModal(for: view.window!) { response in
+            if response == .alertFirstButtonReturn {
+                self.presenter.cleanUpPodfileAtCurrentUrl()
+            }
+        }
+    }
+    
+    func showPodfileParseError() {
+       showErrorAlert(content: "Could not parse the selected file.")
+    }
     
     func showPodfileReadPercentage(_ progress: Double) {
         progressIndicator.doubleValue = progress
@@ -85,6 +102,19 @@ extension MainViewController: MainContract.View {
         podfileVC.result = result
         presentViewControllerAsModalWindow(podfileVC)
     }
+    
+    func showPodCleanUpError(_ reason: String?) {
+        showErrorAlert(content: reason ?? "Could not complete operation.")
+    }
+    
+    private func showErrorAlert(content: String) {
+        let alert = NSAlert()
+        alert.messageText = "An error occured"
+        alert.informativeText = content
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Close")
+        alert.beginSheetModal(for: view.window!)
+    }
 }
 
 // MARK:- Setup
@@ -103,8 +133,8 @@ extension MainViewController {
                 if (self.openPanel.runModal() == .OK) {
                     switch self.selectPodfileButton.indexOfSelectedItem {
                     case 1: // Analyze Podfile
-                        self.presenter.parsePodfile(at: self.openPanel.url!,
-                                                    onlyNewVersions: self.filterButton.state == .on)
+                        self.presenter.findVersionsForPodfile(at: self.openPanel.url!,
+                                                              onlyNew: self.filterButton.state == .on)
                     case 2: // Sanitize Podfile
                         self.presenter.cleanUpPodfile(at: self.openPanel.url!)
                     default: break
