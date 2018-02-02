@@ -53,7 +53,7 @@ class Repository: DataSource {
                         pod.currentVersion = currentVersion
                         
                         // Search for the pod locally
-                        let result = "search \(pod.isSubSpec ? pod.specName : pod.name)".run()
+                        let result = Command.search(podName: pod.isSubSpec ? pod.specName : pod.name).run()
                         switch result {
                         case .success(let output):
                             // Find the line in search result with version information
@@ -232,5 +232,19 @@ class Repository: DataSource {
             return Disposables.create {  }
         }
     }
+    
+    func runCommand(_ command: Command) -> Observable<String> {
+        return Observable.create({ observer -> Disposable in
+            let disposable = BooleanDisposable()
+            
+            command.run { line in
+                observer.onNext(line)
+            }
+            observer.onCompleted()
+            
+            return disposable
+        }).catchErrorJustReturn("") // We don't want errors
+    }
+
 }
 

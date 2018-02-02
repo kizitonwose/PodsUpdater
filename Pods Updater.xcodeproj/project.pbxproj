@@ -20,6 +20,9 @@
 		50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2220209FEE008C73B7 /* BaseMVP.swift */; };
 		50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommanLineUtils.swift */; };
 		50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE620236A430016860D /* SynchronizedScrollView.swift */; };
+		50197FEA2024788A0016860D /* CommandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE92024788A0016860D /* CommandViewController.swift */; };
+		502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6813202483C600FFEDF2 /* CommandContract.swift */; };
+		502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6815202483E800FFEDF2 /* CommandPresenter.swift */; };
 		5043610F20233D8900BC852E /* PodfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043610E20233D8900BC852E /* PodfileContract.swift */; };
 		5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043611020233D9400BC852E /* PodfilePresenter.swift */; };
 		504361142023565000BC852E /* SceneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* SceneIdentifiers.swift */; };
@@ -48,6 +51,9 @@
 		50131D2220209FEE008C73B7 /* BaseMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMVP.swift; sourceTree = "<group>"; };
 		50131D242020CCA3008C73B7 /* CommanLineUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanLineUtils.swift; sourceTree = "<group>"; };
 		50197FE620236A430016860D /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
+		50197FE92024788A0016860D /* CommandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandViewController.swift; sourceTree = "<group>"; };
+		502F6813202483C600FFEDF2 /* CommandContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandContract.swift; sourceTree = "<group>"; };
+		502F6815202483E800FFEDF2 /* CommandPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPresenter.swift; sourceTree = "<group>"; };
 		5043610E20233D8900BC852E /* PodfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileContract.swift; sourceTree = "<group>"; };
 		5043611020233D9400BC852E /* PodfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfilePresenter.swift; sourceTree = "<group>"; };
 		504361132023565000BC852E /* SceneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifiers.swift; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 		50131D1B20208EAB008C73B7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				50197FE82024785A0016860D /* Command */,
 				50197FE520236A120016860D /* Custom */,
 				5043611220233DA300BC852E /* Main */,
 				5079FA872023235500E752A1 /* Podfile */,
@@ -106,6 +113,16 @@
 				50197FE620236A430016860D /* SynchronizedScrollView.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		50197FE82024785A0016860D /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				50197FE92024788A0016860D /* CommandViewController.swift */,
+				502F6813202483C600FFEDF2 /* CommandContract.swift */,
+				502F6815202483E800FFEDF2 /* CommandPresenter.swift */,
+			);
+			path = Command;
 			sourceTree = "<group>";
 		};
 		5043611220233DA300BC852E /* Main */ = {
@@ -322,6 +339,7 @@
 			files = (
 				5043610F20233D8900BC852E /* PodfileContract.swift in Sources */,
 				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
+				50197FEA2024788A0016860D /* CommandViewController.swift in Sources */,
 				50131D1F20209F79008C73B7 /* MainContract.swift in Sources */,
 				50131D1A20208349008C73B7 /* Windows.swift in Sources */,
 				5079FA862022710500E752A1 /* Error.swift in Sources */,
@@ -330,11 +348,13 @@
 				504361142023565000BC852E /* SceneIdentifiers.swift in Sources */,
 				50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,
+				502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */,
 				50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */,
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
 				50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */,
 				5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */,
 				5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */,
+				502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */,
 				50131D0D20206BFB008C73B7 /* Pod.swift in Sources */,
 				50131D1220206E05008C73B7 /* Repository.swift in Sources */,
 				50131D16202070E8008C73B7 /* Extensions.swift in Sources */,

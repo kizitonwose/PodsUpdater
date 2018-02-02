@@ -8,13 +8,25 @@
 
 import Foundation
 
-extension String {
+enum Command {
+    case updateRepo
+    case search(podName: String)
+    
+    var commandString : String {
+        switch self {
+        case .updateRepo: return "repo update"
+        case let .search(podName): return "search \(podName)"
+        }
+    }
+}
+
+extension Command {
     func run() -> ProcessResult {
         let pipe = Pipe()
         let errorPipe = Pipe()
         let process = Process()
         process.launchPath = "/usr/local/bin/pod"
-        process.arguments = self.components(separatedBy: .whitespaces)
+        process.arguments = self.commandString.components(separatedBy: .whitespaces)
         process.standardOutput = pipe
         process.standardError = errorPipe
         
@@ -31,6 +43,28 @@ extension String {
             let output = String(data: errorFileHandle.readDataToEndOfFile(), encoding: .utf8)
             return.error(output: output)
         }
+    }
+    
+    func run(withHandler outputHandler: @escaping (_ output: String) -> ()) {
+        let pipe = Pipe()
+        let process = Process()
+        process.launchPath = "/usr/local/bin/pod"
+        process.arguments = self.commandString.components(separatedBy: .whitespaces)
+        process.standardOutput = pipe
+        process.standardError = pipe
+        
+        let fileHandle = pipe.fileHandleForReading
+        fileHandle.readabilityHandler = { pipe in
+            if let line = String(data: pipe.availableData, encoding: .utf8) {
+                outputHandler(line)
+            }
+        }
+        process.terminationHandler = { _ in
+            fileHandle.readabilityHandler = nil
+        }
+        
+        process.launch()
+        process.waitUntilExit()
     }
 }
 

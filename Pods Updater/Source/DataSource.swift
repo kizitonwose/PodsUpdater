@@ -15,4 +15,5 @@ protocol DataSource {
     func setVersion(_ version: String, forPod pod: Pod, inPodfile url: URL)
     func cleanUpPodfile(at url: URL) -> Single<PodFileCleanResult>
     func writePodfileData(_ data: String, toPodfile url: URL) -> Completable
+    func runCommand(_ command: Command) -> Observable<String>
 }
