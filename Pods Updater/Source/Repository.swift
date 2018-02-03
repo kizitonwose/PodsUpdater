@@ -99,7 +99,8 @@ class Repository: DataSource {
             }
             
             if disposable.isDisposed.not() {
-                observer.onNext(ProgressResult(progress: 100, result: PodfileVersionCheckResult(pods: pods,
+                let sortedPods = pods.sorted { $0.name.compare($1.name) == .orderedAscending }
+                observer.onNext(ProgressResult(progress: 100, result: PodfileVersionCheckResult(pods: sortedPods,
                                                                                                 hasPodWithUnsupportedFormat: hasPodWithUnsupportedFormat)))
                 observer.onCompleted()
             }
