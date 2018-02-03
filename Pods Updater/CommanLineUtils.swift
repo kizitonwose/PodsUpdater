@@ -23,20 +23,42 @@ enum Command {
 }
 
 extension Command {
-    func run() -> ProcessResult {
-        let pipe = Pipe()
+    
+    @discardableResult
+    func run(withHandler outputHandler: ((_ output: String) -> ())? = nil) -> ProcessResult {
+        let outputPipe = Pipe()
         let errorPipe = Pipe()
         let process = Process()
         process.launchPath = "/usr/local/bin/pod"
         process.arguments = self.commandString.components(separatedBy: .whitespaces)
-        process.standardOutput = pipe
+        process.standardOutput = outputPipe
         process.standardError = errorPipe
+        
+        if outputHandler != nil {
+            
+            outputPipe.fileHandleForReading.readabilityHandler = { pipe in
+                if let line = String(data: pipe.availableData, encoding: .utf8) {
+                    outputHandler?(line)
+                }
+            }
+            
+            errorPipe.fileHandleForReading.readabilityHandler = { pipe in
+                if let line = String(data: pipe.availableData, encoding: .utf8) {
+                    outputHandler?(line)
+                }
+            }
+            
+            process.terminationHandler = { _ in
+                outputPipe.fileHandleForReading.readabilityHandler = nil
+                errorPipe.fileHandleForReading.readabilityHandler = nil
+            }
+        }
         
         process.launch()
         process.waitUntilExit()
         
         if process.terminationStatus == 0 {
-            let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
+            let output = String(data: outputPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             return .success(output: output)
         } else {
             let output = String(data: errorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
@@ -44,27 +66,6 @@ extension Command {
         }
     }
     
-    func run(withHandler outputHandler: @escaping (_ output: String) -> ()) {
-        let pipe = Pipe()
-        let process = Process()
-        process.launchPath = "/usr/local/bin/pod"
-        process.arguments = self.commandString.components(separatedBy: .whitespaces)
-        process.standardOutput = pipe
-        process.standardError = pipe
-        
-        let fileHandle = pipe.fileHandleForReading
-        fileHandle.readabilityHandler = { pipe in
-            if let line = String(data: pipe.availableData, encoding: .utf8) {
-                outputHandler(line)
-            }
-        }
-        process.terminationHandler = { _ in
-            fileHandle.readabilityHandler = nil
-        }
-        
-        process.launch()
-        process.waitUntilExit()
-    }
 }
 
 enum ProcessResult {
