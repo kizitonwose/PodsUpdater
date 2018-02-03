@@ -1128,6 +1128,7 @@ Gw
                     </view>
                     <connections>
                         <outlet property="filterButton" destination="bC0-IP-sB3" id="8pd-S5-8Sz"/>
+                        <outlet property="helpButton" destination="h7R-Rp-11j" id="ilm-b0-GLj"/>
                         <outlet property="installPodButton" destination="8EK-f0-DXo" id="pbs-AG-g98"/>
                         <outlet property="progressIndicator" destination="CEO-7p-rrG" id="kFB-jo-E8a"/>
                         <outlet property="projectNameTextField" destination="B14-dW-I5K" id="s2b-fe-Oj7"/>

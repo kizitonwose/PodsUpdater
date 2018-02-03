@@ -14,6 +14,7 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var selectPodfileButton: NSPopUpButton!
+    @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var installPodButton: NSButton!
     @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
@@ -130,13 +131,14 @@ extension MainViewController: MainContract.View {
 extension MainViewController {
     
     fileprivate func setupViews() {
-        setupButton()
+        setupButtons()
         setupTableView()
     }
     
-    fileprivate func setupButton() {
+    fileprivate func setupButtons() {
+        // Podfile selection button
         selectPodfileButton.removeAllItems()
-        selectPodfileButton.addItems(withTitles: ["Select Podfile", "Analyze Podfile", "Sanitize Podfile"])
+        selectPodfileButton.addItems(withTitles: ["Select Podfile", "Find Versions", "Make Compatible"])
         selectPodfileButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
                 if (self.openPanel.runModal() == .OK) {
@@ -151,11 +153,23 @@ extension MainViewController {
                 }
             }).disposed(by: disposeBag)
         
+        // Pod installation button
         installPodButton.isHidden = true // Hide the button initially
         installPodButton.title = "Install Pod(s)"
         installPodButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
                 self.runComman(.install(podFileUrl: self.openPanel.url!.deletingLastPathComponent()))
+            }).disposed(by: disposeBag)
+        
+        
+        // Help buttton
+        helpButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                let alert = NSAlert()
+                alert.messageText = "About Pods Updater"
+                alert.informativeText = "This app helps you find updates for frameworks in your Podfile by searching your local spec repository. \n\nThe app requires that your Podfile follows a specific pattern when declaring Pods: \npod 'PodName', 'ExactVersion' \nexample: pod 'RxSwift', '4.1.1' \n\nIf your Podfile already follows this pattern, proceed with searching for versions of Pods in your Podfile using the \"Find Versions\" option. Otherwise, use the \"Make Compatible\" option to fix your Podfile first!"
+                alert.addButton(withTitle: "Close")
+                alert.beginSheetModal(for: self.view.window!)
             }).disposed(by: disposeBag)
     }
     
