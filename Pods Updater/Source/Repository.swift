@@ -117,7 +117,7 @@ class Repository: DataSource {
             let projectDirectory = filesInFolder.first{ $0.hasSuffix(".xcworkspace") } ?? filesInFolder.first{ $0.hasSuffix(".xcodeproj") }
             
             if let projectDirectory = projectDirectory {
-                // Remove xcworkspace/xcodeproj suffix
+                // Remove xcworkspace or xcodeproj suffix
                 return projectDirectory
                     .components(separatedBy: ".")
                     .dropLast()
@@ -168,18 +168,15 @@ class Repository: DataSource {
             // Get the installed versions from Podfile.lock
             // 1. Parse Podfile.lock, and splt into array by lines
             // 2. Take lines until the DEPENDENCIES: line is reached
-            // 3. Sort resulting lines by indentation so searching from zero index returns main Pod info first,
-            //    before any pod dependency that has same name as the Pod we're searching for.
+            // 3. Filter out lines without an indentation of of 2,
+            //    this removes all Pod internal depencies(they have indentaion count of 4)
             // 3b. e.g  Podfile.lock:    - RxCocoa (4.1.1):
             //                               - RxSwift (~> 4.0)
             //                           - RxSwift (4.1.1)
-            // We want the lines array sorted like ["- RxCocoa (4.1.1):", "- RxSwift (4.1.1)", "- RxSwift (~> 4.0)"]
-            let installedPodsFromLock = podfileLockContent.splitByNewLines()
-                .prefix(while: { $0.trimmingWhiteSpaces() != "DEPENDENCIES:" })
-                .sorted { lhs, rhs -> Bool in
-                    lhs.prefix(while: { $0 == " " }).count < rhs.prefix(while: { $0 == " " }).count
-            }
-            
+            // We only want the lines - RxCocoa (4.1.1): and - RxSwift (4.1.1)
+            let installedPodsFromLock = Array(podfileLockContent.splitByNewLines()
+                .prefix(while: { $0.trimmingWhiteSpaces() != "DEPENDENCIES:" }))
+                .filter({ $0.prefix(while: { $0 == " "}).count == 2 })
             
             var lines = podfileContent.splitByNewLines()
             
@@ -197,7 +194,7 @@ class Repository: DataSource {
                     // 3. If we can find the version info in parentheses from the line in 2 above,
                     //    grab the pod version from within the parentheses, by dropping the parentheses symbols `()`
                     if let name = components.second,
-                        let installedVersionInfo = installedPodsFromLock.first(where: { $0.contains(name) }),
+                        let installedVersionInfo = installedPodsFromLock.first(where: { $0.contains(" \(name) ") }),
                         let installedVersion = installedVersionInfo
                             .findMatches(forRegex: "\\((.*?)\\)")
                             .first?.dropFirst().dropLast() {
