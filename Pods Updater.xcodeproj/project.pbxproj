@@ -28,6 +28,7 @@
 		504361142023565000BC852E /* SceneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* SceneIdentifiers.swift */; };
 		5079FA862022710500E752A1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA852022710500E752A1 /* Error.swift */; };
 		5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA88202323F500E752A1 /* PodfileViewController.swift */; };
+		508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DEDDF2025EF7F005413D0 /* UserDefaults.swift */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
 		50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* MainViewController.swift */; };
 		50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C06532201F7B4400D7B8D3 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		504361132023565000BC852E /* SceneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifiers.swift; sourceTree = "<group>"; };
 		5079FA852022710500E752A1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5079FA88202323F500E752A1 /* PodfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileViewController.swift; sourceTree = "<group>"; };
+		508DEDDF2025EF7F005413D0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50C06530201F7B4400D7B8D3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				50131D0F20206DFA008C73B7 /* DataSource.swift */,
 				50131D1120206E05008C73B7 /* Repository.swift */,
 				5079FA852022710500E752A1 /* Error.swift */,
+				508DEDDF2025EF7F005413D0 /* UserDefaults.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */,
 				50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */,
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
+				508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */,
 				50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */,
 				5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */,
 				5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */,

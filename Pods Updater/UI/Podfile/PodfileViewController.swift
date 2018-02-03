@@ -61,9 +61,10 @@ extension PodfileViewController: PodfileContract.View {
 extension PodfileViewController {
     
     func setupViews() {
-        setupTextViews()
+        // Setup buttons first so text view color will match theme button's current selection
         setupButtons()
-        
+        setupTextViews()
+
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(hex: "#263238").cgColor
     }
@@ -102,9 +103,24 @@ extension PodfileViewController {
             themeChoiceButton.removeAllItems()
             themeChoiceButton.addItems(withTitles: highlighter.availableThemes().sorted())
             themeChoiceButton.rx.tap.asDriver().drive(onNext: {  [unowned self] in
-                self.highlighter?.setTheme(to: self.themeChoiceButton.selectedItem?.title ?? "")
-                self.updateColors()
+                if let themeName = self.themeChoiceButton.selectedItem?.title {
+                    self.highlighter?.setTheme(to: themeName)
+                    self.updateColors()
+                    UserDefaults.standard.set(themeName, forKey: .highlightTheme)
+                }
             }).disposed(by: disposeBag)
+            
+            // Set the current theme to User's last selection and update button accordingly
+            if let preferredTheme = UserDefaults.standard.value(forKey: .highlightTheme) as? String,
+                highlighter.availableThemes().contains(preferredTheme) {
+                highlighter.setTheme(to: preferredTheme)
+                themeChoiceButton.selectItem(withTitle: preferredTheme)
+            } else {
+                // Set the default theme
+                let defaultTheme = "androidstudio"
+                highlighter.setTheme(to: defaultTheme)
+                themeChoiceButton.selectItem(withTitle: defaultTheme)
+            }
         } else {
             themeChoiceButton.isHidden = true
         }
