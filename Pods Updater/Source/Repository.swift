@@ -80,7 +80,7 @@ class Repository: DataSource {
                                 // If the user chose to see only newer versions of their pods than currently
                                 // installed, we remove all older versions from the array.
                                 if onlyNew, let currentVersionIndex = versions.index(of: pod.currentVersion) {
-                                    versions = Array(versions.dropLast(versions.count-currentVersionIndex))
+                                    versions = Array(versions.dropLast(versions.count - currentVersionIndex))
                                 }
                                 pod.availableVersions = versions
                             }

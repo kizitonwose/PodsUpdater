@@ -32,17 +32,14 @@ extension Command {
         process.standardOutput = pipe
         process.standardError = errorPipe
         
-        let fileHandle = pipe.fileHandleForReading
-        let errorFileHandle = errorPipe.fileHandleForReading
-        
         process.launch()
         process.waitUntilExit()
         
         if process.terminationStatus == 0 {
-            let output = String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
+            let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             return .success(output: output)
         } else {
-            let output = String(data: errorFileHandle.readDataToEndOfFile(), encoding: .utf8)
+            let output = String(data: errorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
             return.error(output: output)
         }
     }

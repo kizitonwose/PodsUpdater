@@ -75,6 +75,9 @@ extension MainViewController: MainContract.View {
     
     func showPodsInformation(with pods: [Pod]) {
         tableView.pods = pods
+        if pods.isEmpty {
+            installPodButton.isHidden = true
+        }
     }
     
     func showProjectName(_ name: String) {
@@ -148,6 +151,7 @@ extension MainViewController {
                 }
             }).disposed(by: disposeBag)
         
+        installPodButton.isHidden = true // Hide the button initially
         installPodButton.title = "Install Pod(s)"
         installPodButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
@@ -169,6 +173,7 @@ extension MainViewController {
         
         tableView.buttonClickHandler = { [unowned self] pod, newVersion in
             self.presenter.setVersion(newVersion, forPod: pod)
+            self.installPodButton.isHidden = false // The user can install command on this Podfile
         }
     }
 }
