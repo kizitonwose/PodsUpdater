@@ -21,6 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if flag.not() {
+            sender.windows.first { $0 is MainWindow }?.makeKeyAndOrderFront(self)
+        }
+        return true
+    }
 }
 

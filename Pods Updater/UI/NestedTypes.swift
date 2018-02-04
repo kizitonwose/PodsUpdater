@@ -8,8 +8,11 @@
 
 import Cocoa
 
-
 extension NSStoryboard.SceneIdentifier {
     public static let podfileViewController = NSStoryboard.SceneIdentifier(rawValue: "PodfileViewController")
     public static let commandViewController = NSStoryboard.SceneIdentifier(rawValue: "CommandViewController")
+}
+
+extension NSStoryboard.Name {
+    public static let main = NSStoryboard.Name(rawValue: "Main")
 }

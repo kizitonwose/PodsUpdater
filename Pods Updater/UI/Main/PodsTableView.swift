@@ -89,14 +89,6 @@ extension PodsTableView: NSTableViewDataSource {
     }
 }
 
-// MARK:- NSUserInterfaceItemIdentifier
-extension NSUserInterfaceItemIdentifier {
-    public static let podNameCell = NSUserInterfaceItemIdentifier("podNameCell")
-    public static let currentVersionCell = NSUserInterfaceItemIdentifier("currentVersionCell")
-    public static let newVersionsCell = NSUserInterfaceItemIdentifier("newVersionsCell")
-    public static let useVersionCell = NSUserInterfaceItemIdentifier("useVersionCell")
-}
-
 // MARK:- PodNewVersionsTableCellView
 class PodNewVersionsTableCellView: NSTableCellView {
     
@@ -114,3 +106,12 @@ class PodUseVersionCellView: NSTableCellView {
         buttonClickHandler?()
     }
 }
+
+// MARK:- NSUserInterfaceItemIdentifier
+extension NSUserInterfaceItemIdentifier {
+    public static let podNameCell = NSUserInterfaceItemIdentifier("podNameCell")
+    public static let currentVersionCell = NSUserInterfaceItemIdentifier("currentVersionCell")
+    public static let newVersionsCell = NSUserInterfaceItemIdentifier("newVersionsCell")
+    public static let useVersionCell = NSUserInterfaceItemIdentifier("useVersionCell")
+}
+
