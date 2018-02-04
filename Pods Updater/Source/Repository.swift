@@ -114,8 +114,9 @@ class Repository: DataSource {
         let filesInFolder = try? fileManager.contentsOfDirectory(atPath: url.deletingLastPathComponent().path)
         
         if let filesInFolder = filesInFolder, filesInFolder.isNotEmpty {
-            // Get the xcworkspace/xcodeproj directories
-            let projectDirectory = filesInFolder.first{ $0.hasSuffix(".xcworkspace") } ?? filesInFolder.first{ $0.hasSuffix(".xcodeproj") }
+            // Get the xcworkspace or xcodeproj directories
+            let projectDirectory = filesInFolder.first{ $0.hasSuffix(".xcworkspace") } ??
+                filesInFolder.first{ $0.hasSuffix(".xcodeproj") }
             
             if let projectDirectory = projectDirectory {
                 // Remove xcworkspace or xcodeproj suffix

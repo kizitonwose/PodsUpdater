@@ -33,7 +33,6 @@ class MainPresenter: MainContract.Presenter {
                 self?.view?.setProgress(enabled: false)
             })
             .subscribe(onNext: { [weak self] progressResult in
-                //print("Finished with pods: \(pods)")
                 if progressResult.result == nil {
                     self?.view?.showPodfileReadPercentage(progressResult.progress)
                 } else {
