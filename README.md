@@ -31,7 +31,7 @@ To perform this action, click **Select Podfile** and choose the **Make Compatibl
 
 ## Installation
 
-Download `Pods Updater.app` from the [releases](https://github.com/kizitonwose/PodsUpdater/releases) page.
+Download the app from the [releases](https://github.com/kizitonwose/PodsUpdater/releases) page.
 
 **OR**
 
