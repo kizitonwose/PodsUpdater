@@ -18,7 +18,7 @@
 		50131D1F20209F79008C73B7 /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1E20209F79008C73B7 /* MainContract.swift */; };
 		50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2020209F86008C73B7 /* MainPresenter.swift */; };
 		50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2220209FEE008C73B7 /* BaseMVP.swift */; };
-		50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommanLineUtils.swift */; };
+		50131D252020CCA3008C73B7 /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommandLine.swift */; };
 		50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE620236A430016860D /* SynchronizedScrollView.swift */; };
 		50197FEA2024788A0016860D /* CommandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE92024788A0016860D /* CommandViewController.swift */; };
 		502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6813202483C600FFEDF2 /* CommandContract.swift */; };
@@ -50,7 +50,7 @@
 		50131D1E20209F79008C73B7 /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
 		50131D2020209F86008C73B7 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		50131D2220209FEE008C73B7 /* BaseMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMVP.swift; sourceTree = "<group>"; };
-		50131D242020CCA3008C73B7 /* CommanLineUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanLineUtils.swift; sourceTree = "<group>"; };
+		50131D242020CCA3008C73B7 /* CommandLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLine.swift; sourceTree = "<group>"; };
 		50197FE620236A430016860D /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		50197FE92024788A0016860D /* CommandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandViewController.swift; sourceTree = "<group>"; };
 		502F6813202483C600FFEDF2 /* CommandContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandContract.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				50C06537201F7B4400D7B8D3 /* Info.plist */,
 				50C06538201F7B4400D7B8D3 /* Pods_Updater.entitlements */,
 				50131D15202070E8008C73B7 /* Extensions.swift */,
-				50131D242020CCA3008C73B7 /* CommanLineUtils.swift */,
+				50131D242020CCA3008C73B7 /* CommandLine.swift */,
 			);
 			path = "Pods Updater";
 			sourceTree = "<group>";
@@ -355,7 +355,7 @@
 				50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */,
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
 				508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */,
-				50131D252020CCA3008C73B7 /* CommanLineUtils.swift in Sources */,
+				50131D252020CCA3008C73B7 /* CommandLine.swift in Sources */,
 				5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */,
 				5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */,
 				502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */,

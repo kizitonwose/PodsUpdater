@@ -11,8 +11,7 @@ import Cocoa
 
 // MARK: - NSTableView
 extension NSTableView {
-    func registerCellNib(_ cellClass: AnyClass,
-                                              forIdentifier identifier: NSUserInterfaceItemIdentifier) {
+    func registerCellNib(_ cellClass: AnyClass, forIdentifier identifier: NSUserInterfaceItemIdentifier) {
         let nibName = String.className(cellClass)
         let nib = NSNib(nibNamed: NSNib.Name(rawValue: nibName), bundle: nil)
         self.register(nib, forIdentifier: identifier)
@@ -107,24 +106,15 @@ extension String {
 // MARK:- Array
 extension Array {
     var second: Element? {
-        if count > 1 {
-            return self[1]
-        }
-        return nil
+        return self[safe: 1]
     }
     
     var third: Element? {
-        if count > 2 {
-            return self[2]
-        }
-        return nil
+         return self[safe: 2]
     }
     
     var fourth: Element? {
-        if count > 3 {
-            return self[3]
-        }
-        return nil
+         return self[safe: 3]
     }
 }
 
@@ -140,7 +130,7 @@ extension Collection {
         return !isEmpty
     }
     
-    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
