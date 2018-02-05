@@ -49,6 +49,15 @@ class PodfileViewController: NSViewController {
 // MARK:- PodfileContract.View
 extension PodfileViewController: PodfileContract.View {
     func showPodfileSaveSuccess() {
+        let notification = NSUserNotification()
+        notification.title = "Success!"
+        notification.informativeText = "Your new Podfile has been saved successfully."
+        notification.deliveryDate = Date()
+        
+        let center = NSUserNotificationCenter.default
+        center.delegate = NSApplication.shared.delegate as? AppDelegate
+        center.deliver(notification)
+        
         view.window?.close()
     }
     
