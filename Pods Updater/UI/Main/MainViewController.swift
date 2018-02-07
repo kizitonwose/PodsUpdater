@@ -57,7 +57,7 @@ extension MainViewController: MainContract.View {
         alert.messageText = "Important"
         alert.informativeText = "One or more Pods in your Podfile is declared with a format that is not supported by this app. The app can analyze your Podfile and show which lines should be fixed."
         alert.alertStyle = .critical
-        alert.addButton(withTitle: "Analize now")
+        alert.addButton(withTitle: "Analyze now")
         alert.addButton(withTitle: "Close")
         alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertFirstButtonReturn {
