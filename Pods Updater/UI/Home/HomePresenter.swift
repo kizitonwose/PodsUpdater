@@ -1,5 +1,5 @@
 //
-//  MainPresenter.swift
+//  HomePresenter.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 30/01/2018.
@@ -9,14 +9,14 @@
 import Foundation
 import RxSwift
 
-class MainPresenter: MainContract.Presenter {
+class HomePresenter: HomeContract.Presenter {
     
-    private weak var view : MainContract.View?
+    private weak var view : HomeContract.View?
     private var disposeBag = DisposeBag()
     private var source: DataSource
     var currentUrl: URL? = nil
     
-    init(view: MainContract.View, source: DataSource) {
+    init(view: HomeContract.View, source: DataSource) {
         self.source = source
         self.view = view
     }

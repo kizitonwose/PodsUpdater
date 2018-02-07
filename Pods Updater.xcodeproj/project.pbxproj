@@ -15,8 +15,8 @@
 		50131D16202070E8008C73B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D15202070E8008C73B7 /* Extensions.swift */; };
 		50131D1A20208349008C73B7 /* Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1920208349008C73B7 /* Windows.swift */; };
 		50131D1D20208F32008C73B7 /* PodUseVersionCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */; };
-		50131D1F20209F79008C73B7 /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1E20209F79008C73B7 /* MainContract.swift */; };
-		50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2020209F86008C73B7 /* MainPresenter.swift */; };
+		50131D1F20209F79008C73B7 /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1E20209F79008C73B7 /* HomeContract.swift */; };
+		50131D2120209F86008C73B7 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2020209F86008C73B7 /* HomePresenter.swift */; };
 		50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D2220209FEE008C73B7 /* BaseMVP.swift */; };
 		50131D252020CCA3008C73B7 /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D242020CCA3008C73B7 /* CommandLine.swift */; };
 		50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE620236A430016860D /* SynchronizedScrollView.swift */; };
@@ -30,7 +30,7 @@
 		5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA88202323F500E752A1 /* PodfileViewController.swift */; };
 		508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DEDDF2025EF7F005413D0 /* UserDefaults.swift */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
-		50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* MainViewController.swift */; };
+		50C06531201F7B4400D7B8D3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* HomeViewController.swift */; };
 		50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C06532201F7B4400D7B8D3 /* Assets.xcassets */; };
 		50C06536201F7B4400D7B8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C06534201F7B4400D7B8D3 /* Main.storyboard */; };
 		74A30DCEAC111AE11E7E48EC /* Pods_Pods_Updater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C58CB8FB1E7991FB5DCFED4 /* Pods_Pods_Updater.framework */; };
@@ -47,8 +47,8 @@
 		50131D15202070E8008C73B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		50131D1920208349008C73B7 /* Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Windows.swift; sourceTree = "<group>"; };
 		50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodUseVersionCellView.xib; sourceTree = "<group>"; };
-		50131D1E20209F79008C73B7 /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
-		50131D2020209F86008C73B7 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		50131D1E20209F79008C73B7 /* HomeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContract.swift; sourceTree = "<group>"; };
+		50131D2020209F86008C73B7 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		50131D2220209FEE008C73B7 /* BaseMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMVP.swift; sourceTree = "<group>"; };
 		50131D242020CCA3008C73B7 /* CommandLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLine.swift; sourceTree = "<group>"; };
 		50197FE620236A430016860D /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		508DEDDF2025EF7F005413D0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50C06530201F7B4400D7B8D3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		50C06530201F7B4400D7B8D3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		50C06532201F7B4400D7B8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50C06535201F7B4400D7B8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50C06537201F7B4400D7B8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			children = (
 				50197FE82024785A0016860D /* Command */,
 				50197FE520236A120016860D /* Custom */,
-				5043611220233DA300BC852E /* Main */,
+				5043611220233DA300BC852E /* Home */,
 				5079FA872023235500E752A1 /* Podfile */,
 				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
 				50131D1920208349008C73B7 /* Windows.swift */,
@@ -128,17 +128,17 @@
 			path = Command;
 			sourceTree = "<group>";
 		};
-		5043611220233DA300BC852E /* Main */ = {
+		5043611220233DA300BC852E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				50C06530201F7B4400D7B8D3 /* MainViewController.swift */,
-				50131D1E20209F79008C73B7 /* MainContract.swift */,
-				50131D2020209F86008C73B7 /* MainPresenter.swift */,
+				50C06530201F7B4400D7B8D3 /* HomeViewController.swift */,
+				50131D1E20209F79008C73B7 /* HomeContract.swift */,
+				50131D2020209F86008C73B7 /* HomePresenter.swift */,
 				50131D0820206AED008C73B7 /* PodsTableView.swift */,
 				50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */,
 				50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */,
 			);
-			path = Main;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		5079FA872023235500E752A1 /* Podfile */ = {
@@ -343,16 +343,16 @@
 				5043610F20233D8900BC852E /* PodfileContract.swift in Sources */,
 				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
 				50197FEA2024788A0016860D /* CommandViewController.swift in Sources */,
-				50131D1F20209F79008C73B7 /* MainContract.swift in Sources */,
+				50131D1F20209F79008C73B7 /* HomeContract.swift in Sources */,
 				50131D1A20208349008C73B7 /* Windows.swift in Sources */,
 				5079FA862022710500E752A1 /* Error.swift in Sources */,
 				50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */,
 				50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */,
 				504361142023565000BC852E /* NestedTypes.swift in Sources */,
-				50C06531201F7B4400D7B8D3 /* MainViewController.swift in Sources */,
+				50C06531201F7B4400D7B8D3 /* HomeViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,
 				502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */,
-				50131D2120209F86008C73B7 /* MainPresenter.swift in Sources */,
+				50131D2120209F86008C73B7 /* HomePresenter.swift in Sources */,
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
 				508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */,
 				50131D252020CCA3008C73B7 /* CommandLine.swift in Sources */,

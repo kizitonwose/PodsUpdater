@@ -1,5 +1,5 @@
 //
-//  MainViewController
+//  HomeViewController
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 29/01/2018.
@@ -10,7 +10,7 @@ import Cocoa
 import RxSwift
 import RxCocoa
 
-class MainViewController: NSViewController {
+class HomeViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var selectPodfileButton: NSPopUpButton!
@@ -19,7 +19,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var filterButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var tableView: PodsTableView!
-    private var presenter: MainContract.Presenter!
+    private var presenter: HomeContract.Presenter!
     private let disposeBag = DisposeBag()
     private let openPanel: NSOpenPanel = {
         let openPanel = NSOpenPanel()
@@ -42,7 +42,7 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = MainPresenter(view: self, source: Repository.instance)
+        presenter = HomePresenter(view: self, source: Repository.instance)
         
         setupViews()
         tableView.reloadData()
@@ -50,8 +50,8 @@ class MainViewController: NSViewController {
     
 }
 
-// MARK:- MainContract.View
-extension MainViewController: MainContract.View {
+// MARK:- HomeContract.View
+extension HomeViewController: HomeContract.View {
     func showPodWithInvalidFormatWarning() {
         let alert = NSAlert()
         alert.messageText = "Important"
@@ -128,7 +128,7 @@ extension MainViewController: MainContract.View {
 }
 
 // MARK:- Setup
-extension MainViewController {
+extension HomeViewController {
     
     fileprivate func setupViews() {
         setupButtons()

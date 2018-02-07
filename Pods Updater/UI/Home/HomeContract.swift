@@ -1,5 +1,5 @@
 //
-//  MainContract.swift
+//  HomeContract.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 30/01/2018.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct MainContract {
-    typealias View = _MainView
-    typealias Presenter = _MainPresenter
+struct HomeContract {
+    typealias View = _HomeView
+    typealias Presenter = _HomePresenter
 }
 
-protocol _MainView: BaseContract.View {
+protocol _HomeView: BaseContract.View {
     func showPodfileParseError()
     func showPodsInformation(with pods: [Pod])
     func showPodfileReadPercentage(_ progress: Double)
@@ -25,7 +25,7 @@ protocol _MainView: BaseContract.View {
     func showPodCleanUpError(_ reason: String?)
 }
 
-protocol _MainPresenter: BaseContract.Presenter {
+protocol _HomePresenter: BaseContract.Presenter {
     func findVersionsForPodfile(at url: URL, onlyNew: Bool)
     func setVersion(_ version: String, forPod pod: Pod)
     func cleanUpPodfile(at url: URL)
