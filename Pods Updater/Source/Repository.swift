@@ -69,7 +69,7 @@ class Repository: DataSource {
                             }
                             
                             if let versionsLine = versionsLine {
-                                // Remove uneccessary information from the version line and retrieve pod versions
+                                // Remove unnecessary information from the version line and retrieve pod versions
                                 var versions = versionsLine
                                     .replacingOccurrences(of: "- Versions:", with: "")
                                     .replacingOccurrences(of: "[master repo]", with: "")
@@ -140,7 +140,7 @@ class Repository: DataSource {
             lines[pod.lineIndex] = lines[pod.lineIndex].replacingFirstOccurrence(of: pod.currentVersion,
                                                                                  with: version)
             pod.otherLineIndices.forEach { index in
-                // If this Pod exists in another line in this Podfile(maybe a diferrent target), update version as well
+                // If this Pod exists in another line in this Podfile(maybe a different target), update version as well
                 if lines.indices.contains(index) {
                     lines[index] = lines[index].replacingFirstOccurrence(of: pod.currentVersion, with: version)
                 }
