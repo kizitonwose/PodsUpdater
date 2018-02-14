@@ -112,7 +112,7 @@ extension HomeViewController: HomeContract.View {
     
     private func showErrorAlert(content: String) {
         let alert = NSAlert()
-        alert.messageText = "An error occured"
+        alert.messageText = "An error occurred"
         alert.informativeText = content
         alert.alertStyle = .critical
         alert.addButton(withTitle: "Close")
