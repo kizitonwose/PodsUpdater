@@ -29,10 +29,9 @@ class HomePresenter: HomeContract.Presenter {
         source.findVersionsForPodfile(at: url, onlyNew: onlyNew)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
-            .do(onCompleted: { [weak self] in
-                self?.view?.setProgress(enabled: false)
-            })
             .subscribe(onNext: { [weak self] progressResult in
+                self?.view?.setProgress(enabled: false)
+
                 if progressResult.result == nil {
                     self?.view?.showPodfileReadPercentage(progressResult.progress)
                 } else {
@@ -45,6 +44,7 @@ class HomePresenter: HomeContract.Presenter {
                     }
                 }
                 }, onError: { [weak self] error in
+                    self?.view?.setProgress(enabled: false)
                     self?.view?.showPodfileParseError()
             }).disposed(by: disposeBag)
     }
