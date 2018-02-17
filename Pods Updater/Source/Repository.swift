@@ -16,15 +16,18 @@ class Repository: DataSource {
     private init() { }
     
     func findVersionsForPodfile(at url: URL, onlyNew: Bool) -> Observable<ProgressResult<PodfileVersionCheckResult>> {
-        var content = ""
-        do {// Read the file to String
-            content = try String(contentsOf: url, encoding: .utf8)
-        } catch {
-            return Observable.error(error)
-        }
         
         return Observable.create { observer -> Disposable in
             let disposable = BooleanDisposable()
+            
+            var content = ""
+            do {// Read the file to String
+                content = try String(contentsOf: url, encoding: .utf8)
+            } catch {
+                observer.onError(error)
+                observer.onCompleted()
+                return disposable
+            }
             
             let lines = content.splitByNewLines()
             
@@ -154,18 +157,21 @@ class Repository: DataSource {
     
     
     func cleanUpPodfile(at url: URL) -> Single<PodFileCleanResult> {
-        
-        guard let podfileContent = try? String(contentsOf: url, encoding: .utf8) else {
-            return Single.error(AppError("Could not parse selected file to string"))
-        }
 
-        guard let podfileLockContent = try? String(contentsOf: url.appendingPathExtension("lock"),
-                                                   encoding: .utf8) else {
-            return Single.error(AppError("No Podfile.lock file found in directory"))
-        }
-        
         return Single.create { observer -> Disposable in
             let disposable = BooleanDisposable()
+            
+            guard let podfileContent = try? String(contentsOf: url, encoding: .utf8) else {
+                observer(.error(AppError("Could not parse selected file to string")))
+                return disposable
+            }
+            
+            guard let podfileLockContent = try? String(contentsOf: url.appendingPathExtension("lock"),
+                                                       encoding: .utf8) else {
+                observer(.error(AppError("No Podfile.lock file found in directory")))
+                return disposable
+            }
+            
 
             // Get the installed versions from Podfile.lock
             // 1. Parse Podfile.lock, and splt into array by lines
@@ -252,7 +258,7 @@ class Repository: DataSource {
             return disposable
         }).catchError {
             // Print errors to the command output
-           return Observable.just("\($0.localizedDescription)")
+           return Observable.just($0.localizedDescription)
         }
     }
 
