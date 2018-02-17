@@ -162,13 +162,14 @@ class Repository: DataSource {
             let disposable = BooleanDisposable()
             
             guard let podfileContent = try? String(contentsOf: url, encoding: .utf8) else {
-                observer(.error(AppError("Could not parse selected file to string")))
+                observer(.error(AppError(reason: "Could not parse selected file to string")))
                 return disposable
             }
             
-            guard let podfileLockContent = try? String(contentsOf: url.appendingPathExtension("lock"),
-                                                       encoding: .utf8) else {
-                observer(.error(AppError("No Podfile.lock file found in directory")))
+            // Attempt to read Podfile.lock file in project directory.
+            let podfileLockUrl = url.appendingPathExtension("lock")
+            guard let podfileLockContent = try? String(contentsOf: podfileLockUrl, encoding: .utf8) else {
+                observer(.error(AppError(reason: "No Podfile.lock file found in directory")))
                 return disposable
             }
             

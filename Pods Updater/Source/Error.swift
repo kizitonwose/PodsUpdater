@@ -10,7 +10,4 @@ import Foundation
 
 struct AppError: Error {
     let reason: String
-    init(_ reason: String) {
-        self.reason = reason
-    }
 }
