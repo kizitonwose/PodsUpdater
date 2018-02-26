@@ -12,14 +12,14 @@ enum Command {
     case updateRepo
     case search(podName: String)
     case install(podFileUrl: URL)
-    
-    var commandString : String {
+
+    var arguments: [String] {
         switch self {
-        case .updateRepo: return "repo update"
-        case let .search(podName): return "search \(podName)"
-        case let .install(podFileUrl): return "install --project-directory=\(podFileUrl.path)"
+        case .updateRepo: return ["repo", "update"]
+        case let .search(podName): return  ["search", "\(podName)"]
+        case let .install(podFileUrl): return  ["install", "--project-directory=\(podFileUrl.path)"]
         }
-    }
+    }    
 }
 
 extension Command {
@@ -30,7 +30,7 @@ extension Command {
         let errorPipe = Pipe()
         let process = Process()
         process.launchPath = "/usr/local/bin/pod"
-        process.arguments = self.commandString.components(separatedBy: .whitespaces)
+        process.arguments = arguments
         process.standardOutput = outputPipe
         process.standardError = errorPipe
         
