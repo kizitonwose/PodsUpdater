@@ -30,15 +30,6 @@ class HomeViewController: NSViewController {
         openPanel.canCreateDirectories = false
         return openPanel
     }()
-    private let infoAlert: NSAlert = {
-        let alert = NSAlert()
-        alert.messageText = "Important"
-        alert.informativeText = "This app searches your local pod spec repository to get pod versions. For best results, it's important that this repo is up to date. This can be achieved by running the \"pod repo update\" command."
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "Close")
-        alert.addButton(withTitle: "Run update command now")
-        return alert
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +46,8 @@ extension HomeViewController: HomeContract.View {
     func showPodWithInvalidFormatWarning() {
         let alert = NSAlert()
         alert.messageText = "Important"
-        alert.informativeText = "One or more Pods in your Podfile is declared with a format that is not supported by this app. The app can analyze your Podfile and show which lines should be fixed."
+        alert.informativeText = "One or more Pods in your Podfile is declared with a format that is not supported by this app. " +
+        "The app can analyze your Podfile and show which lines should be fixed."
         alert.alertStyle = .critical
         alert.addButton(withTitle: "Analyze now")
         alert.addButton(withTitle: "Close")
@@ -92,10 +84,19 @@ extension HomeViewController: HomeContract.View {
         tableView.isEnabled = !enabled
     }
     
-    func showLocalPodsUpdateInformation() {
-        infoAlert.beginSheetModal(for: view.window!) { [unowned self] response in
+    func showLocalPodsUpdateInformation(resultCount: Int) {
+        let alert = NSAlert()
+        alert.messageText = "Search completed"
+        let emptyResultText = "\(resultCount == 0 ? "No results found.\n\n" : "")"
+        alert.informativeText = "\(emptyResultText)Note: This app searches your local pod spec repository to get pod versions. " +
+        "For best results, it's important that this repo is up to date. This can be achieved by running the \"pod repo update\" command."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Close")
+        alert.addButton(withTitle: "Run update command now")
+        
+        alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
-                self.runComman(.updateRepo)
+                self.runCommand(.updateRepo)
             }
         }
     }
@@ -119,7 +120,7 @@ extension HomeViewController: HomeContract.View {
         alert.beginSheetModal(for: view.window!)
     }
     
-    fileprivate func runComman(_ command: Command) {
+    fileprivate func runCommand(_ command: Command) {
         let vc = self.storyboard?.instantiateController(withIdentifier: .commandViewController)
             as! CommandViewController
         vc.command = command
@@ -158,7 +159,7 @@ extension HomeViewController {
         installPodButton.title = "Install Pod(s)"
         installPodButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
-                self.runComman(.install(podFileUrl: self.openPanel.url!.deletingLastPathComponent()))
+                self.runCommand(.install(podFileUrl: self.openPanel.url!.deletingLastPathComponent()))
             }).disposed(by: disposeBag)
         
         

@@ -20,7 +20,7 @@ protocol _HomeView: BaseContract.View {
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
     func showPodWithInvalidFormatWarning()
-    func showLocalPodsUpdateInformation()
+    func showLocalPodsUpdateInformation(resultCount: Int)
     func showPodCleanUpResult(_ result: PodFileCleanResult)
     func showPodCleanUpError(_ reason: String?)
 }

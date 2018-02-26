@@ -50,10 +50,8 @@ class Repository: DataSource {
                     if let name = components.second, let currentVersion = components.fourth {
                         
                         // If this version info has any of the magic operators, add info message and skip this index.
-                        if currentVersion.first!.isDigit.not() {
-                            if currentVersion.isUnsupportedPodVersionInfo {
-                                hasPodWithUnsupportedFormat = true
-                            }
+                        if currentVersion.isUnsupportedPodVersionInfo {
+                            hasPodWithUnsupportedFormat = true
                             continue
                         }
                         
