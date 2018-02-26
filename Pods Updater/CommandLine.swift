@@ -1,5 +1,5 @@
 //
-//  CommanLineUtils.swift
+//  CommanLine.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 30/01/2018.

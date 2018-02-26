@@ -44,17 +44,18 @@ class Repository: DataSource {
                 
                 let trimmedLine = line.trimmingWhiteSpaces()
                 if trimmedLine.isValidPodLine {
-                   // print(trimmedLine)
+
                     // Parse every line in the Podfile
                     let components = trimmedLine.components(separatedBy: "'")
                     if let name = components.second, let currentVersion = components.fourth {
                         
+                        // If this version info has any of the magic operators, add info message and skip this index.
                         if currentVersion.first!.isDigit.not() {
                             if currentVersion.isUnsupportedPodVersionInfo {
                                 hasPodWithUnsupportedFormat = true
                             }
                             continue
-                        } // If this is not a valid version number
+                        }
                         
                         var pod = Pod()
                         pod.lineIndex = index
@@ -78,7 +79,6 @@ class Repository: DataSource {
                                     .replacingOccurrences(of: "[master repo]", with: "")
                                     .splitByComma()
                                     .map { $0.trimmingWhiteSpaces() }
-                                // print(versions)
                                 
                                 // If the user chose to see only newer versions of their pods than currently
                                 // installed, we remove all older versions from the array.
