@@ -15,6 +15,7 @@ class HomePresenter: HomeContract.Presenter {
     private var disposeBag = DisposeBag()
     private var source: DataSource
     var currentUrl: URL? = nil
+    private var lastRepoUpdateDate: Date?
     
     init(view: HomeContract.View, source: DataSource) {
         self.source = source
@@ -42,7 +43,18 @@ class HomePresenter: HomeContract.Presenter {
                     if result.hasPodWithUnsupportedFormat {
                         view.showPodWithInvalidFormatWarning()
                     } else {
-                        view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
+                        guard let lastRepoUpdateDate = self?.lastRepoUpdateDate else {
+                            // Repo has not been update since app launch
+                            view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
+                            return
+                        }
+                        
+                        if let lastRepoUpdateMinute = Calendar.current.dateComponents([.minute], from: lastRepoUpdateDate, to: Date()).minute {
+                            if lastRepoUpdateMinute > 10 {
+                                // It's been more than 10 minutes since last repo update, show message again.
+                                view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
+                            }
+                        }
                     }
                 }
                 }, onError: { [weak self] error in
@@ -81,4 +93,7 @@ class HomePresenter: HomeContract.Presenter {
         view?.showPodsInformation(with: [])
     }
 
+    func repoUpdated(at date: Date) {
+        lastRepoUpdateDate = date
+    }
 }

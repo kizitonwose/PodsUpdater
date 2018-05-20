@@ -89,15 +89,16 @@ extension HomeViewController: HomeContract.View {
         alert.messageText = "Search completed"
         let emptyResultText = "\(resultCount == 0 ? "No results found.\n\n" : "")"
         alert.informativeText = "\(emptyResultText)Note: This app searches your local pod spec repository to get pod versions. " +
-        "For best results, it's important that this repo is up to date. This can be achieved by running the \"pod repo update\" command."
+        "For best results, it's important that your local repo is up to date. This can be achieved by running \"pod repo update\" command."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "Close")
-        alert.addButton(withTitle: "Run update command now")
+        alert.addButton(withTitle: "Run update command")
         
         alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
                 self.runCommand(.updateRepo) { [unowned self] in
                     // Search again after the local repo is updated.
+                    self.presenter.repoUpdated(at: Date())
                     self.presenter.findVersionsForPodfile(at: self.podfileSelectionPanel.url!,
                                                           onlyNew: self.filterButton.isOn)
                 }
