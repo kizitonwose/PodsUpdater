@@ -4,5 +4,5 @@ target 'Pods Updater' do
   use_frameworks!
   pod 'RxSwift', '4.1.2'
   pod 'RxCocoa', '4.1.2'
-  pod 'Highlightr', '2.0.0'
+  pod 'Highlightr', '2.0.1'
 end
