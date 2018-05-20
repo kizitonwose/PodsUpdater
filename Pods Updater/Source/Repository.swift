@@ -35,9 +35,7 @@ class Repository: DataSource {
             var hasPodWithUnsupportedFormat = false
 
             for (index, line) in lines.enumerated() {
-                if disposable.isDisposed {
-                    break
-                }
+                if disposable.isDisposed { break }
                 
                 let progress = Double(index)/(Double(lines.count - 1)) * 100.0
                 observer.onNext(ProgressResult(progress: progress, result: nil))

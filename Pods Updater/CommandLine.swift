@@ -16,7 +16,7 @@ enum Command {
     var arguments: [String] {
         switch self {
         case .updateRepo: return ["repo", "update"]
-        case let .search(podName): return  ["search", "\(podName)"]
+        case let .search(podName): return  ["search", "--simple", "--no-pager", "--no-ansi", "\(podName)"]
         case let .install(podFileUrl): return  ["install", "--project-directory=\(podFileUrl.path)"]
         }
     }    
