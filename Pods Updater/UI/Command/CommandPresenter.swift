@@ -27,8 +27,13 @@ class CommandPresenter: CommandContract.Presenter {
         source.runCommand(command)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] line in
-                self?.view?.showOutput(line)
+            .subscribe(onNext: { [weak self] in
+                self?.view?.showOutput($0)
+                }, onError: { [weak self] in
+                    // Print errors to the command output
+                    self?.view?.showOutput($0.localizedDescription)
+                }, onCompleted: { [weak self] in
+                    self?.view?.onCommandSuccess()
             }).disposed(by: disposeBag)
     }
 }

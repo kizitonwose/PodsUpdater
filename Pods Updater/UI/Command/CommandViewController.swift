@@ -13,7 +13,8 @@ import RxCocoa
 class CommandViewController: NSViewController {
 
     @IBOutlet var textView: NSTextView!
-    var command = Command.updateRepo
+    var command: Command = .updateRepo
+    var successHandler: (() -> Void)?
     fileprivate var presenter: CommandContract.Presenter!
     
     override func viewDidLoad() {
@@ -33,6 +34,16 @@ extension CommandViewController: CommandContract.View {
     func showOutput(_ output: String) {
         textView.string = textView.string.appending(output)
         textView.scrollToEndOfDocument(nil)
+    }
+    
+    func onCommandSuccess() {
+        switch command {
+        case .updateRepo:
+            successHandler?()
+            presenting?.dismissViewController(self)
+        default: break
+        }
+
     }
 }
 

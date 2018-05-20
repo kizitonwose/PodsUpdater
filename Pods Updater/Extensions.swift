@@ -183,3 +183,10 @@ extension NSRect {
     }
 }
 
+// MARK:- NSRect
+extension NSButton {
+    var isOn: Bool {
+        return state == .on
+    }
+}
+

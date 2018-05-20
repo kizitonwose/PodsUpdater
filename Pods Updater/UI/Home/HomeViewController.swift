@@ -21,7 +21,7 @@ class HomeViewController: NSViewController {
     @IBOutlet weak var tableView: PodsTableView!
     private var presenter: HomeContract.Presenter!
     private let disposeBag = DisposeBag()
-    private let openPanel: NSOpenPanel = {
+    private let podfileSelectionPanel: NSOpenPanel = {
         let openPanel = NSOpenPanel()
         openPanel.title = "Select Podfile"
         openPanel.allowsMultipleSelection = false
@@ -96,14 +96,17 @@ extension HomeViewController: HomeContract.View {
         
         alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
-                self.runCommand(.updateRepo)
+                self.runCommand(.updateRepo) { [unowned self] in
+                    // Search again after the local repo is updated.
+                    self.presenter.findVersionsForPodfile(at: self.podfileSelectionPanel.url!,
+                                                          onlyNew: self.filterButton.isOn)
+                }
             }
         }
     }
     
     func showPodCleanUpResult(_ result: PodFileCleanResult) {
-        let podfileVC = storyboard?.instantiateController(withIdentifier: .podfileViewController)  as! PodfileViewController
-        podfileVC.result = result
+        let podfileVC = storyboard!.instantiatePodfileViewController(with: result)
         presentViewControllerAsModalWindow(podfileVC)
     }
     
@@ -120,10 +123,8 @@ extension HomeViewController: HomeContract.View {
         alert.beginSheetModal(for: view.window!)
     }
     
-    fileprivate func runCommand(_ command: Command) {
-        let vc = self.storyboard?.instantiateController(withIdentifier: .commandViewController)
-            as! CommandViewController
-        vc.command = command
+    fileprivate func runCommand(_ command: Command, successHandler: (() -> Void)? = nil) {
+        let vc = self.storyboard!.instantiateCommandViewController(with: command, successHandler: successHandler)
         self.presentViewControllerAsModalWindow(vc)
     }
 }
@@ -142,13 +143,13 @@ extension HomeViewController {
         selectPodfileButton.addItems(withTitles: ["Select Podfile", "Find Versions", "Make Compatible"])
         selectPodfileButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
-                if (self.openPanel.runModal() == .OK) {
+                if (self.podfileSelectionPanel.runModal() == .OK) {
                     switch self.selectPodfileButton.indexOfSelectedItem {
                     case 1: // Analyze Podfile
-                        self.presenter.findVersionsForPodfile(at: self.openPanel.url!,
-                                                              onlyNew: self.filterButton.state == .on)
+                        self.presenter.findVersionsForPodfile(at: self.podfileSelectionPanel.url!,
+                                                              onlyNew: self.filterButton.isOn)
                     case 2: // Sanitize Podfile
-                        self.presenter.cleanUpPodfile(at: self.openPanel.url!)
+                        self.presenter.cleanUpPodfile(at: self.podfileSelectionPanel.url!)
                     default: break
                     }
                 }
@@ -159,7 +160,7 @@ extension HomeViewController {
         installPodButton.title = "Install Pod(s)"
         installPodButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
-                self.runCommand(.install(podFileUrl: self.openPanel.url!.deletingLastPathComponent()))
+                self.runCommand(.install(podFileUrl: self.podfileSelectionPanel.url!.deletingLastPathComponent()))
             }).disposed(by: disposeBag)
         
         
