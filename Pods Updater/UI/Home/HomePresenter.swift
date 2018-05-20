@@ -53,6 +53,8 @@ class HomePresenter: HomeContract.Presenter {
                             if lastRepoUpdateMinute > 10 {
                                 // It's been more than 10 minutes since last repo update, show message again.
                                 view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
+                            } else if result.pods.isEmpty {
+                                view.showNoUpdatesMessage()
                             }
                         }
                     }

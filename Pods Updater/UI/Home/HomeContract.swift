@@ -21,6 +21,7 @@ protocol _HomeView: BaseContract.View {
     func setProgress(enabled: Bool)
     func showPodWithInvalidFormatWarning()
     func showLocalPodsUpdateInformation(resultCount: Int)
+    func showNoUpdatesMessage()
     func showPodCleanUpResult(_ result: PodFileCleanResult)
     func showPodCleanUpError(_ reason: String?)
 }

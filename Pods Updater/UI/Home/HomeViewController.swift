@@ -84,6 +84,15 @@ extension HomeViewController: HomeContract.View {
         tableView.isEnabled = !enabled
     }
     
+    func showNoUpdatesMessage() {
+        let alert = NSAlert()
+        alert.messageText = "Search completed"
+        alert.informativeText = "No updates found."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Close")
+        alert.beginSheetModal(for: view.window!)
+    }
+    
     func showLocalPodsUpdateInformation(resultCount: Int) {
         let alert = NSAlert()
         alert.messageText = "Search completed"
