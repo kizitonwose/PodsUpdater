@@ -14,7 +14,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="bTg-3O-EXs">
-                    <rect key="frame" x="6" y="19" width="16" height="16"/>
+                    <rect key="frame" x="10" y="19" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="LZQ-t8-Km5"/>
                         <constraint firstAttribute="width" constant="16" id="M9l-fw-rYJ"/>
@@ -28,7 +28,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9V9-59-Blt">
-                    <rect key="frame" x="26" y="18" width="111" height="17"/>
+                    <rect key="frame" x="34" y="18" width="103" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Alamofire" id="PhO-io-PPs">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -38,10 +38,10 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9V9-59-Blt" secondAttribute="trailing" constant="6" id="40G-aS-Gzg"/>
-                <constraint firstItem="bTg-3O-EXs" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="6" id="5nh-nD-mJR"/>
+                <constraint firstItem="bTg-3O-EXs" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="5nh-nD-mJR"/>
                 <constraint firstItem="9V9-59-Blt" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="77x-1a-c75"/>
                 <constraint firstItem="bTg-3O-EXs" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="N9f-WH-bty"/>
-                <constraint firstItem="9V9-59-Blt" firstAttribute="leading" secondItem="bTg-3O-EXs" secondAttribute="trailing" constant="6" id="dv3-9E-5zp"/>
+                <constraint firstItem="9V9-59-Blt" firstAttribute="leading" secondItem="bTg-3O-EXs" secondAttribute="trailing" constant="10" id="dv3-9E-5zp"/>
             </constraints>
             <connections>
                 <outlet property="homepageButton" destination="bTg-3O-EXs" id="gih-9f-gFb"/>

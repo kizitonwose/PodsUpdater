@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -1076,7 +1076,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7R-Rp-11j">
-                                <rect key="frame" x="13" y="9" width="25" height="25"/>
+                                <rect key="frame" x="8" y="9" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lvs-yW-4gm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1097,7 +1097,7 @@ Gw
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8EK-f0-DXo">
-                                <rect key="frame" x="45" y="5" width="81" height="32"/>
+                                <rect key="frame" x="40" y="5" width="81" height="32"/>
                                 <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZT6-8F-aH5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1107,7 +1107,7 @@ Gw
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rbj-wh-aOh" secondAttribute="trailing" id="4Bm-Gl-MWe"/>
                             <constraint firstItem="8EK-f0-DXo" firstAttribute="leading" secondItem="h7R-Rp-11j" secondAttribute="trailing" constant="15" id="4b1-Vb-x8y"/>
-                            <constraint firstItem="h7R-Rp-11j" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="BpG-lX-kZ4"/>
+                            <constraint firstItem="h7R-Rp-11j" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="BpG-lX-kZ4"/>
                             <constraint firstItem="bC0-IP-sB3" firstAttribute="top" secondItem="Rbj-wh-aOh" secondAttribute="bottom" constant="15" id="D9G-yS-g3X"/>
                             <constraint firstAttribute="trailing" secondItem="7lQ-Zx-i13" secondAttribute="trailing" constant="15" id="ITF-Xd-PFi"/>
                             <constraint firstAttribute="trailing" secondItem="bC0-IP-sB3" secondAttribute="trailing" constant="15" id="KFs-qR-46s"/>
