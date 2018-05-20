@@ -30,18 +30,19 @@ class HomePresenter: HomeContract.Presenter {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] progressResult in
+                guard let view = self?.view else { return }
 
                 if progressResult.result == nil {
-                    self?.view?.showPodfileReadPercentage(progressResult.progress)
+                    view.showPodfileReadPercentage(progressResult.progress)
                 } else {
-                    self?.view?.setProgress(enabled: false)
+                    view.setProgress(enabled: false)
                     
                     let result = progressResult.result!
-                    self?.view?.showPodsInformation(with: result.pods)
+                    view.showPodsInformation(with: result.pods)
                     if result.hasPodWithUnsupportedFormat {
-                        self?.view?.showPodWithInvalidFormatWarning()
+                        view.showPodWithInvalidFormatWarning()
                     } else {
-                        self?.view?.showLocalPodsUpdateInformation(resultCount: result.pods.count)
+                        view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
                     }
                 }
                 }, onError: { [weak self] error in

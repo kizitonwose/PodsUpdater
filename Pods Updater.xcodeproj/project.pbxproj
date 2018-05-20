@@ -25,7 +25,7 @@
 		502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6815202483E800FFEDF2 /* CommandPresenter.swift */; };
 		5043610F20233D8900BC852E /* PodfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043610E20233D8900BC852E /* PodfileContract.swift */; };
 		5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043611020233D9400BC852E /* PodfilePresenter.swift */; };
-		504361142023565000BC852E /* NestedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* NestedTypes.swift */; };
+		504361142023565000BC852E /* NSStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* NSStoryboardExtensions.swift */; };
 		5079FA862022710500E752A1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA852022710500E752A1 /* Error.swift */; };
 		5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA88202323F500E752A1 /* PodfileViewController.swift */; };
 		508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DEDDF2025EF7F005413D0 /* UserDefaults.swift */; };
@@ -57,7 +57,7 @@
 		502F6815202483E800FFEDF2 /* CommandPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPresenter.swift; sourceTree = "<group>"; };
 		5043610E20233D8900BC852E /* PodfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileContract.swift; sourceTree = "<group>"; };
 		5043611020233D9400BC852E /* PodfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfilePresenter.swift; sourceTree = "<group>"; };
-		504361132023565000BC852E /* NestedTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedTypes.swift; sourceTree = "<group>"; };
+		504361132023565000BC852E /* NSStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStoryboardExtensions.swift; sourceTree = "<group>"; };
 		5079FA852022710500E752A1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5079FA88202323F500E752A1 /* PodfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileViewController.swift; sourceTree = "<group>"; };
 		508DEDDF2025EF7F005413D0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
 				50131D1920208349008C73B7 /* Windows.swift */,
 				50131D2220209FEE008C73B7 /* BaseMVP.swift */,
-				504361132023565000BC852E /* NestedTypes.swift */,
+				504361132023565000BC852E /* NSStoryboardExtensions.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				5079FA862022710500E752A1 /* Error.swift in Sources */,
 				50197FE720236A430016860D /* SynchronizedScrollView.swift in Sources */,
 				50131D2320209FEE008C73B7 /* BaseMVP.swift in Sources */,
-				504361142023565000BC852E /* NestedTypes.swift in Sources */,
+				504361142023565000BC852E /* NSStoryboardExtensions.swift in Sources */,
 				50C06531201F7B4400D7B8D3 /* HomeViewController.swift in Sources */,
 				50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */,
 				502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */,

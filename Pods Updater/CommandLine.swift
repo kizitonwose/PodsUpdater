@@ -62,7 +62,7 @@ extension Command {
             return .success(output: output)
         } else {
             let output = String(data: errorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
-            return.error(output: output)
+            return.error(error: ProcessResult.ProcessError(status: Int(process.terminationStatus), output: output))
         }
     }
     
@@ -70,5 +70,10 @@ extension Command {
 
 enum ProcessResult {
     case success(output: String?)
-    case error(output: String?)
+    case error(error: ProcessError)
+    
+    struct ProcessError: Error {
+        let status: Int
+        let output: String?
+    }
 }
