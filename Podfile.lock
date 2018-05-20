@@ -9,6 +9,12 @@ DEPENDENCIES:
   - RxCocoa (= 4.1.2)
   - RxSwift (= 4.1.2)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Highlightr
+    - RxCocoa
+    - RxSwift
+
 SPEC CHECKSUMS:
   Highlightr: e68a91ed9067ef0a787b920dd9becbd9935c2b79
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
@@ -16,4 +22,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9fca007f4a9f16d57ae3d928b11ad02da38b7259
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0
