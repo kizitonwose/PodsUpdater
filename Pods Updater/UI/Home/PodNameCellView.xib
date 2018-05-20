@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="PodNameCellView" customModule="Pods_Updater" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="141" height="53"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="bTg-3O-EXs">
+                    <rect key="frame" x="6" y="19" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="LZQ-t8-Km5"/>
+                        <constraint firstAttribute="width" constant="16" id="M9l-fw-rYJ"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="web" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ue9-Ow-TPP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="homepageButtonClicked:" target="c22-O7-iKe" id="vJC-jf-raL"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9V9-59-Blt">
+                    <rect key="frame" x="26" y="18" width="111" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Alamofire" id="PhO-io-PPs">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9V9-59-Blt" secondAttribute="trailing" constant="6" id="40G-aS-Gzg"/>
+                <constraint firstItem="bTg-3O-EXs" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="6" id="5nh-nD-mJR"/>
+                <constraint firstItem="9V9-59-Blt" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="77x-1a-c75"/>
+                <constraint firstItem="bTg-3O-EXs" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="N9f-WH-bty"/>
+                <constraint firstItem="9V9-59-Blt" firstAttribute="leading" secondItem="bTg-3O-EXs" secondAttribute="trailing" constant="6" id="dv3-9E-5zp"/>
+            </constraints>
+            <connections>
+                <outlet property="homepageButton" destination="bTg-3O-EXs" id="gih-9f-gFb"/>
+                <outlet property="podnameLabel" destination="9V9-59-Blt" id="obh-ep-8BX"/>
+            </connections>
+            <point key="canvasLocation" x="-124.5" y="94.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="web" width="102.40000152587891" height="102.40000152587891"/>
+    </resources>
+</document>

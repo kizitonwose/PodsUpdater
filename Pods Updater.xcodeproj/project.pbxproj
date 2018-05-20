@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4651D0B720B1C5BD00D24830 /* PodNameCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4651D0B620B1C5BD00D24830 /* PodNameCellView.xib */; };
 		50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D0820206AED008C73B7 /* PodsTableView.swift */; };
 		50131D0D20206BFB008C73B7 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D0C20206BFB008C73B7 /* Pod.swift */; };
 		50131D1020206DFA008C73B7 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D0F20206DFA008C73B7 /* DataSource.swift */; };
 		50131D1220206E05008C73B7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1120206E05008C73B7 /* Repository.swift */; };
-		50131D1420206F8F008C73B7 /* PodNewVersionsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */; };
+		50131D1420206F8F008C73B7 /* PodNewVersionsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1320206F8F008C73B7 /* PodNewVersionsCellView.xib */; };
 		50131D16202070E8008C73B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D15202070E8008C73B7 /* Extensions.swift */; };
 		50131D1A20208349008C73B7 /* Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50131D1920208349008C73B7 /* Windows.swift */; };
 		50131D1D20208F32008C73B7 /* PodUseVersionCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */; };
@@ -39,11 +40,12 @@
 /* Begin PBXFileReference section */
 		0631C7B7A5D761B85DC0B2CE /* Pods-Pods Updater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pods Updater.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pods Updater/Pods-Pods Updater.debug.xcconfig"; sourceTree = "<group>"; };
 		1C58CB8FB1E7991FB5DCFED4 /* Pods_Pods_Updater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pods_Updater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4651D0B620B1C5BD00D24830 /* PodNameCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodNameCellView.xib; sourceTree = "<group>"; };
 		50131D0820206AED008C73B7 /* PodsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodsTableView.swift; sourceTree = "<group>"; };
 		50131D0C20206BFB008C73B7 /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		50131D0F20206DFA008C73B7 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		50131D1120206E05008C73B7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodNewVersionsTableCellView.xib; sourceTree = "<group>"; };
+		50131D1320206F8F008C73B7 /* PodNewVersionsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodNewVersionsCellView.xib; sourceTree = "<group>"; };
 		50131D15202070E8008C73B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		50131D1920208349008C73B7 /* Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Windows.swift; sourceTree = "<group>"; };
 		50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodUseVersionCellView.xib; sourceTree = "<group>"; };
@@ -135,8 +137,9 @@
 				50131D1E20209F79008C73B7 /* HomeContract.swift */,
 				50131D2020209F86008C73B7 /* HomePresenter.swift */,
 				50131D0820206AED008C73B7 /* PodsTableView.swift */,
-				50131D1320206F8F008C73B7 /* PodNewVersionsTableCellView.xib */,
+				50131D1320206F8F008C73B7 /* PodNewVersionsCellView.xib */,
 				50131D1C20208F32008C73B7 /* PodUseVersionCellView.xib */,
+				4651D0B620B1C5BD00D24830 /* PodNameCellView.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -230,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Kizito Nwose";
 				TargetAttributes = {
 					50C0652A201F7B4400D7B8D3 = {
@@ -268,7 +271,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				50C06533201F7B4400D7B8D3 /* Assets.xcassets in Resources */,
-				50131D1420206F8F008C73B7 /* PodNewVersionsTableCellView.xib in Resources */,
+				4651D0B720B1C5BD00D24830 /* PodNameCellView.xib in Resources */,
+				50131D1420206F8F008C73B7 /* PodNewVersionsCellView.xib in Resources */,
 				50C06536201F7B4400D7B8D3 /* Main.storyboard in Resources */,
 				50131D1D20208F32008C73B7 /* PodUseVersionCellView.xib in Resources */,
 			);
@@ -377,6 +381,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -384,6 +389,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -434,6 +440,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -441,6 +448,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

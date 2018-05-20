@@ -197,7 +197,7 @@ extension HomeViewController {
             }
         }
         
-        tableView.buttonClickHandler = { [unowned self] pod, newVersion in
+        tableView.useVersionClickHandler = { [unowned self] pod, newVersion in
             self.presenter.setVersion(newVersion, forPod: pod)
             self.installPodButton.isHidden = false // The user can install command on this Podfile
         }

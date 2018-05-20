@@ -83,6 +83,11 @@ class Repository: DataSource {
                                 }
                                 pod.availableVersions = versions
                             }
+                            
+                            if let homepageUrlLine = outputLines.first(where: { $0.trimmingWhiteSpaces().starts(with: "- Homepage:") }) {
+                                let homepageUrlString = homepageUrlLine.replacingOccurrences(of: "- Homepage:", with: "").trimmingWhiteSpaces()
+                                pod.homepageUrl = URL(string: homepageUrlString)
+                            }
                         case .error: continue
                         }
                         if pod.availableVersions.isNotEmpty {

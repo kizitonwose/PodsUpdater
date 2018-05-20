@@ -43,6 +43,8 @@ public struct Pod: Equatable {
     var specName: String {
         return isSubSpec ? name.components(separatedBy: "/").first! : name
     }
+    
+    var homepageUrl: URL?
 
     init(name: String, lineNumber: Int, currentVersion: String) {
         self.name = name

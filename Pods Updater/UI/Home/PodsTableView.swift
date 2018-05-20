@@ -10,14 +10,14 @@ import Cocoa
 
 class PodsTableView: NSTableView {
     
-    var buttonClickHandler: ((Pod, _ newVersion: String) -> ())?
+    var useVersionClickHandler: ((Pod, _ newVersion: String) -> ())?
     
     var pods = [Pod]() {
         didSet {
             reloadData()
         }
     }
-
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setup()
@@ -31,8 +31,16 @@ class PodsTableView: NSTableView {
     private func setup() {
         dataSource = self
         delegate = self
-        registerCellNib(PodNewVersionsTableCellView.self, forIdentifier: .newVersionsCell)
+        registerCellNib(PodNameCellView.self, forIdentifier: .podNameCell)
+        registerCellNib(PodNewVersionsCellView.self, forIdentifier: .newVersionsCell)
         registerCellNib(PodUseVersionCellView.self, forIdentifier: .useVersionCell)
+    }
+}
+
+// MARK:- NSTableViewDataSource
+extension PodsTableView: NSTableViewDataSource {
+    public func numberOfRows(in tableView: NSTableView) -> Int {
+        return pods.count
     }
 }
 
@@ -41,9 +49,14 @@ extension PodsTableView: NSTableViewDelegate {
     public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let pod = pods[row]
         if tableColumn == tableView.tableColumns.first {
-            let cell = tableView.makeView(withIdentifier: .podNameCell, owner: nil)  as! NSTableCellView
-            cell.textField?.stringValue = pod.name
-            cell.textField?.alignment = .center
+            let cell = tableView.makeView(withIdentifier: .podNameCell, owner: nil)  as! PodNameCellView
+            cell.podnameLabel.stringValue = pod.name
+            cell.homepageButtonClickHandler = { [unowned self] in
+                let row = self.row(for: cell)
+                if let url = self.pods[row].homepageUrl {
+                    NSWorkspace.shared.open(url)
+                }
+            }
             return cell
         }
         
@@ -55,7 +68,7 @@ extension PodsTableView: NSTableViewDelegate {
         }
         
         if tableColumn == tableView.tableColumns.third {
-            let cell = tableView.makeView(withIdentifier: .newVersionsCell, owner: nil)  as! PodNewVersionsTableCellView
+            let cell = tableView.makeView(withIdentifier: .newVersionsCell, owner: nil)  as! PodNewVersionsCellView
             cell.versionsPopUp.removeAllItems()
             cell.versionsPopUp.addItems(withTitles: pod.availableVersions)
             return cell
@@ -64,14 +77,13 @@ extension PodsTableView: NSTableViewDelegate {
         if tableColumn == tableView.tableColumns.fourth {
             let cell = tableView.makeView(withIdentifier: .useVersionCell, owner: nil)  as! PodUseVersionCellView
             cell.useVersionButton.title = "Get"
-            cell.buttonClickHandler = { [unowned self] in
+            cell.useVersionClickHandler = { [unowned self] in
                 let row = self.row(for: cell)
-
-                print("Selected row: \(row)")
+                
                 if let newVersionView = self.view(atColumn: 2, row: row, makeIfNecessary: true)
-                    as? PodNewVersionsTableCellView, let newVersion = newVersionView.versionsPopUp.selectedItem?.title {
-                   
-                    self.buttonClickHandler?(self.pods[row], newVersion)
+                    as? PodNewVersionsCellView, let newVersion = newVersionView.versionsPopUp.selectedItem?.title {
+                    
+                    self.useVersionClickHandler?(self.pods[row], newVersion)
                     self.removeRows(at: IndexSet(integer: row), withAnimation: [.effectFade, .slideRight])
                     self.pods.remove(at: row)
                 }
@@ -82,28 +94,31 @@ extension PodsTableView: NSTableViewDelegate {
     }
 }
 
-// MARK:- NSTableViewDataSource
-extension PodsTableView: NSTableViewDataSource {
-    public func numberOfRows(in tableView: NSTableView) -> Int {
-        return pods.count
+// MARK:- PodNameCellView
+class PodNameCellView: NSTableCellView {
+    @IBOutlet weak var homepageButton: NSButton!
+    @IBOutlet weak var podnameLabel: NSTextField!
+    
+    var homepageButtonClickHandler: (() -> ())?
+    
+    @IBAction func homepageButtonClicked(_ sender: Any) {
+        homepageButtonClickHandler?()
     }
 }
 
-// MARK:- PodNewVersionsTableCellView
-class PodNewVersionsTableCellView: NSTableCellView {
-    
+// MARK:- PodNewVersionsCellView
+class PodNewVersionsCellView: NSTableCellView {
     @IBOutlet weak var versionsPopUp: NSPopUpButton!
-    
 }
 
 // MARK:- PodUseVersionCellView
 class PodUseVersionCellView: NSTableCellView {
     
     @IBOutlet weak var useVersionButton: NSButton!
-    var buttonClickHandler: (() -> ())?
+    var useVersionClickHandler: (() -> ())?
     
-    @IBAction func buttonClicked(_ sender: Any) {
-        buttonClickHandler?()
+    @IBAction func useVersionButtonClicked(_ sender: Any) {
+        useVersionClickHandler?()
     }
 }
 
