@@ -14,6 +14,7 @@ class HomeViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var selectPodfileButton: NSPopUpButton!
+    @IBOutlet weak var refreshButton: NSButton!
     @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var installPodButton: NSButton!
     @IBOutlet weak var filterButton: NSButton!
@@ -80,6 +81,8 @@ extension HomeViewController: HomeContract.View {
     func setProgress(enabled: Bool) {
         filterButton.isEnabled = !enabled
         selectPodfileButton.isEnabled = !enabled
+        refreshButton.isEnabled = !enabled
+        refreshButton.isHidden = enabled
         installPodButton.isEnabled = !enabled
         tableView.isEnabled = !enabled
     }
@@ -165,6 +168,15 @@ extension HomeViewController {
                 }
             }).disposed(by: disposeBag)
         
+        // Refresh Button
+        refreshButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                if let url = self.podfileSelectionPanel.url {
+                    self.presenter.findVersionsForPodfile(at: url,
+                                                          onlyNew: self.filterButton.isOn)
+                }
+            }).disposed(by: disposeBag)
+                
         // Pod installation button
         installPodButton.isHidden = true // Hide the button initially
         installPodButton.title = "Install Pod(s)"
