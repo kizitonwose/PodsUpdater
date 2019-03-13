@@ -1068,7 +1068,7 @@ Gw
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="B14-dW-I5K">
                                 <rect key="frame" x="13" y="362" width="349" height="31"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="CD5-KC-Dkh">
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" placeholderString="Podfile Name" id="CD5-KC-Dkh">
                                     <font key="font" size="26" name="HelveticaNeue-UltraLight"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
