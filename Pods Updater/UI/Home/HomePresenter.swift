@@ -16,7 +16,16 @@ class HomePresenter: HomeContract.Presenter {
     private var source: DataSource
     private var pods: [Pod] = [Pod]()
     var currentUrl: URL? = nil
-    private var lastRepoUpdateDate: Date?
+    private var lastRepoUpdateDate: Date? {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "lastRepoUpdateDate")
+            UserDefaults.standard.synchronize()
+        }
+        get {
+            let value = UserDefaults.standard.object(forKey: "lastRepoUpdateDate")
+            return value as? Date
+        }
+    }
     
     init(view: HomeContract.View, source: DataSource) {
         self.source = source
@@ -53,7 +62,7 @@ class HomePresenter: HomeContract.Presenter {
                         }
                         
                         if let lastRepoUpdateMinute = Calendar.current.dateComponents([.minute], from: lastRepoUpdateDate, to: Date()).minute {
-                            if lastRepoUpdateMinute > 60 * 4 {
+                            if lastRepoUpdateMinute > 4 * 60 {
                                 // It's been more than 4 hours since last repo update, show message again.
                                 view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
                             } else if result.pods.isEmpty {
