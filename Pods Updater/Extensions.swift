@@ -13,7 +13,7 @@ import Cocoa
 extension NSTableView {
     func registerCellNib(_ cellClass: AnyClass, forIdentifier identifier: NSUserInterfaceItemIdentifier) {
         let nibName = String.className(cellClass)
-        let nib = NSNib(nibNamed: NSNib.Name(rawValue: nibName), bundle: nil)
+        let nib = NSNib(nibNamed: nibName, bundle: nil)
         self.register(nib, forIdentifier: identifier)
     }
 }

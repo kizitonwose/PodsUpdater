@@ -24,10 +24,10 @@ extension NSStoryboard {
 }
 
 extension NSStoryboard.SceneIdentifier {
-    public static let podfileViewController = NSStoryboard.SceneIdentifier(rawValue: "PodfileViewController")
-    public static let commandViewController = NSStoryboard.SceneIdentifier(rawValue: "CommandViewController")
+    public static let podfileViewController = "PodfileViewController"
+    public static let commandViewController = "CommandViewController"
 }
 
 extension NSStoryboard.Name {
-    public static let main = NSStoryboard.Name(rawValue: "Main")
+    public static let main = "Main"
 }

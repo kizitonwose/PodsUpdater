@@ -120,7 +120,7 @@ extension HomeViewController: HomeContract.View {
     
     func showPodCleanUpResult(_ result: PodFileCleanResult) {
         let podfileVC = storyboard!.instantiatePodfileViewController(with: result)
-        presentViewControllerAsModalWindow(podfileVC)
+        presentAsModalWindow(podfileVC)
     }
     
     func showPodCleanUpError(_ reason: String?) {
@@ -138,7 +138,7 @@ extension HomeViewController: HomeContract.View {
     
     fileprivate func runCommand(_ command: Command, successHandler: (() -> Void)? = nil) {
         let vc = self.storyboard!.instantiateCommandViewController(with: command, successHandler: successHandler)
-        self.presentViewControllerAsModalWindow(vc)
+        self.presentAsModalWindow(vc)
     }
 }
 
@@ -194,6 +194,12 @@ extension HomeViewController {
                 alert.informativeText = "This app helps you find updates for frameworks in your Podfile by searching your local spec repository. \n\nThe app requires that your Podfile follows a specific pattern when declaring Pods: \npod 'PodName', 'ExactVersion' \nexample: pod 'RxSwift', '4.1.1' \n\nIf your Podfile already follows this pattern, proceed with searching for versions of Pods in your Podfile using the \"Find Versions\" option. Otherwise, use the \"Make Compatible\" option to fix your Podfile first!"
                 alert.addButton(withTitle: "Close")
                 alert.beginSheetModal(for: self.view.window!)
+            }).disposed(by: disposeBag)
+        
+        // Filter Button
+        filterButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                
             }).disposed(by: disposeBag)
     }
     
