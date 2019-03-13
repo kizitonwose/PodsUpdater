@@ -199,7 +199,7 @@ extension HomeViewController {
         // Filter Button
         filterButton.rx.tap.asDriver()
             .drive(onNext: { [unowned self] _ in
-                
+                self.presenter.filterPod(onlyNew: self.filterButton.isOn)
             }).disposed(by: disposeBag)
     }
     

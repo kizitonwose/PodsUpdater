@@ -35,6 +35,8 @@ public struct Pod: Equatable {
     var currentVersion = ""
     // Available versions of this pod to choose from
     var availableVersions = [String]()
+    // All versions of this pod
+    var allVersions = [String]()
     // If this is a subspec (e.g pod 'EVReflection/Alamofire')
     var isSubSpec: Bool {
         return name.contains("/")
