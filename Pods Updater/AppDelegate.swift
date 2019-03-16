@@ -18,6 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 }
 
 // Only used by the PodfileViewController to show save success message since the PodfileViewController is dismissed

@@ -15,7 +15,7 @@ class Repository: DataSource {
     
     private init() { }
     
-    func findVersionsForPodfile(at url: URL, onlyNew: Bool) -> Observable<ProgressResult<PodfileVersionCheckResult>> {
+    func findVersionsForPodfile(at url: URL) -> Observable<ProgressResult<PodfileVersionCheckResult>> {
         
         return Observable.create { observer -> Disposable in
             let disposable = BooleanDisposable()
@@ -70,18 +70,14 @@ class Repository: DataSource {
                             
                             if let versionsLine = versionsLine {
                                 // Remove unnecessary information from the version line and retrieve pod versions
-                                var versions = versionsLine
+                                let versions = versionsLine
                                     .replacingOccurrences(of: "- Versions:", with: "")
                                     .replacingOccurrences(of: "[master repo]", with: "")
                                     .splitByComma()
                                     .map { $0.trimmingWhiteSpaces() }
                                 
-                                // If the user chose to see only newer versions of their pods than currently
-                                // installed, we remove all older versions from the array.
-                                if onlyNew, let currentVersionIndex = versions.index(of: pod.currentVersion) {
-                                    versions = Array(versions.dropLast(versions.count - currentVersionIndex))
-                                }
                                 pod.availableVersions = versions
+                                pod.allVersions = versions
                             }
                             
                             if let homepageUrlLine = outputLines.first(where: { $0.trimmingWhiteSpaces().starts(with: "- Homepage:") }) {

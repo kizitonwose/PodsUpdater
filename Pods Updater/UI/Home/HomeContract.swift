@@ -28,6 +28,7 @@ protocol _HomeView: BaseContract.View {
 
 protocol _HomePresenter: BaseContract.Presenter {
     func findVersionsForPodfile(at url: URL, onlyNew: Bool)
+    func filterPod(onlyNew: Bool)
     func setVersion(_ version: String, forPod pod: Pod)
     func cleanUpPodfile(at url: URL)
     func cleanUpPodfileAtCurrentUrl()

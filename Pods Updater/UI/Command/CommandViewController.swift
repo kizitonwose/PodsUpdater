@@ -40,7 +40,7 @@ extension CommandViewController: CommandContract.View {
         switch command {
         case .updateRepo:
             successHandler?()
-            presenting?.dismissViewController(self)
+            presentingViewController?.dismiss(self)
         default: break
         }
 
