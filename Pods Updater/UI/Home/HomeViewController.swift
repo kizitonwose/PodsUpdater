@@ -108,9 +108,9 @@ extension HomeViewController: HomeContract.View {
         
         alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
-                self.runCommand(.updateRepo) { [unowned self] in
-                    // Search again after the local repo is updated.
-                    self.presenter.repoUpdated(at: Date())
+                self.runCommand(.updateRepo) { [unowned self] vc in
+                    // Dismiss command output and search again after the local repo is updated.
+                    vc.presentingViewController?.dismiss(vc)
                     self.presenter.findVersionsForPodfile(at: self.podfileSelectionPanel.url!,
                                                           onlyNew: self.filterButton.isOn)
                 }
@@ -136,7 +136,7 @@ extension HomeViewController: HomeContract.View {
         alert.beginSheetModal(for: view.window!)
     }
     
-    fileprivate func runCommand(_ command: Command, successHandler: (() -> Void)? = nil) {
+    fileprivate func runCommand(_ command: Command, successHandler: ((CommandViewController) -> Void)? = nil) {
         let vc = self.storyboard!.instantiateCommandViewController(with: command, successHandler: successHandler)
         self.presentAsModalWindow(vc)
     }

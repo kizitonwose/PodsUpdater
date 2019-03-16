@@ -14,7 +14,7 @@ class CommandViewController: NSViewController {
 
     @IBOutlet var textView: NSTextView!
     var command: Command = .updateRepo
-    var successHandler: (() -> Void)?
+    var successHandler: ((CommandViewController) -> Void)?
     fileprivate var presenter: CommandContract.Presenter!
     
     override func viewDidLoad() {
@@ -37,13 +37,7 @@ extension CommandViewController: CommandContract.View {
     }
     
     func onCommandSuccess() {
-        switch command {
-        case .updateRepo:
-            successHandler?()
-            presentingViewController?.dismiss(self)
-        default: break
-        }
-
+        successHandler?(self)
     }
 }
 

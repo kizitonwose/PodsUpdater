@@ -9,7 +9,8 @@
 import Cocoa
 
 extension NSStoryboard {
-    func instantiateCommandViewController(with command: Command, successHandler: (() -> Void)? = nil) -> CommandViewController {
+    func instantiateCommandViewController(with command: Command,
+                                          successHandler: ((CommandViewController) -> Void)? = nil) -> CommandViewController {
         let vc = instantiateController(withIdentifier: .commandViewController) as! CommandViewController
         vc.command = command
         vc.successHandler = successHandler
