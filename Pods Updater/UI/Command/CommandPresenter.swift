@@ -34,8 +34,7 @@ class CommandPresenter: CommandContract.Presenter {
                     self?.view?.showOutput($0.localizedDescription)
                 }, onCompleted: { [weak self] in
                     if case .updateRepo = command {
-                        UserDefaults.standard.set(Date(), forKey: "lastRepoUpdateDate")
-                        UserDefaults.standard.synchronize()
+                        UserDefaults.standard.set(Date(), forKey: .lastRepoUpdate)
                     }
                     self?.view?.onCommandSuccess()
             }).disposed(by: disposeBag)

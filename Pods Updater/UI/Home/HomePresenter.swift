@@ -17,7 +17,7 @@ class HomePresenter: HomeContract.Presenter {
     private var pods: [Pod] = [Pod]()
     var currentUrl: URL? = nil
     private var lastRepoUpdateDate: Date? {
-        return UserDefaults.standard.object(forKey: "lastRepoUpdateDate") as? Date
+        return UserDefaults.standard.value(forKey: .lastRepoUpdate) as? Date
     }
     
     init(view: HomeContract.View, source: DataSource) {
