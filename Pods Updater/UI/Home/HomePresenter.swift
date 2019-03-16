@@ -42,7 +42,6 @@ class HomePresenter: HomeContract.Presenter {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] progressResult in
                 guard let view = self?.view else { return }
-
                 
                 if progressResult.result == nil {
                     view.showPodfileReadPercentage(progressResult.progress)
@@ -56,7 +55,7 @@ class HomePresenter: HomeContract.Presenter {
                         view.showPodWithInvalidFormatWarning()
                     } else {
                         guard let lastRepoUpdateDate = self?.lastRepoUpdateDate else {
-                            // Repo has not been update since app launch
+                            // Repo has never been updated via this app
                             view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
                             return
                         }
