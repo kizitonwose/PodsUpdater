@@ -32,5 +32,4 @@ protocol _HomePresenter: BaseContract.Presenter {
     func setVersion(_ version: String, forPod pod: Pod)
     func cleanUpPodfile(at url: URL)
     func cleanUpPodfileAtCurrentUrl()
-    func repoUpdated(at date: Date)
 }

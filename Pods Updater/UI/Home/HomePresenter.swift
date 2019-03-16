@@ -17,14 +17,7 @@ class HomePresenter: HomeContract.Presenter {
     private var pods: [Pod] = [Pod]()
     var currentUrl: URL? = nil
     private var lastRepoUpdateDate: Date? {
-        set {
-            UserDefaults.standard.set(newValue, forKey: "lastRepoUpdateDate")
-            UserDefaults.standard.synchronize()
-        }
-        get {
-            let value = UserDefaults.standard.object(forKey: "lastRepoUpdateDate")
-            return value as? Date
-        }
+        return UserDefaults.standard.object(forKey: "lastRepoUpdateDate") as? Date
     }
     
     init(view: HomeContract.View, source: DataSource) {
@@ -129,9 +122,5 @@ class HomePresenter: HomeContract.Presenter {
         let projectName = source.getProjectNameForPodfile(at: url)
         view?.showProjectName(projectName)
         view?.showPodsInformation(with: [])
-    }
-
-    func repoUpdated(at date: Date) {
-        lastRepoUpdateDate = date
     }
 }
