@@ -76,7 +76,6 @@ class Repository: DataSource {
                                     .splitByComma()
                                     .map { $0.trimmingWhiteSpaces() }
                                 
-                                pod.availableVersions = versions
                                 pod.allVersions = versions
                             }
                             
@@ -86,7 +85,7 @@ class Repository: DataSource {
                             }
                         case .error: continue
                         }
-                        if pod.availableVersions.isNotEmpty {
+                        if pod.allVersions.isNotEmpty {
                             if pods.contains(pod) {
                                 pods[pods.index(of: pod)!].otherLineIndices.append(index)
                             } else {

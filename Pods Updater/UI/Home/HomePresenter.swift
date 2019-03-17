@@ -79,8 +79,8 @@ class HomePresenter: HomeContract.Presenter {
                 if let currentVersionIndex = versions.index(of: pod.currentVersion) {
                     versions = Array(versions.dropLast(versions.count - currentVersionIndex))
                 }
-                newPod.availableVersions = versions
-                if newPod.availableVersions.isNotEmpty {
+                newPod.selectableVersions = versions
+                if newPod.selectableVersions.isNotEmpty {
                     if newPods.contains(newPod) {
                         newPods[newPods.index(of: newPod)!].otherLineIndices.append(index)
                     } else {
