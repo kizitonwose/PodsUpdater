@@ -703,10 +703,10 @@
             </objects>
             <point key="canvasLocation" x="134" y="293"/>
         </scene>
-        <!--Podfile View Controller-->
+        <!--Podfile Fix View Controller-->
         <scene sceneID="mYX-zY-0cZ">
             <objects>
-                <viewController identifier="PodfileViewController" storyboardIdentifier="PodfileViewController" id="EeV-ae-hGI" customClass="PodfileViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController identifier="PodfileFixViewController" storyboardIdentifier="PodfileFixViewController" id="EeV-ae-hGI" customClass="PodfileFixViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vFU-gr-lJx">
                         <rect key="frame" x="0.0" y="0.0" width="528" height="424"/>
                         <autoresizingMask key="autoresizingMask"/>

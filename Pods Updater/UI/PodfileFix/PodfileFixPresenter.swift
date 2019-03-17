@@ -1,5 +1,5 @@
 //
-//  PodfilePresenter.swift
+//  PodfileFixPresenter.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 01/02/2018.
@@ -9,14 +9,14 @@
 import Foundation
 import RxSwift
 
-class PodfilePresenter: PodfileContract.Presenter {
+class PodfileFixPresenter: PodfileFixContract.Presenter {
     
-    private weak var view : PodfileContract.View?
+    private weak var view : PodfileFixContract.View?
     private var disposeBag = DisposeBag()
     private var source: DataSource
     var result: PodFileCleanResult
     
-    init(view: PodfileContract.View, source: DataSource, result: PodFileCleanResult) {
+    init(view: PodfileFixContract.View, source: DataSource, result: PodFileCleanResult) {
         self.source = source
         self.view = view
         self.result = result

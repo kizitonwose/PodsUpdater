@@ -119,7 +119,7 @@ extension HomeViewController: HomeContract.View {
     }
     
     func showPodCleanUpResult(_ result: PodFileCleanResult) {
-        let podfileVC = storyboard!.instantiatePodfileViewController(with: result)
+        let podfileVC = storyboard!.instantiatePodfileFixViewController(with: result)
         presentAsModalWindow(podfileVC)
     }
     

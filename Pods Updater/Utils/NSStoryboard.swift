@@ -17,15 +17,15 @@ extension NSStoryboard {
         return vc
     }
     
-    func instantiatePodfileViewController(with result: PodFileCleanResult) -> PodfileViewController {
-        let vc = instantiateController(withIdentifier: .podfileViewController) as! PodfileViewController
+    func instantiatePodfileFixViewController(with result: PodFileCleanResult) -> PodfileFixViewController {
+        let vc = instantiateController(withIdentifier: .podfileFixViewController) as! PodfileFixViewController
         vc.result = result
         return vc
     }
 }
 
 extension NSStoryboard.SceneIdentifier {
-    public static let podfileViewController = "PodfileViewController"
+    public static let podfileFixViewController = "PodfileFixViewController"
     public static let commandViewController = "CommandViewController"
 }
 

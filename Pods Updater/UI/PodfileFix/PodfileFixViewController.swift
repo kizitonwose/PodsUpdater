@@ -1,5 +1,5 @@
 //
-//  PodfileViewController.swift
+//  PodfileFixViewController.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 01/02/2018.
@@ -11,7 +11,7 @@ import Highlightr
 import RxSwift
 import RxCocoa
 
-class PodfileViewController: NSViewController {
+class PodfileFixViewController: NSViewController {
 
     var result: PodFileCleanResult?
     @IBOutlet weak var themeChoiceButton: NSPopUpButton!
@@ -19,7 +19,7 @@ class PodfileViewController: NSViewController {
     @IBOutlet weak var newPodfileTextView: NSTextView!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var cancelButton: NSButton!
-    fileprivate var presenter: PodfileContract.Presenter!
+    fileprivate var presenter: PodfileFixContract.Presenter!
     fileprivate let disposeBag = DisposeBag()
     fileprivate let highlighter = Highlightr()
     private let writeErrorAert: NSAlert = {
@@ -34,7 +34,7 @@ class PodfileViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        presenter = PodfilePresenter(view: self, source: Repository.instance, result: result!)
+        presenter = PodfileFixPresenter(view: self, source: Repository.instance, result: result!)
     }
     
     override func viewDidAppear() {
@@ -46,8 +46,8 @@ class PodfileViewController: NSViewController {
     }
 }
 
-// MARK:- PodfileContract.View
-extension PodfileViewController: PodfileContract.View {
+// MARK:- PodfileFixContract.View
+extension PodfileFixViewController: PodfileFixContract.View {
     func showPodfileSaveSuccess() {
         let notification = NSUserNotification()
         notification.title = "Success!"
@@ -67,7 +67,7 @@ extension PodfileViewController: PodfileContract.View {
 }
 
 //MARK: Setup
-extension PodfileViewController {
+extension PodfileFixViewController {
     
     func setupViews() {
         // Setup buttons first so text view color will match theme button's current selection

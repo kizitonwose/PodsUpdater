@@ -24,11 +24,11 @@
 		50197FEA2024788A0016860D /* CommandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50197FE92024788A0016860D /* CommandViewController.swift */; };
 		502F6814202483C600FFEDF2 /* CommandContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6813202483C600FFEDF2 /* CommandContract.swift */; };
 		502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F6815202483E800FFEDF2 /* CommandPresenter.swift */; };
-		5043610F20233D8900BC852E /* PodfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043610E20233D8900BC852E /* PodfileContract.swift */; };
-		5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043611020233D9400BC852E /* PodfilePresenter.swift */; };
+		5043610F20233D8900BC852E /* PodfileFixContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043610E20233D8900BC852E /* PodfileFixContract.swift */; };
+		5043611120233D9400BC852E /* PodfileFixPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5043611020233D9400BC852E /* PodfileFixPresenter.swift */; };
 		504361142023565000BC852E /* NSStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504361132023565000BC852E /* NSStoryboard.swift */; };
 		5079FA862022710500E752A1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA852022710500E752A1 /* Error.swift */; };
-		5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA88202323F500E752A1 /* PodfileViewController.swift */; };
+		5079FA89202323F600E752A1 /* PodfileFixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079FA88202323F500E752A1 /* PodfileFixViewController.swift */; };
 		508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508DEDDF2025EF7F005413D0 /* UserDefaults.swift */; };
 		50C0652F201F7B4400D7B8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */; };
 		50C06531201F7B4400D7B8D3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C06530201F7B4400D7B8D3 /* HomeViewController.swift */; };
@@ -57,11 +57,11 @@
 		50197FE92024788A0016860D /* CommandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandViewController.swift; sourceTree = "<group>"; };
 		502F6813202483C600FFEDF2 /* CommandContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandContract.swift; sourceTree = "<group>"; };
 		502F6815202483E800FFEDF2 /* CommandPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPresenter.swift; sourceTree = "<group>"; };
-		5043610E20233D8900BC852E /* PodfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileContract.swift; sourceTree = "<group>"; };
-		5043611020233D9400BC852E /* PodfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfilePresenter.swift; sourceTree = "<group>"; };
+		5043610E20233D8900BC852E /* PodfileFixContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileFixContract.swift; sourceTree = "<group>"; };
+		5043611020233D9400BC852E /* PodfileFixPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileFixPresenter.swift; sourceTree = "<group>"; };
 		504361132023565000BC852E /* NSStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStoryboard.swift; sourceTree = "<group>"; };
 		5079FA852022710500E752A1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		5079FA88202323F500E752A1 /* PodfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileViewController.swift; sourceTree = "<group>"; };
+		5079FA88202323F500E752A1 /* PodfileFixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodfileFixViewController.swift; sourceTree = "<group>"; };
 		508DEDDF2025EF7F005413D0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		50C0652B201F7B4400D7B8D3 /* Pods Updater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pods Updater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C0652E201F7B4400D7B8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 				50197FE82024785A0016860D /* Command */,
 				50197FE520236A120016860D /* Custom */,
 				5043611220233DA300BC852E /* Home */,
-				5079FA872023235500E752A1 /* Podfile */,
+				5079FA872023235500E752A1 /* PodfileFix */,
 				50C06534201F7B4400D7B8D3 /* Main.storyboard */,
 				50131D1920208349008C73B7 /* Windows.swift */,
 				50131D2220209FEE008C73B7 /* BaseMVP.swift */,
@@ -153,14 +153,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		5079FA872023235500E752A1 /* Podfile */ = {
+		5079FA872023235500E752A1 /* PodfileFix */ = {
 			isa = PBXGroup;
 			children = (
-				5079FA88202323F500E752A1 /* PodfileViewController.swift */,
-				5043610E20233D8900BC852E /* PodfileContract.swift */,
-				5043611020233D9400BC852E /* PodfilePresenter.swift */,
+				5079FA88202323F500E752A1 /* PodfileFixViewController.swift */,
+				5043610E20233D8900BC852E /* PodfileFixContract.swift */,
+				5043611020233D9400BC852E /* PodfileFixPresenter.swift */,
 			);
-			path = Podfile;
+			path = PodfileFix;
 			sourceTree = "<group>";
 		};
 		50C06522201F7B4400D7B8D3 = {
@@ -339,7 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5043610F20233D8900BC852E /* PodfileContract.swift in Sources */,
+				5043610F20233D8900BC852E /* PodfileFixContract.swift in Sources */,
 				50131D0920206AED008C73B7 /* PodsTableView.swift in Sources */,
 				50197FEA2024788A0016860D /* CommandViewController.swift in Sources */,
 				50131D1F20209F79008C73B7 /* HomeContract.swift in Sources */,
@@ -355,8 +355,8 @@
 				50131D1020206DFA008C73B7 /* DataSource.swift in Sources */,
 				508DEDE02025EF7F005413D0 /* UserDefaults.swift in Sources */,
 				50131D252020CCA3008C73B7 /* CommandLine.swift in Sources */,
-				5079FA89202323F600E752A1 /* PodfileViewController.swift in Sources */,
-				5043611120233D9400BC852E /* PodfilePresenter.swift in Sources */,
+				5079FA89202323F600E752A1 /* PodfileFixViewController.swift in Sources */,
+				5043611120233D9400BC852E /* PodfileFixPresenter.swift in Sources */,
 				502F6816202483E800FFEDF2 /* CommandPresenter.swift in Sources */,
 				50131D0D20206BFB008C73B7 /* Pod.swift in Sources */,
 				50131D1220206E05008C73B7 /* Repository.swift in Sources */,
