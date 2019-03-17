@@ -1,5 +1,5 @@
 //
-//  PodfileContract.swift
+//  PodfileFixContract.swift
 //  Pods Updater
 //
 //  Created by Kizito Nwose on 01/02/2018.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct PodfileContract {
-    typealias View = _PodfileView
-    typealias Presenter = _PodfilePresenter
+struct PodfileFixContract {
+    typealias View = _PodfileFixView
+    typealias Presenter = _PodfileFixPresenter
 }
 
-protocol _PodfileView: BaseContract.View {
+protocol _PodfileFixView: BaseContract.View {
     func showPodfileSaveSuccess()
     func showPodfileSaveError()
 }
 
-protocol _PodfilePresenter: BaseContract.Presenter {
+protocol _PodfileFixPresenter: BaseContract.Presenter {
     func updatePodFileWitNewData()
 }

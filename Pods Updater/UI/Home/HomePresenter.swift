@@ -14,8 +14,11 @@ class HomePresenter: HomeContract.Presenter {
     private weak var view : HomeContract.View?
     private var disposeBag = DisposeBag()
     private var source: DataSource
+    private var pods: [Pod] = [Pod]()
     var currentUrl: URL? = nil
-    private var lastRepoUpdateDate: Date?
+    private var lastRepoUpdateDate: Date? {
+        return UserDefaults.standard.value(forKey: .lastRepoUpdate) as? Date
+    }
     
     init(view: HomeContract.View, source: DataSource) {
         self.source = source
@@ -27,42 +30,66 @@ class HomePresenter: HomeContract.Presenter {
         view?.setProgress(enabled: true)
         showPodfileMetaData(forPodfile: url)
         
-        source.findVersionsForPodfile(at: url, onlyNew: onlyNew)
+        source.findVersionsForPodfile(at: url)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] progressResult in
                 guard let view = self?.view else { return }
-
+                
                 if progressResult.result == nil {
                     view.showPodfileReadPercentage(progressResult.progress)
                 } else {
                     view.setProgress(enabled: false)
                     
                     let result = progressResult.result!
-                    view.showPodsInformation(with: result.pods)
+                    self?.pods = result.pods
+                    self?.filterPod(onlyNew: onlyNew)
                     if result.hasPodWithUnsupportedFormat {
                         view.showPodWithInvalidFormatWarning()
                     } else {
                         guard let lastRepoUpdateDate = self?.lastRepoUpdateDate else {
-                            // Repo has not been update since app launch
+                            // Repo has never been updated via this app
                             view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
                             return
                         }
                         
                         if let lastRepoUpdateMinute = Calendar.current.dateComponents([.minute], from: lastRepoUpdateDate, to: Date()).minute {
-                            if lastRepoUpdateMinute > 10 {
-                                // It's been more than 10 minutes since last repo update, show message again.
+                            if lastRepoUpdateMinute > 4 * 60 {
+                                // It's been more than 4 hours since last repo update, show message again.
                                 view.showLocalPodsUpdateInformation(resultCount: result.pods.count)
                             } else if result.pods.isEmpty {
                                 view.showNoUpdatesMessage()
                             }
                         }
                     }
+                    view.showPodVersionsSearchCompletion()
                 }
                 }, onError: { [weak self] error in
                     self?.view?.setProgress(enabled: false)
                     self?.view?.showPodfileParseError()
             }).disposed(by: disposeBag)
+    }
+    
+    func filterPod(onlyNew: Bool) {
+        if onlyNew {
+            self.view?.showPodsInformation(with: pods.compactMap { (pod) -> Pod? in
+                var newPod = pod
+                let podVersions = newPod.allVersions
+                let currentVersionIndex = podVersions.index(of: pod.currentVersion)!
+                let selectableVersions = Array(podVersions.dropLast(podVersions.count - currentVersionIndex))
+                if selectableVersions.isNotEmpty {
+                    newPod.selectableVersions = selectableVersions
+                    return newPod
+                }
+                return nil
+            })
+        } else {
+            self.view?.showPodsInformation(with: pods.map {
+                var pod = $0
+                pod.selectableVersions = pod.allVersions
+                return pod
+            })
+        }
     }
     
     func setVersion(_ version: String, forPod pod: Pod) {
@@ -93,9 +120,5 @@ class HomePresenter: HomeContract.Presenter {
         let projectName = source.getProjectNameForPodfile(at: url)
         view?.showProjectName(projectName)
         view?.showPodsInformation(with: [])
-    }
-
-    func repoUpdated(at date: Date) {
-        lastRepoUpdateDate = date
     }
 }

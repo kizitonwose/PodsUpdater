@@ -20,4 +20,5 @@ extension UserDefaults {
 
 public enum UserDefaultKey: String {
     case highlightTheme
+    case lastRepoUpdate
 }

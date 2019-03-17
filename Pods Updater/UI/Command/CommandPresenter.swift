@@ -33,6 +33,9 @@ class CommandPresenter: CommandContract.Presenter {
                     // Print errors to the command output
                     self?.view?.showOutput($0.localizedDescription)
                 }, onCompleted: { [weak self] in
+                    if case .updateRepo = command {
+                        UserDefaults.standard.set(Date(), forKey: .lastRepoUpdate)
+                    }
                     self?.view?.onCommandSuccess()
             }).disposed(by: disposeBag)
     }

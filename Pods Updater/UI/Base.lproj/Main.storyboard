@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -686,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Pods Updater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HomeWindow" customModule="Pods_Updater" customModuleProvider="target">
+                    <window key="window" title="Pods Updater" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HomeWindow" customModule="Pods_Updater" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="600" height="360"/>
@@ -704,10 +703,10 @@
             </objects>
             <point key="canvasLocation" x="134" y="293"/>
         </scene>
-        <!--Podfile View Controller-->
+        <!--Podfile Fix View Controller-->
         <scene sceneID="mYX-zY-0cZ">
             <objects>
-                <viewController identifier="PodfileViewController" storyboardIdentifier="PodfileViewController" id="EeV-ae-hGI" customClass="PodfileViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController identifier="PodfileFixViewController" storyboardIdentifier="PodfileFixViewController" id="EeV-ae-hGI" customClass="PodfileFixViewController" customModule="Pods_Updater" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vFU-gr-lJx">
                         <rect key="frame" x="0.0" y="0.0" width="528" height="424"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -764,52 +763,52 @@ Gw
                                 <subviews>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-m0-iP1" customClass="SynchronizedScrollView" customModule="Pods_Updater" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="242" height="350"/>
-                                        <clipView key="contentView" id="yeq-kb-cdp">
+                                        <clipView key="contentView" drawsBackground="NO" id="yeq-kb-cdp">
                                             <rect key="frame" x="1" y="1" width="240" height="348"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="SLS-ro-blx">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="348"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <size key="minSize" width="240" height="348"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
-                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="fkv-g0-vCK">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="fkv-g0-vCK">
                                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NOy-L4-OLV">
+                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NOy-L4-OLV">
                                             <rect key="frame" x="225" y="1" width="16" height="348"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zf-Ld-TO1" customClass="SynchronizedScrollView" customModule="Pods_Updater" customModuleProvider="target">
                                         <rect key="frame" x="257" y="0.0" width="241" height="350"/>
-                                        <clipView key="contentView" id="WFU-Fy-HIY">
+                                        <clipView key="contentView" drawsBackground="NO" id="WFU-Fy-HIY">
                                             <rect key="frame" x="1" y="1" width="239" height="348"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" smartInsertDelete="YES" id="epw-cP-X4L">
                                                     <rect key="frame" x="0.0" y="0.0" width="239" height="348"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <size key="minSize" width="239" height="348"/>
                                                     <size key="maxSize" width="463" height="10000000"/>
-                                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="dXu-J6-Jc6">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="dXu-J6-Jc6">
                                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gjr-O9-5Tu">
+                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="gjr-O9-5Tu">
                                             <rect key="frame" x="224" y="1" width="16" height="348"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -832,7 +831,7 @@ Gw
                                 </customSpacing>
                             </stackView>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-bn-Lli">
-                                <rect key="frame" x="13" y="7" width="76" height="26"/>
+                                <rect key="frame" x="13" y="7" width="77" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Bfw-9j-Roz" id="Bpu-wX-gIa">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -896,16 +895,16 @@ Gw
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="448" height="298"/>
                                             <size key="maxSize" width="463" height="10000000"/>
-                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="BzD-O8-B70">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="BzD-O8-B70">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aZT-mV-pxB">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aZT-mV-pxB">
                                     <rect key="frame" x="433" y="1" width="16" height="298"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -935,23 +934,23 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="CEO-7p-rrG">
-                                <rect key="frame" x="-2" y="335" width="590" height="20"/>
+                                <rect key="frame" x="-2" y="338" width="590" height="20"/>
                             </progressIndicator>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbj-wh-aOh">
-                                <rect key="frame" x="0.0" y="44" width="586" height="299"/>
+                                <rect key="frame" x="0.0" y="44" width="586" height="302"/>
                                 <clipView key="contentView" id="0OE-ai-HMi">
-                                    <rect key="frame" x="1" y="0.0" width="584" height="298"/>
+                                    <rect key="frame" x="1" y="0.0" width="584" height="301"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="j0Y-eR-pw9" viewBased="YES" id="nJx-YJ-bQx" customClass="PodsTableView" customModule="Pods_Updater" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="584" height="275"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="584" height="278"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="164" minWidth="40" maxWidth="1000" id="ydi-3x-RD8">
+                                                <tableColumn width="164" minWidth="40" maxWidth="1000" id="ydi-3x-RD8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -984,7 +983,7 @@ Gw
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="134" minWidth="10" maxWidth="3.4028234663852886e+38" id="Rp6-1l-TpY">
+                                                <tableColumn width="134" minWidth="10" maxWidth="3.4028234663852886e+38" id="Rp6-1l-TpY">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1017,7 +1016,7 @@ Gw
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="143.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="8C4-a1-4dN">
+                                                <tableColumn width="143.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="8C4-a1-4dN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1030,7 +1029,7 @@ Gw
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="130.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="o3y-oX-7Wg">
+                                                <tableColumn width="130.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="o3y-oX-7Wg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1047,11 +1046,11 @@ Gw
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="QvL-S7-1S0">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="QvL-S7-1S0">
                                     <rect key="frame" x="1" y="246" width="584" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="9fi-Pu-ASc">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="9fi-Pu-ASc">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1068,22 +1067,22 @@ Gw
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="B14-dW-I5K">
-                                <rect key="frame" x="13" y="361" width="432" height="31"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="CD5-KC-Dkh">
+                                <rect key="frame" x="13" y="362" width="349" height="31"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" placeholderString="Project Name" id="CD5-KC-Dkh">
                                     <font key="font" size="26" name="HelveticaNeue-UltraLight"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7R-Rp-11j">
-                                <rect key="frame" x="8" y="9" width="25" height="25"/>
+                                <rect key="frame" x="8" y="8" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lvs-yW-4gm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <popUpButton horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7lQ-Zx-i13">
-                                <rect key="frame" x="456" y="361" width="117" height="29"/>
+                            <popUpButton horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="7lQ-Zx-i13">
+                                <rect key="frame" x="456" y="364" width="117" height="26"/>
                                 <popUpButtonCell key="cell" type="bevel" title="Select Podfile" bezelStyle="regularSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="t9v-Ki-V54" id="x3x-4a-wrG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -1103,21 +1102,32 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eVT-kJ-W3Q">
+                                <rect key="frame" x="369" y="360" width="87" height="32"/>
+                                <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="75O-ig-lnV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="eVT-kJ-W3Q" firstAttribute="leading" secondItem="B14-dW-I5K" secondAttribute="trailing" constant="15" id="05J-6U-Xjq"/>
                             <constraint firstAttribute="trailing" secondItem="Rbj-wh-aOh" secondAttribute="trailing" id="4Bm-Gl-MWe"/>
                             <constraint firstItem="8EK-f0-DXo" firstAttribute="leading" secondItem="h7R-Rp-11j" secondAttribute="trailing" constant="15" id="4b1-Vb-x8y"/>
                             <constraint firstItem="h7R-Rp-11j" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="BpG-lX-kZ4"/>
                             <constraint firstItem="bC0-IP-sB3" firstAttribute="top" secondItem="Rbj-wh-aOh" secondAttribute="bottom" constant="15" id="D9G-yS-g3X"/>
+                            <constraint firstItem="7lQ-Zx-i13" firstAttribute="bottom" secondItem="eVT-kJ-W3Q" secondAttribute="bottom" id="EqL-EO-W8r"/>
                             <constraint firstAttribute="trailing" secondItem="7lQ-Zx-i13" secondAttribute="trailing" constant="15" id="ITF-Xd-PFi"/>
                             <constraint firstAttribute="trailing" secondItem="bC0-IP-sB3" secondAttribute="trailing" constant="15" id="KFs-qR-46s"/>
                             <constraint firstItem="CEO-7p-rrG" firstAttribute="top" secondItem="7lQ-Zx-i13" secondAttribute="bottom" constant="10" id="KUc-6S-E5G"/>
                             <constraint firstItem="Rbj-wh-aOh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="P4G-BV-la5"/>
+                            <constraint firstItem="7lQ-Zx-i13" firstAttribute="top" secondItem="eVT-kJ-W3Q" secondAttribute="top" id="Pyl-D8-Pm1"/>
                             <constraint firstItem="B14-dW-I5K" firstAttribute="centerY" secondItem="7lQ-Zx-i13" secondAttribute="centerY" id="U3R-yn-XLx"/>
+                            <constraint firstItem="7lQ-Zx-i13" firstAttribute="centerY" secondItem="eVT-kJ-W3Q" secondAttribute="centerY" id="Ubn-lZ-feI"/>
                             <constraint firstItem="bC0-IP-sB3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8EK-f0-DXo" secondAttribute="trailing" constant="50" id="UvG-7x-Udl"/>
                             <constraint firstItem="8EK-f0-DXo" firstAttribute="centerY" secondItem="h7R-Rp-11j" secondAttribute="centerY" id="Xff-pC-8gE"/>
+                            <constraint firstItem="7lQ-Zx-i13" firstAttribute="leading" secondItem="eVT-kJ-W3Q" secondAttribute="trailing" constant="8" id="bc2-j8-nJ2"/>
                             <constraint firstAttribute="trailing" secondItem="CEO-7p-rrG" secondAttribute="trailing" constant="-2" id="dDB-DX-Cuy"/>
-                            <constraint firstItem="7lQ-Zx-i13" firstAttribute="leading" secondItem="B14-dW-I5K" secondAttribute="trailing" constant="15" id="dy8-GI-08Y"/>
                             <constraint firstAttribute="bottom" secondItem="bC0-IP-sB3" secondAttribute="bottom" constant="15" id="mCa-ih-1RR"/>
                             <constraint firstItem="7lQ-Zx-i13" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="mTL-jO-GUM"/>
                             <constraint firstItem="h7R-Rp-11j" firstAttribute="centerY" secondItem="bC0-IP-sB3" secondAttribute="centerY" id="rPv-FU-Eva"/>
@@ -1132,6 +1142,7 @@ Gw
                         <outlet property="installPodButton" destination="8EK-f0-DXo" id="pbs-AG-g98"/>
                         <outlet property="progressIndicator" destination="CEO-7p-rrG" id="kFB-jo-E8a"/>
                         <outlet property="projectNameTextField" destination="B14-dW-I5K" id="s2b-fe-Oj7"/>
+                        <outlet property="refreshButton" destination="eVT-kJ-W3Q" id="XBU-12-U1s"/>
                         <outlet property="selectPodfileButton" destination="7lQ-Zx-i13" id="vWT-2q-QJW"/>
                         <outlet property="tableView" destination="nJx-YJ-bQx" id="WKv-Y9-CbM"/>
                     </connections>

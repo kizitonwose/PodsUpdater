@@ -29,12 +29,17 @@ public struct Pod: Equatable {
     var name = ""
     // The line where this pod is declared
     var lineIndex = -1
-    // Holds the line numbers for other declarations of this same pod on the Podfile
+    // Holds the line numbers for other declarations of this same pod in the
+    // Podfile(e.g a different target). Used when updating pod versions.
     var otherLineIndices = [Int]()
     // Current version of this pod
     var currentVersion = ""
-    // Available versions of this pod to choose from
-    var availableVersions = [String]()
+    // Versions of this pod to choose from depending on constraints.
+    // Will contain only newer versions if "show only newer versions" is selected.
+    // Will be equal to `allVersions` property otherwise.
+    var selectableVersions = [String]()
+    // All versions of this pod
+    var allVersions = [String]()
     // If this is a subspec (e.g pod 'EVReflection/Alamofire')
     var isSubSpec: Bool {
         return name.contains("/")

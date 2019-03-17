@@ -70,7 +70,7 @@ extension PodsTableView: NSTableViewDelegate {
         if tableColumn == tableView.tableColumns.third {
             let cell = tableView.makeView(withIdentifier: .newVersionsCell, owner: nil)  as! PodNewVersionsCellView
             cell.versionsPopUp.removeAllItems()
-            cell.versionsPopUp.addItems(withTitles: pod.availableVersions)
+            cell.versionsPopUp.addItems(withTitles: pod.selectableVersions)
             return cell
         }
         

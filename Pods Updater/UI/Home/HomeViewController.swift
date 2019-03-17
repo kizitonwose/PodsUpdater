@@ -14,6 +14,7 @@ class HomeViewController: NSViewController {
     
     @IBOutlet weak var projectNameTextField: NSTextField!
     @IBOutlet weak var selectPodfileButton: NSPopUpButton!
+    @IBOutlet weak var refreshButton: NSButton!
     @IBOutlet weak var helpButton: NSButton!
     @IBOutlet weak var installPodButton: NSButton!
     @IBOutlet weak var filterButton: NSButton!
@@ -43,6 +44,17 @@ class HomeViewController: NSViewController {
 
 // MARK:- HomeContract.View
 extension HomeViewController: HomeContract.View {
+    func showPodVersionsSearchCompletion() {
+        let notification = NSUserNotification()
+        notification.title = "Search completed"
+        notification.informativeText = projectNameTextField.stringValue
+        notification.deliveryDate = Date()
+   
+        // Note: Notification is not delivered when the app
+        // is in front. This is the intended behaviour.
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
     func showPodWithInvalidFormatWarning() {
         let alert = NSAlert()
         alert.messageText = "Important"
@@ -80,6 +92,8 @@ extension HomeViewController: HomeContract.View {
     func setProgress(enabled: Bool) {
         filterButton.isEnabled = !enabled
         selectPodfileButton.isEnabled = !enabled
+        refreshButton.isEnabled = !enabled
+        refreshButton.isHidden = enabled
         installPodButton.isEnabled = !enabled
         tableView.isEnabled = !enabled
     }
@@ -105,9 +119,9 @@ extension HomeViewController: HomeContract.View {
         
         alert.beginSheetModal(for: view.window!) { [unowned self] response in
             if response == .alertSecondButtonReturn {
-                self.runCommand(.updateRepo) { [unowned self] in
-                    // Search again after the local repo is updated.
-                    self.presenter.repoUpdated(at: Date())
+                self.runCommand(.updateRepo) { [unowned self] vc in
+                    // Dismiss command output and search again after the local repo is updated.
+                    vc.presentingViewController?.dismiss(vc)
                     self.presenter.findVersionsForPodfile(at: self.podfileSelectionPanel.url!,
                                                           onlyNew: self.filterButton.isOn)
                 }
@@ -116,8 +130,8 @@ extension HomeViewController: HomeContract.View {
     }
     
     func showPodCleanUpResult(_ result: PodFileCleanResult) {
-        let podfileVC = storyboard!.instantiatePodfileViewController(with: result)
-        presentViewControllerAsModalWindow(podfileVC)
+        let podfileVC = storyboard!.instantiatePodfileFixViewController(with: result)
+        presentAsModalWindow(podfileVC)
     }
     
     func showPodCleanUpError(_ reason: String?) {
@@ -133,9 +147,9 @@ extension HomeViewController: HomeContract.View {
         alert.beginSheetModal(for: view.window!)
     }
     
-    fileprivate func runCommand(_ command: Command, successHandler: (() -> Void)? = nil) {
+    fileprivate func runCommand(_ command: Command, successHandler: ((CommandViewController) -> Void)? = nil) {
         let vc = self.storyboard!.instantiateCommandViewController(with: command, successHandler: successHandler)
-        self.presentViewControllerAsModalWindow(vc)
+        self.presentAsModalWindow(vc)
     }
 }
 
@@ -165,6 +179,15 @@ extension HomeViewController {
                 }
             }).disposed(by: disposeBag)
         
+        // Refresh Button
+        refreshButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                if let url = self.podfileSelectionPanel.url {
+                    self.presenter.findVersionsForPodfile(at: url,
+                                                          onlyNew: self.filterButton.isOn)
+                }
+            }).disposed(by: disposeBag)
+                
         // Pod installation button
         installPodButton.isHidden = true // Hide the button initially
         installPodButton.title = "Install Pod(s)"
@@ -182,6 +205,12 @@ extension HomeViewController {
                 alert.informativeText = "This app helps you find updates for frameworks in your Podfile by searching your local spec repository. \n\nThe app requires that your Podfile follows a specific pattern when declaring Pods: \npod 'PodName', 'ExactVersion' \nexample: pod 'RxSwift', '4.1.1' \n\nIf your Podfile already follows this pattern, proceed with searching for versions of Pods in your Podfile using the \"Find Versions\" option. Otherwise, use the \"Make Compatible\" option to fix your Podfile first!"
                 alert.addButton(withTitle: "Close")
                 alert.beginSheetModal(for: self.view.window!)
+            }).disposed(by: disposeBag)
+        
+        // Filter Button
+        filterButton.rx.tap.asDriver()
+            .drive(onNext: { [unowned self] _ in
+                self.presenter.filterPod(onlyNew: self.filterButton.isOn)
             }).disposed(by: disposeBag)
     }
     

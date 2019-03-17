@@ -19,6 +19,7 @@ protocol _HomeView: BaseContract.View {
     func showPodfileReadPercentage(_ progress: Double)
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
+    func showPodVersionsSearchCompletion()
     func showPodWithInvalidFormatWarning()
     func showLocalPodsUpdateInformation(resultCount: Int)
     func showNoUpdatesMessage()
@@ -28,8 +29,8 @@ protocol _HomeView: BaseContract.View {
 
 protocol _HomePresenter: BaseContract.Presenter {
     func findVersionsForPodfile(at url: URL, onlyNew: Bool)
+    func filterPod(onlyNew: Bool)
     func setVersion(_ version: String, forPod pod: Pod)
     func cleanUpPodfile(at url: URL)
     func cleanUpPodfileAtCurrentUrl()
-    func repoUpdated(at date: Date)
 }
