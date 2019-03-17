@@ -71,26 +71,23 @@ class HomePresenter: HomeContract.Presenter {
     
     func filterPod(onlyNew: Bool) {
         if onlyNew {
-            var newPods = [Pod]()
-            for pod in pods {
+            self.view?.showPodsInformation(with: pods.compactMap { (pod) -> Pod? in
                 var newPod = pod
-                var versions = newPod.allVersions
-                let index = newPod.lineIndex
-                if let currentVersionIndex = versions.index(of: pod.currentVersion) {
-                    versions = Array(versions.dropLast(versions.count - currentVersionIndex))
+                let podVersions = newPod.allVersions
+                let currentVersionIndex = podVersions.index(of: pod.currentVersion)!
+                let selectableVersions = Array(podVersions.dropLast(podVersions.count - currentVersionIndex))
+                if selectableVersions.isNotEmpty {
+                    newPod.selectableVersions = selectableVersions
+                    return newPod
                 }
-                newPod.selectableVersions = versions
-                if newPod.selectableVersions.isNotEmpty {
-                    if newPods.contains(newPod) {
-                        newPods[newPods.index(of: newPod)!].otherLineIndices.append(index)
-                    } else {
-                        newPods.append(newPod)
-                    }
-                }
-            }
-            self.view?.showPodsInformation(with: newPods)
+                return nil
+            })
         } else {
-            self.view?.showPodsInformation(with: pods)
+            self.view?.showPodsInformation(with: pods.map {
+                var pod = $0
+                pod.selectableVersions = pod.allVersions
+                return pod
+            })
         }
     }
     
