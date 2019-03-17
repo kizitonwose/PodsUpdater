@@ -62,6 +62,7 @@ class HomePresenter: HomeContract.Presenter {
                             }
                         }
                     }
+                    view.showPodVersionsSearchCompletion()
                 }
                 }, onError: { [weak self] error in
                     self?.view?.setProgress(enabled: false)

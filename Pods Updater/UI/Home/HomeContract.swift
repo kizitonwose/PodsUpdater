@@ -19,6 +19,7 @@ protocol _HomeView: BaseContract.View {
     func showPodfileReadPercentage(_ progress: Double)
     func showProjectName(_ name: String)
     func setProgress(enabled: Bool)
+    func showPodVersionsSearchCompletion()
     func showPodWithInvalidFormatWarning()
     func showLocalPodsUpdateInformation(resultCount: Int)
     func showNoUpdatesMessage()

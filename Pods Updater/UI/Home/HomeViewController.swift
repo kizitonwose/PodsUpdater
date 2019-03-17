@@ -44,6 +44,17 @@ class HomeViewController: NSViewController {
 
 // MARK:- HomeContract.View
 extension HomeViewController: HomeContract.View {
+    func showPodVersionsSearchCompletion() {
+        let notification = NSUserNotification()
+        notification.title = "Search completed"
+        notification.informativeText = projectNameTextField.stringValue
+        notification.deliveryDate = Date()
+   
+        // Note: Notification is not delivered when the app
+        // is in front. This is the intended behaviour.
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
     func showPodWithInvalidFormatWarning() {
         let alert = NSAlert()
         alert.messageText = "Important"

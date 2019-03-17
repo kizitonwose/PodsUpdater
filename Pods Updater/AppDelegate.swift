@@ -23,8 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-// Only used by the PodfileFixViewController to show save success message since the PodfileFixViewController is dismissed
-// immediately and NotificationCenter needs a delegate to present a Notification when the app is in front.
+// Only used by the PodfileFixViewController to show save success message since
+// the PodfileFixViewController is dismissed immediately and NotificationCenter needs
+// a delegate to present a Notification when the app is in front.
 extension AppDelegate: NSUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: NSUserNotificationCenter,
                                 shouldPresent notification: NSUserNotification) -> Bool {
